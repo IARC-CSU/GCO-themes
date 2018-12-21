@@ -1,0 +1,47 @@
+	
+	<section layout="row" flex layout-fill style="height: 100%">
+
+		<ng-include src="'templates/sub-menu.html'"></ng-include>
+
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2 filters" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+			<ng-include src="'templates/online-analysis/filters-flex.html'"></ng-include>
+	    </md-sidenav>
+
+	    <md-button id="toggle-left-bar" ng-click="toggleLeftSideNav()" class="md-primary toggle-left-{{ sidebar_theme_number }}" aria-label="Hide menu" >
+	    	<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+        </md-button>
+
+	    <md-content flex layout-padding ng-controller="DataVizController">
+	      		      
+	      	<ul class="breadcrumb">
+		      	<li><a href="/today/home">Home</a></li>
+		        <li><a href="/today/explore">Explore</a></li>
+	  			<li> {{ type_graphic }} </li>
+	      	</ul>
+
+	      	<ng-include src="'templates/online-analysis/downloads.html'"></ng-include>
+
+	      	<md-tabs md-dynamic-height md-border-bottom style="width:{{ width }}px; height:{{ height }}px;">
+				
+				<md-tab label="Graphic">
+					<md-content class="md-padding top-container-map" id="graphic-content">
+						<div id="map-container" layout="column" layout-fill layout-align="top center" style="height:{{ graph_height }}px"></div>
+
+						<div id="map-bars-ranking-container" style="width:{{ width_bars_ranking }}px;" class="colored-by-{{ mColoredMapBy }}">
+							<h3></h3>
+							<svg></svg>
+						</div>
+					</md-content>
+				</md-tab>
+				
+				<md-tab label="Table">
+					<md-content class="md-padding">
+						<div id="table-data" flex></div>
+					</md-content>
+				</md-tab>
+		     
+		    </md-tabs>
+
+	    </md-content>
+
+	</section>

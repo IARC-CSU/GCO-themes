@@ -1,0 +1,69 @@
+// fonts
+$main_font : 'Noto Sans' ; 
+$height_top : 80px ; 
+$main_width : 1100px ; 
+
+// main filters
+@import "compass/css3/box-shadow" ;
+@import "compass/css3/border-radius" ;
+@import "compass/css3/transition" ;
+@import "compass/css3/background-size" ;
+@import "compass/css3/text-shadow" ; 
+@import "compass/css3/filter" ; 
+
+//  main components
+@import "colors" ; 
+@import "components" ; 
+@import "common" ; 
+
+// specific colors
+@import "colors/cancers" ; 
+@import "colors/countries" ; 
+
+@import "header" ; 
+
+// differents pages or components
+@import "pages/standard" ; 
+@import "pages/homes" ; 
+@import "pages/data-sources" ; 
+@import "pages/filter" ; 
+@import "pages/fact-sheets" ; 
+@import "pages/graphs" ; 
+
+// plugins
+@import "plugins/checkbox" ; 
+@import "plugins/select2-container" ; 
+@import "plugins/colorpickers" ; 
+@import "plugins/flags" ; 
+@import "plugins/material-design" ; 
+@import "plugins/table" ; 
+
+// theming for filter left sidenav
+@import "theming" ;
+
+@import "footer" ; 
+
+// mobile + tablets
+@import "media_queries" ; 
+
+html{
+    overflow-y: hidden !important;
+}
+
+body{
+    
+    font-family: $main_font, Verdana,  sans-serif;
+    height: 100% ;
+    background: #fff ;
+
+    // main div (content central + left menu )
+    #main-content{
+        margin: 0px ;
+	    width: 100% ;
+        padding-top: 0px ; 
+        position: fixed ; 
+        top : 80px ; 
+        bottom: 25px ;
+        background: #f7f7f7!important ; 
+    }
+}

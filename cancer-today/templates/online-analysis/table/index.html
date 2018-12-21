@@ -1,0 +1,51 @@
+
+  <section layout="row" flex layout-fill style="height: 100%" id="table-container">
+
+      <ng-include src="'templates/sub-menu.html'"></ng-include>
+
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2 filters" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+
+        <ng-include src="'templates/online-analysis/filters-flex.html'"></ng-include>
+        
+      </md-sidenav>
+
+      <md-button id="toggle-left-bar" ng-click="toggleLeftSideNav()" class="md-primary toggle-left-{{ sidebar_theme_number }}" aria-label="Hide menu" >
+          <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+      </md-button>
+
+      <md-content flex layout-padding ng-controller="DataVizController">
+                  
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li><a href="/today/explore">Explore</a></li>
+          <li> Table </li>
+        </ul>
+
+        <ng-include src="'templates/online-analysis/downloads.html'"></ng-include>
+
+        <div id="svg" style="width:{{ width }}px" class="table-responsive" layout="column" layout-fill layout-align="top center">
+
+          <div id="table-data-container">
+
+            <h2 id="chart-title" class="chart-title">{{ compiled_title }} </h2>
+
+            <p class="legend legend_default">
+              * Crude and age-standardized rates per 100 000<br/>
+              <span class="cum_risk_legend">
+              ** Cumulative risk, ages {{ age_min_cum_risk }}-{{ age_max_cum_risk }} (in %) <br/>
+              </span>
+            </p>
+
+            <p class="legend legend_prevalence">
+              *** Proportions per 100 000
+            </p>
+
+            <div id="table-data"></div>
+
+          </div>
+
+        </div>
+
+      </md-content>
+
+    </section>

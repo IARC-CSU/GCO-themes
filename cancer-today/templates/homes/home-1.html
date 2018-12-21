@@ -1,0 +1,173 @@
+	
+	<div class="head-home">
+
+		<div id="color_palette">
+
+			<label> <i class="fa fa-cog" aria-hidden="true"></i> Change icon color: </label>
+			<select ng-model="set_folder" ng-change="changeColorset(set_folder)">
+				<option ng-repeat="color in colorsets">{{ color }}</option>
+			</select>
+
+		</div>
+
+
+		<div class="h-container h-padding">
+
+			<h1>Cancer Today</h1>
+			<p class="baseline">
+				Data visualization tools that present current national estimates of the incidence, mortality, and prevalence
+			</p>
+		</div>
+
+	</div>
+
+	<div class="h-container">
+
+		<div class="first-buttons">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="#modalTakeATourVideo" class="btn_play" data-toggle="modal" title="Take a tour">
+							<i class="fa fa-play-circle" aria-hidden="true"></i> &nbsp; Take a tour </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="explore" data-toggle="tooltip" title="Explore">
+							<i class="fa fa-search" aria-hidden="true"></i> &nbsp; Explore </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button none reveal">
+						<a href="#" data-toggle="tooltip" title="Fact sheets" ng-click="showFactSheetsModal()"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Fact sheets</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="davaviz-home">
+
+		<div class="h-container">
+
+			<div class="viz-data">
+
+				<h2> Start to visualize data </h2>
+
+				<div class="row">
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-multi-bars"><img src="img/home/{{ set_folder }}/bars.png"></a>
+							<h3> Bar chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-pie"><img src="img/home/{{ set_folder }}/pie.png"></a>
+							<h3> Pie chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-dual-bars"><img src="img/home/{{ set_folder }}/dual-bars.png"></a>
+							<h3> Dual bar chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map"><img src="img/home/{{ set_folder }}/map.png"></a>
+							<h3> Simpe map </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map?projection=globe"><img src="img/home/{{ set_folder }}/globe.png"></a>
+							<h3> Globe </h3>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-treemap"><img src="img/home/{{ set_folder }}/treemap.png"></a>
+							<h3> Treemap </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-circle-packing"><img src="img/home/{{ set_folder }}/circle-pack.png"></a>
+							<h3> Circle packing </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-parset"><img src="img/home/{{ set_folder }}/parsets.png"></a>
+							<h3> Parallel sets </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-sunburst"><img src="img/home/{{ set_folder }}/sunburst.png"></a>
+							<h3> Sunburst chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-force-bubbles"><img src="img/home/{{ set_folder }}/force-layout.png"></a>
+							<h3> Force layout </h3>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="h-container">
+
+		<div class="registries">
+
+			<h2> Powered by cancer registries </h2>
+			<div class="row">
+				<p align="center">
+                    <a href="#modal-registries" class="IACR reveal" target="_blank" data-toggle="modal" title="IACR">
+                        <img src="img/iacr-square.png" title="IACR" />
+                    </a>
+                    <a href="#modal-registries" class="GICR reveal" target="_blank" data-toggle="modal" title="GICR">
+                        <img src="img/gicr-square.png" title="GICR" />
+                    </a>
+                </p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('a#new-logo').hide();
+		window.sr = ScrollReveal({ duration: 750 });
+		sr.reveal('.reveal', 50 );
+
+		setTimeout(function(){
+			$('.graphic img').addClass('greyscale');
+		},2500) ; 
+	});
+	</script>

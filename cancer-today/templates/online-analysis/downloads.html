@@ -1,0 +1,159 @@
+
+		<!--<script type="text/javascript">
+			
+			function printHtml2Canvas(){
+
+				html2canvas( document.getElementById('svg') ).then(function(canvas) {
+				    //document.body.appendChild(canvas);
+				    var data = canvas.toDataURL('image/png', 0.9 );
+   					var src = encodeURI(data);
+
+   					var image = src.replace("image/png", "image/octet-stream");
+   					window.location.href=image;
+				});
+			}
+			
+
+		</script>
+
+		<a href="#" class="button" id="btn-download" download="graphic.png">Download</a>-->
+
+		<ul class="dataviz_tool group-{{ sidebar_theme_number }}">
+	  		<li>
+		      	<ul class="sub-group download">
+		      		<!--<li>
+		      			<a href="#" onclick="printHtml2Canvas()">
+	  						<i class="fa fa-bug" aria-hidden="true"></i>
+	  						<md-tooltip md-visible="false" md-direction="left"> Html2Canvas </md-tooltip>
+	  					</a>
+		      		</li>-->
+		      		<li ng-hide="{{ hide_print }}">
+	      				<a href="javascript:void(0);" id="link-print-png" ng-click="printGraph({ ext : 'png', type : dataviz_conf.type })">
+	  						<span class="fiv-viv fiv-icon-png"></span>
+	  						<span class="hd">HD</span>
+	  						<md-tooltip md-visible="false" md-direction="left"> Download chart as a PNG in High Definition </md-tooltip>
+	  					</a>
+	      			</li>
+		      		<li ng-hide="{{ hide_print }}">
+		      			<a href="javascript:void(0);" id="link-print-pdf" ng-click="printGraph({ ext : 'pdf', type : dataviz_conf.type })">
+	      					<span class="fiv-viv fiv-icon-pdf"></span>
+	      					<span class="hd">HD</span>
+	      					<md-tooltip md-visible="false" md-direction="left"> Download chart as a PDF in High Definition </md-tooltip>
+		      			</a>
+		      		</li>
+
+		      		<li ng-hide="{{ hide_print }}">
+		      			<a href="javascript:void(0);" id="link-print-pptx" ng-click="printGraph({ ext : 'pptx', 'type' : dataviz_conf.type})">
+		      				<span class="fiv-viv fiv-icon-ppt"></span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Download chart as a PPTX file </md-tooltip>
+		      			</a>
+		      		</li>
+
+		      		<li>
+		      			<a href="javascript:void(0);" id="link-print-svg" onclick="printGraph('svg')">
+		      				<span class="fiv-viv fiv-icon-svg"></span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Download chart in a SVG file </md-tooltip>
+		      			</a>
+		      		</li>
+
+		      		<!--<li>
+		      			<a href="javascript:void(0);" id="link-print-svg" onclick="printGraph('svg')">
+		      				<span class="fiv-viv fiv-icon-svg"></span>
+		      				<span class="hd">HD</span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Download chart as a SVG in High Definition </md-tooltip>
+		      			</a>
+		      		</li>-->
+
+		      		<!--<li>
+		      			<a href="javascript:void(0);" id="link-print-pptx" ng-click="printGraph('pptx',dataviz_conf.type,'4_3')">
+		      				<span class="fiv-viv fiv-icon-ppt"></span>
+		      				<span class="hd">4/3</span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Download chart as a PPTX file </md-tooltip>
+		      			</a>
+		      		</li>-->
+		      		
+		      		<!--<li>
+		      			<a target="_blank" data-toggle="modal" href="#modalPrinting" >
+		      				<i class="fa fa-print" aria-hidden="true"></i>
+		      				<md-tooltip md-visible="false" md-direction="left"> Printing options</md-tooltip>
+		      			</a>
+		      		</li>-->
+		      	</ul>
+	      	</li>
+
+	      	<!--<li ng-hide="{{ hide_print }}">
+
+	      		<ul class="sub-group pptx">
+
+		      		<li>
+		      			<a href="javascript:void(0);" id="link-add-slide" ng-click="addPrintSlide( dataviz_conf.type )">
+		      				<i class="fa fa-plus-square"></i>
+		      				<md-tooltip md-visible="false" md-direction="left"> Add to my slides </md-tooltip>
+		      			</a>
+		      		</li>
+
+		      		<li>
+		      			<a href="javascript:void(0);" id="link-print-slides" ng-click="openModalSlides()">
+		      				<span class="fiv-viv fiv-icon-folder"></span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Edit slides </md-tooltip>
+		      			</a>
+		      		</li>
+
+	      		</ul>
+
+	      	</li>-->
+
+	      	<li>
+		      	<ul class="sub-group data">
+		      		<li>
+	      				<a href="#" download="data.json" name="btn_download_json" id="btn_download_json">
+	      					<span class="fiv-viv fiv-icon-json"></span>
+	      					<md-tooltip md-visible="false" md-direction="left"> Download data in a json file </md-tooltip>	
+	      				</a>
+		      		</li>
+		      		<li>
+		      			<a href="javascript:callCSVDownload()">
+		      				<span class="fiv-viv fiv-icon-csv"></span>
+		      				<md-tooltip md-visible="false" md-direction="left"> Download data in csv file </md-tooltip>	
+		      			</a>
+		      		</li>
+		      		<li>
+		      			<a href="#" class="btn_download btn_permalink">
+		      				<i class="fa fa-link"></i>
+		      				<md-tooltip md-visible="false" md-direction="left" class="md-tooltip-permalink"> Copy permalink </md-tooltip>	
+		      			</a>
+		      		</li>
+		      	</ul>
+	      	</li>
+	      	<li>
+		      	<ul class="sub-group share">
+		      		<!--<li>
+		      			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?{{ facebook_url }}">
+		      				<i class="fa fa-facebook-square" aria-hidden="true"></i>
+		      				<md-tooltip md-visible="false" md-direction="left"> Share chart on Facebook </md-tooltip>	
+		      			</a>
+		      		</li>-->
+		      		<li>
+	      				<a target="_blank" ng-click="shareTwitter()" class="twitter-share-button">
+								<i class="fa fa-twitter-square" aria-hidden="true" style="color:#4AB3F4;"></i>
+	      					<md-tooltip md-visible="false" md-direction="left"> Share chart on Twitter </md-tooltip>
+	      				</a>
+	      			</li>
+		      		<li>
+		      			<a target="_blank"  ng-click="shareLinkedin()">
+		      				<i class="fa fa-linkedin-square" aria-hidden="true" style="color:#006097;"></i>
+		      				<md-tooltip md-visible="false" md-direction="left"> Send chart on linkedin</md-tooltip>
+		      			</a>
+		      		</li>
+		      		
+		      		<!--<li>
+		      			<a href="mailto:?subject=The Global Cancer Observatory&body=Estimated number of incident cases, both sexes, worldwide (top 7 cancer sites) in 2012\r\nhttp://gco.iarc.fr/today/">
+		      				<i class="fa fa-paper-plane" aria-hidden="true"></i>
+			      			<md-tooltip md-visible="false" md-direction="left"> Send chart by email </md-tooltip>
+			            </a>
+		      		</li>-->
+		      	</ul>
+	      	</li>
+	  	</ul>
+
+	  	

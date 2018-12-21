@@ -1,0 +1,206 @@
+
+	<div class="head-home">
+
+		<!--<div id="color_palette">
+
+			<label> <i class="fa fa-cog" aria-hidden="true"></i> Icon color: </label>
+			<select ng-model="set_folder" ng-change="changeColorset(set_folder)">
+				<option ng-repeat="color in colorsets">{{ color }}</option>
+			</select>
+
+		</div>
+
+		<div id="size_palette">
+
+			<label> <i class="fa fa-cog" aria-hidden="true"></i> Letter spacing: </label>
+			<input type="number" ng-model="set_size" ng-click="setSize(set_size)">
+		</div>
+
+		<div id="fonts_palette">
+
+			<label> <i class="fa fa-cog" aria-hidden="true"></i> Fonts: </label>
+			<select ng-model="set_fonts" ng-change="changeFont(set_fonts)">
+				<option ng-repeat="font in fonts">{{ font }}</option>
+			</select>
+
+		</div>-->
+		
+		<div class="h-container h-padding">
+
+			<p class="baseline">
+				Data visualization tools that present current national estimates of cancer incidence, mortality, and prevalence
+			</p>
+		</div>
+
+	</div>
+
+	<div class="h-container">
+
+		<!-- <div class="first-buttons">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="#modalTakeATourVideo" class="btn_play" data-toggle="modal" title="Take a tour">
+							<i class="fa fa-play-circle" aria-hidden="true"></i> &nbsp; Take a tour </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="explore" data-toggle="tooltip" title="Explore">
+							<i class="fa fa-search" aria-hidden="true"></i> &nbsp; Explore </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button none reveal">
+						<a href="#" data-toggle="tooltip" title="Fact sheets" ng-click="showFactSheetsModal()"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Fact sheets</a>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="second-buttons">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="#modalTakeATourVideo" class="btn_play tat" data-toggle="modal">
+							<i class="fa fa-play-circle" aria-hidden="true"></i> &nbsp; Take a tour </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button reveal">
+						<a href="explore">
+							<i class="fa fa-search" aria-hidden="true"></i> &nbsp; Explore </a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="click-button none reveal">
+						<a href="#" ng-click="showFactSheetsModal()"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Fact sheets</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="davaviz-home">
+
+		<div class="h-container">
+
+			<div class="viz-data">
+
+				<div class="row">
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-multi-bars"><img class="hover-anim" src="img/home/{{ set_folder }}/bars.png"></a>
+							<h3> <a href="online-analysis-multi-bars">Bar</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-pie"><img class="hover-anim" src="img/home/{{ set_folder }}/pie.png"></a>
+							<h3> <a href="online-analysis-pie">Pie</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-dual-bars" class="dual-bars">
+								<img class="hover-anim" src="img/home/{{ set_folder }}/dual-bars.png">
+							</a>
+							<h3> <a href="online-analysis-dual-bars">Compare bars</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map">
+								<img class="hover-anim" src="img/home/{{ set_folder }}/map.png">
+							</a>
+							<h3> <a href="online-analysis-map">Map</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map?projection=globe"><img class="hover-anim" src="img/home/{{ set_folder }}/globe.png"></a>
+							<h3> <a href="online-analysis-map?projection=globe">Globe</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-treemap"><img class="hover-anim" src="img/home/{{ set_folder }}/treemap.png"></a>
+							<h3> <a href="online-analysis-treemap">Treemap</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-circle-packing"><img class="hover-anim" src="img/home/{{ set_folder }}/circle-pack.png"></a>
+							<h3> <a href="online-analysis-circle-packing">Circle packing</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-parset"><img class="hover-anim" src="img/home/{{ set_folder }}/parsets.png"></a>
+							<h3> <a href="online-analysis-parset">Parallel sets</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-sunburst"><img class="hover-anim" src="img/home/{{ set_folder }}/sunburst.png"></a>
+							<h3> <a href="online-analysis-sunburst">Sunburst</a> </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-force-bubbles"><img class="hover-anim" src="img/home/{{ set_folder }}/force-layout.png"></a>
+							<h3> <a href="online-analysis-force-bubbles">Force layout</a> </h3>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="h-container">
+
+		<div class="registries">
+
+			<h2> Powered by POPULATION-BASED cancer registries </h2>
+			<div class="row">
+				<p align="center">
+                    <a href="#modal-registries" class="IACR reveal" target="_blank" data-toggle="modal" title="The International Association of Cancer Registries (IACR)">
+                        <img src="img/iacr-square-1.png" data-toggle="tooltip" title="The International Association of Cancer Registries (IACR)" />
+                    </a>
+                    <a href="#modal-registries" class="GICR reveal" target="_blank" data-toggle="modal" title="The Global Initiative for Cancer Registry Development (GICR)">
+                        <img src="img/gicr-square.png" data-toggle="tooltip" title="The Global Initiative for Cancer Registry Development (GICR)" />
+                    </a>
+                </p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		window.sr = ScrollReveal({ duration: 1500 , 'easing' : 'cubic-bezier(0.215, 0.610, 0.355, 1.000)' });
+		sr.reveal('.reveal', 100 );
+
+		setTimeout(function(){
+			$('.graphic img').addClass('greyscale');
+		}, 2500 ) ; 
+	});
+	</script>

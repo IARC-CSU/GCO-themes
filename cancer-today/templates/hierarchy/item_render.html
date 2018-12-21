@@ -1,0 +1,20 @@
+<div class="node-embed keep-opened" ui-tree-handle ng-click="clickSelectItem(item)" ng-class="{nodeActive:item.isSelected,matched:item.match}">
+    <a class="btn btn-clear btn-xs" data-ng-show="item.items.length" ng-click="expandNode(this,$event)" id="chevron_{{ item.id }}">
+    	<i class="fa" ng-class="{'fa-chevron-right': collapsed, 'fa-chevron-down': !collapsed}"></i>
+    </a>
+
+    <!--<span class="f16" data-ng-show="{{ item.show_flag }}">
+    	<span id="flag" class="flag {{ item.iso }}"></span>
+    </span>-->
+    
+    {{ item.title }}
+
+</div>
+
+<ul ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed,displayed:!collapsed}">
+  <li ng-repeat="item in item.items" ui-tree-node collapsed="true" ng-include="'templates/hierarchy/item_render.html'">
+  </li>
+</ul>
+
+
+                

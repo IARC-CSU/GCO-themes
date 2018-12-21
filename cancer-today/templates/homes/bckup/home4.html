@@ -1,0 +1,136 @@
+
+        
+        <div ng-controller="HomeCtrl" class="gridListdemoBasicUsage" ng-cloak>
+
+            <md-grid-list md-cols="4" md-row="3" md-row-height="{{ height_item }}px" md-gutter="10px" md-gutter-gt-sm="10px">
+            <!--<md-grid-list md-row-height="100px" md-gutter="10px" md-gutter-gt-sm="10px">-->
+
+                <md-grid-tile md-colspan="1">
+                    <p class="justify">
+                        [TEXT TO BE WRITTEN]
+                        <br/>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident . 
+                    </p>
+                    <md-grid-tile-footer>
+                        <h3>Our reseach</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+                
+                <md-grid-tile>
+                    <p><a href="online-analysis-map" class="map-pic" data-toggle="Map"><img src="img/home/map.png" title="Map"></a></p>
+                    <md-grid-tile-footer>
+                        <h3>Map</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile>
+                    <p><a href="online-analysis-globe" class="globe-pic" data-toggle="Globe"><img src="img/home/globe.png" attr-animated="videos/globe.gif" attr-static="img/home/globe.png" title="Globe"></a></p>
+                    <md-grid-tile-footer>
+                        <h3>Globe</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+                
+                <md-grid-tile class="fact-sheets light">
+                    <div class="half"><a href="fact-sheets-populations"> <i class="fa fa-file-text-o"></i> Population <br> fact sheets</a></div>
+                    <div class="half"><a href="fact-sheets-cancers"> <i class="fa fa-file-text"></i> Cancer fact <br> sheets</a></div>
+                    <!--<md-grid-tile-footer>
+                        <h3>Fact sheets</h3>
+                    </md-grid-tile-footer>-->
+                </md-grid-tile>
+                
+                <md-grid-tile>
+                    <div class="carousel slide" data-ride="carousel" data-interval="{{ slides1.interval }}">
+                        <div class="carousel-inner" role="listbox">
+                            <div ng-repeat="slide in slides1.data" class="item {{ slide.active }} ">
+                                <a href="{{ slide.link }}">
+                                    <img ng-src="{{ slide.url }}">
+                                    <h4>{{ slide.title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </md-grid-tile>
+
+                <md-grid-tile md-colspan="2" class="light"> 
+                    <div class="third">
+                        <a href="/today/online-analysis-pie" data-toggle="tooltip" title="Pie">
+                            <i class="fa fa-pie-chart"></i>
+                        </a>
+                        <h4> Pie charts </h4>
+                    </div>
+                    <div class="third">
+                        <a href="/today/online-analysis-multi-bars" data-toggle="tooltip" title="Simple bars">
+                            <i class="fa fa-bar-chart"></i>
+                        </a>
+                        <h4> Simple bars </h4>
+                    </div>
+                    <div class="third">
+                        <a class="tat" data-toggle="Globe chart">
+                            <i class="fa fa-play-circle fa-4"></i>
+                        </a>
+                        <h4> Take a tour </h4>
+                    </div>
+                    <!--<md-grid-tile-footer>
+                        <h3>Explore</h3>
+                    </md-grid-tile-footer>-->
+                </md-grid-tile>
+
+                <md-grid-tile class="gray" md-rowspan="2">
+                    <p class="justify">
+                        <a href="http://www.iacr.com.fr/" class="center"><img src="img/IACR.png" title="IACR"></a><br><br>
+                        The International Association of Cancer Registries is a professional society, whose members are interested in the development and application of cancer registration and morbidity survey techniques to studies of defined population groups. <br>
+                    </p>
+                    <md-grid-tile-footer>
+                        <h3>Powered by cancer registries</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="light">
+                    <div class="full">
+                        <a href="online-analysis-table"><i class="fa fa-table"></i></a>
+                        <h4> Tables </h4>
+                    </div>
+                </md-grid-tile>
+
+
+                <md-grid-tile>
+                    <div class="carousel slide" data-ride="carousel" data-interval="{{ slides2.interval }}">
+                        <div class="carousel-inner" role="listbox">
+                            <div ng-repeat="slide in slides2.data" class="item {{ slide.active }} ">
+                                <a href="{{ slide.link }}">
+                                    <img ng-src="{{ slide.url }}">
+                                    <h4 class="left">{{ slide.title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </md-grid-tile>
+                
+                <md-grid-tile>
+                    <p>
+                        <a class="twitter-timeline" href="https://twitter.com/search?q=%23IARC%20WHO" data-widget-id="679585159155429380">Tweets on #IARC WHO</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                        </script>
+                    </p>
+                </md-grid-tile>
+
+            </md-grid-list>
+
+        </div>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+        
+          $('a.tat').click(function(){
+            $('#modalTakeATour').modal('hide');
+            $('#modalTakeATourVideo').modal('show');
+          });
+
+
+          $('.closemodal').click(function(){
+            $('.modal').modal('hide');
+          })
+        });
+        </script>
+
+

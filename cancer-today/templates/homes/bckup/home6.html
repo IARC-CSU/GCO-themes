@@ -1,0 +1,88 @@
+
+        
+        <div ng-controller="HomeCtrl" class="gridListdemoBasicUsage" ng-cloak>
+
+            <md-grid-list md-cols="4" md-row="3" md-row-height="219px" md-gutter="10px" md-gutter-gt-sm="10px">
+            <!--<md-grid-list md-row-height="100px" md-gutter="10px" md-gutter-gt-sm="10px">-->
+
+                <md-grid-tile md-colspan="1">
+                    <p class="justify">
+                        [TEXT TO BE WRITTEN]
+                        <br/>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident . 
+                    </p>
+                    <md-grid-tile-footer>
+                        <h3>Our reseach</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile md-colspan="2" md-rowspan="2">
+                    <div class="carousel slide" data-ride="carousel" data-interval="{{ slides3.interval }}" id="carousel3">
+                        <div class="carousel-inner" role="listbox">
+                            <div ng-repeat="slide in slides3.data" class="item {{ slide.active }} ">
+                                <a href="{{ slide.link }}">
+                                    <img ng-src="{{ slide.url }}">
+                                    <h4 class="left">{{ slide.title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <ol class="carousel-indicators">
+                            <li ng-repeat="(key,slide) in slides3.data" data-target="#carousel3" data-slide-to="{{ key }}" class=""></li>
+                        </ol>
+
+                    </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light">
+                    <div class="half"><a href="/today/online-analysis-pie" data-toggle="tooltip" title="Pie"><i class="fa fa-pie-chart"></i> Pie charts</a></div>
+                    <div class="half"><a href="/today/online-analysis-multi-bars"> <i class="fa fa-bar-chart"></i> Bar charts</a></div>
+                    <!--<md-grid-tile-footer>
+                        <h3>Fact sheets</h3>
+                    </md-grid-tile-footer>-->
+                </md-grid-tile>
+
+
+                <md-grid-tile class="fact-sheets light">
+                    <div class="half"><a href="fact-sheets-populations"> <i class="fa fa-file-text-o"></i> Population <br> fact sheets</a></div>
+                    <div class="half"><a href="fact-sheets-cancers"> <i class="fa fa-file-text"></i> Cancer fact <br> sheets</a></div>
+                    <!--<md-grid-tile-footer>
+                        <h3>Fact sheets</h3>
+                    </md-grid-tile-footer>-->
+                </md-grid-tile>
+
+                <md-grid-tile md-rowspan="2" class="wide">
+                    <p>
+                        <a class="twitter-timeline" href="https://twitter.com/search?q=%23IARC%20WHO" data-widget-id="679585159155429380">Tweets on #IARC WHO</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                        </script>
+                    </p>
+                </md-grid-tile>
+
+                <md-grid-tile class="gray" md-colspan="2">
+                    <div class="half">
+                        <a href="http://www.iacr.com.fr/" class="center"><img src="img/IACR.png" title="IACR"></a>
+                    </div>
+                    <div class="half">
+                        <p class="justify">
+                            The International Association of Cancer Registries is a professional society, whose members are interested in the development and application of cancer registration and morbidity survey techniques to studies of defined population groups. <br>
+                        </p>
+                    </div>
+                    <md-grid-tile-footer>
+                        <h3>Powered by cancer registries</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light">
+                    <div class="half"><a href="online-analysis-table"> <i class="fa fa-table"></i> Tables</a></div>
+                    <div class="half"><a class="tat" data-toggle="Globe chart"> <i class="fa fa-play-circle fa-4"></i> Take a tour</a></div>
+                    <!--<md-grid-tile-footer>
+                        <h3>Fact sheets</h3>
+                    </md-grid-tile-footer>-->
+                </md-grid-tile>
+                
+                
+
+            </md-grid-list>
+
+        </div>
+

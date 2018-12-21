@@ -1,0 +1,59 @@
+	
+	<div class="full-content h-container" id="populations-fact-sheets" ng-controller="FactSheetsController">
+
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li>Fact sheets</li>
+          <li>Region fact sheets</li>
+        </ul>
+
+        <h1>Region fact sheets</h1>
+        
+        <div class="row">
+
+            <div class="col-md-12">  
+                <p>The Fact sheets provide a snapshot of the burden of cancer in a selected country or region, or a global overview for a given cancer type. </p>
+            </div>
+
+            <div class="col-md-12">  
+
+
+                <div class="row regions_block">
+
+                    <div class="col-md-6">
+
+                        <div ng-repeat="group in groups_pops_left">
+                            <h3>{{ group.label }}</h3>
+                            <ul>
+                                <li><a ng-repeat="pop in group.data" class="link_pdf" href="data/factsheets/populations/{{ pop.pdf }}" target="_blank">{{ pop.label }}</a>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        <div ng-repeat="group in groups_pops_right">
+                            <h3>{{ group.label }}</h3>
+                            <a ng-repeat="pop in group.data" class="link_pdf" href="data/factsheets/populations/{{ pop.pdf }}" target="_blank">{{ pop.label }}</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!--<div class="col-md-4">
+                <h3>Regions</h3>
+                <a ng-repeat="pop in regions" class="link_pdf" href="data/factsheets/populations/{{ pop.pdf }}" target="_blank">
+                    {{ pop.label }}
+                </a>
+            </div>-->
+
+
+        </div>
+
+
+    </div>

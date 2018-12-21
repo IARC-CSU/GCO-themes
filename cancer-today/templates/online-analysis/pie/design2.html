@@ -1,0 +1,45 @@
+
+	
+
+	<div class="design2">
+
+		<ng-include src="'templates/online-analysis/filters-flex-design2.html'"></ng-include>
+
+		<md-button id="toggle-left-bar" ng-click="toggleLeftSideNav2()" class="md-primary toggle-left-{{ sidebar_theme_number }}" aria-label="Hide menu" >
+      		<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    	</md-button>
+
+	    <div class="sub-container" ng-controller="DataVizController">
+	      		      
+	      	<ul class="breadcrumb">
+		      	<li><a href="/today/home">Home</a></li>
+		        <li><a href="/today/explore">Explore</a></li>
+	  			<li> Pie chart</li>
+	      	</ul>
+
+	      	<ng-include src="'templates/online-analysis/downloads.html'"></ng-include>
+
+	      	<!-- main graphic -->
+	      	<div id="graphic-content" class="graphic">
+
+		      	<div id="svg" layout="column" layout-fill layout-align="top center">
+			    	
+			    	<svg></svg>
+			    
+			    </div> 
+
+	      	</div>
+
+	      	<!-- main table data -->
+	      	<div class="table-content">
+	      		
+	      		<h3> Table data </h3>
+	      		<div class="table-data" id="table-data">
+
+	      		</div>
+
+	      	</div>
+
+	    </div>
+
+	</div>

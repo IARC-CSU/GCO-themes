@@ -1,0 +1,23 @@
+
+	 <ng-include src="'templates/sub-menu.html'"></ng-include>	
+
+	  <div class="row cangraph">
+
+      <div id="filters" class="col-md-3 content zone-filters" style="padding-top: 100px;">  
+        <p> This is the radar analysis tool. You can visualize the differents cancers cases or deaths by age range. </p>    
+        <div id="filter-content">
+          <ng-include src="'templates/online-analysis/filters.html'"></ng-include>
+        </div>
+      </div>
+
+      <div class="col-md-9 content data-graph-table" id="radar-container">
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li><a href="/today/online-analysis">Online analysis</a></li>
+          <li> Radars (by age)</li>
+        </ul>
+        <div id="svg"></div>
+        <div id="data-table" class="table-responsive"></div>
+        
+      </div>
+    </div>

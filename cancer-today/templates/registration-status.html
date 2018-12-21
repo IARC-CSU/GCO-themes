@@ -1,0 +1,78 @@
+	
+	<div class="full-content h-container" id="data-sources-methods">
+
+        <ul class="breadcrumb">
+        	<li><a href="/today/home">Home</a></li>
+          	<li>Registration status</li>
+        </ul>
+
+        <h1>Registration status</h1>
+
+        <div class="row">
+
+        	<div class="col-md-12">
+
+        		<p>An alphanumeric scoring system, shown below, is used to independently describe the availability of incidence and mortality data at the country level. The combined score is presented together with the estimates for each country, to provide a broad indication of the robustness of the estimation.</p>
+
+        		<ul class="buttons" id="indicator_buttons">
+					<li><button id="show_inc" attr-type="incidence"> View incidence data </button></li>
+					<li><button id="show_mort" attr-type="mortality"> View mortality data </button></li>
+				</ul>
+
+				<div class="row">
+
+					<div class="col-md-6 data_desc data_desc_legend" id="data_desc_inc">
+						<h3>Incidence data</h3>
+						<ul class="dotted inc_data">
+						 	<li><span class="box" style="background-color:#08519c"></span>A. High-quality* national data or high-quality regional data (coverage: &gt; 50%)</li>
+						 	<li><span class="box" style="background-color:#3182bd"></span>B. High-quality* regional data (coverage: 10–50%)</li>
+						 	<li><span class="box" style="background-color:#6baed6"></span>C. High quality* regional (coverage lower than 10%).</li>
+						 	<li><span class="box" style="background-color:#9ecae1"></span>D. National data (rates).</li>
+						 	<li><span class="box" style="background-color:#c6dbef"></span>E. Regional data (rates).</li>
+						 	<li><span class="box" style="background-color:#eff3ff"></span>F. Frequency data.</li>
+						 	<li><span class="box" style="background-color:#7d7d7d"></span>G. No data.</li>
+						</ul>
+
+						<div id="legend_inc" class="legend">
+						<p class="small">*Data included in Cancer Incidence in Five Continents (CI5), Volume IX<sup>a</sup>&nbsp;and/or X<sup>b</sup>.</p>
+						<p class="small"><sup>a</sup>Curado MP, Edwards B, Shin HR, Storm H, Ferlay J, Heanue M, et al., editors (2007). Cancer incidence in five continents, Vol. IX. IARC Scientific Publication No. 160. Lyon: International Agency for Research on Cancer.</p>
+						<p class="small"><sup>b</sup>Forman D, Bray F, Brewster DH, Gombe Mbalawa C, Kohler B, Piñeros M, et al., editors (2013). Cancer incidence in five continents, Vol. X. IARC Scientific Publication No. 164. Lyon: International Agency for Research on Cancer.</p>
+
+						</div>
+
+					</div>
+
+					<div class="col-md-6 data_desc data_desc_legend" id="data_desc_mort">
+						<h3>Mortality data</h3>
+						National statistics are collated and made available by the World Health Organization for countries with vital registration systems.
+						<ul class="dotted mort_data">
+						 	<li><span class="box" style="background-color:#a50f15"></span>1. High-quality* complete vital registration data</li>
+						 	<li><span class="box" style="background-color:#de2d26"></span>2. Medium-quality* complete vital registration data</li>
+						 	<li><span class="box" style="background-color:#fb6a4a"></span>3. Low-quality* complete vital registration data</li>
+						 	<li><span class="box" style="background-color:#fcae91"></span>4. Incomplete or sample vital registration data</li>
+						 	<li><span class="box" style="background-color:#fee5d9"></span>5. Data from other sources (cancer registries, verbal autopsy surveys, etc.)</li>
+						 	<li><span class="box" style="background-color:#7d7d7d"></span>6. No data</li>
+						</ul>
+						<div id="legend_mort" class="legend">
+						<p class="small">*Criteria defined in: Mathers CD, Ma Fat D, Inoue M, Rao C, Lopez AD (2005). Counting the dead and what they died from: an assessment of the global status of cause of death data. Bulletin of the World Health Organization. 83(3):161–240.</p>
+
+						</div>
+					</div>
+
+				</div>
+
+				<h2 id="title-map"></h2>
+
+        		<div id="map-container">
+
+	            
+	            </div> <!-- #main -->
+
+	            <div class="container" id="gradient"></div>
+	           	<div class="container" id="legend_small"></div>
+
+        	</div>
+
+        </div>
+
+    </div>

@@ -1,0 +1,81 @@
+	
+	<div class="full-content" id="populations-fact-sheets" ng-controller="FactSheetsController">
+
+        <ul class="breadcrumb">
+          <li><a href="/home">Home</a></li>
+          <li>Fact sheets</li>
+          <li>Populations fact sheets</li>
+        </ul>
+
+        <h1>Populations fact sheets</h1>
+
+        <ul id="pager-scroller">
+            <li><a href="#" id="view-fact-1" attr-target="#fact-1"></a></li>
+            <li><a href="#" id="view-fact-2" attr-target="#fact-2"></a></li>
+            <li><a href="#" id="view-fact-3" attr-target="#fact-3"></a></li>
+        </ul>
+
+        <div class="row inner-content">
+
+            <div class="col-md-12">
+                <div id="filters">
+                    <div id="filter-content"></div>
+                </div>
+                <div id="sub-filters">
+                    <ul></ul>
+                    <a href="#"><i></i></a>
+                </div>
+            </div>
+
+            <div id="fact-1">
+                <div class="row">
+                    <h2> {{ title2 }} </h2>
+                    <div class="col-md-4"><div id="svg_1" class="pie"><svg></svg></div></div>
+                    <div class="col-md-4"><div id="svg_2" class="pie"><svg></svg></div></div>
+                    <div class="col-md-4"><div id="svg_3" class="pie"><svg></svg></div></div>
+                    <div id="legend">
+                        <ul>
+                            <li attr-cancer="-1"><span class="cancer-colorother"></span><a href="#">Other</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="fact-2">
+                <div class="row">
+                    <h2>{{ title }}</h2>
+                    <div id="svg_4"><svg></svg></div>
+                </div>
+            </div>
+
+            <div id="fact-3">
+                <div class="row">
+                    <div id="block-table" class="col-md-7">
+                        <h2>All data </h2>
+                        <div id="table-data">
+                        </div>
+                    </div>
+                    <div id="block-summary" class="col-md-5">
+                        <h2>Summary statistics</h2>
+                        <div id="table-summary">
+                        </div>
+                        <div id="table-source">
+                            <h3> Data sources and methods </h3>
+                            <ul>
+                                <li><strong> Incidence method</strong> : Estimated as the weighted average of the local rates.</li>
+                                <li><strong> Mortality method </strong>: Estimated from national incidence estimates using modelled survival.</a></li>
+                                <li><strong>Prevalence</strong> : Sum of area-specific prevalent cases</li>
+                            </ul>
+                           <h3> Glossary </h3>
+                            <ul>
+                                <li><strong> Age-standardised rate (W):</strong> : A rate is the number of new cases or deaths per 100 000 persons per year. An age-standardised rate is the rate that a population would have if it had a standard age structure. Standardization is necessary when comparing several populations that differ with respect to age because age has a powerful influence on the risk of cancer.</li>
+                                <li><strong> Risk of getting or dying from the disease before age 75 (%):</strong>: The probability or risk of individuals getting/dying from cancer. It is expressed as the number of new born children (out of 100) who would be expected to develop/die from cancer before the age of 75 if they had cancer rates (in the absence of other causes of death).</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>

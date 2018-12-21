@@ -1,0 +1,228 @@
+
+    <div class="full-content h-container" id="populations-fact-sheets" ng-controller="FactSheetsController">
+        
+        <ul class="breadcrumb">
+          <li><a href="/today">Home</a></li>
+          <li>Population fact sheets</li>
+        </ul>
+
+        <h1> Population fact sheets </h1>
+
+        <p>The Fact sheets provide a snapshot of the burden of cancer in a selected country or region, or a global overview for a given cancer type. </p>
+
+        <md-tabs md-dynamic-height md-border-bottom md-selected="tab_selected">
+
+          <md-tab label="Countries">
+            
+            <md-content>
+                
+                <div class="row">
+
+                    <div class="col-md-12">
+                        
+                        <ul class="population-group">
+                            <li>
+                                <div class="col-md-6" ng-repeat="population in populations">
+                                    
+                                    <div class="row sub_cont">
+
+
+                                        <div class="col-md-3 cont_zone">
+                                            <img class="continent" src="img/continents/{{ population.id }}.png" title="{{ population.title }}" />
+                                        </div>
+
+                                        <div class="col-md-9 cont_zone">
+                                            <h3>{{ population.title }}</h3>
+                                            <a class="link_pdf" ng-repeat="pop in population.items" href="data/factsheets/populations/{{ pop.pdf }}" target="_blank">{{ pop.title }}</a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </md-content>
+
+          </md-tab>
+
+          <md-tab label="Regions">
+
+            <md-content>
+
+                <div class="row">
+
+                    <!--<div class="col-md-6">
+                                    
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <img class="continent" src="img/continents/world-{{ random }}.png" title="World" />
+                            </div>
+
+                            <div class="col-md-9 cont_zone">
+                                <h3>Worldwide</h3>
+                                <a class="link_pdf" href="data/factsheets/populations/900-world-fact-sheets.pdf" target="_blank">World fact sheet</a>
+                            </div>
+
+                        </div>
+
+                    </div>-->
+
+                    <div class="col-md-6">
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <img class="continent" src="img/continents/world-{{ random }}.png" title="World" />
+                            </div>
+                        
+                            <div class="col-md-9 cont_zone">
+                                <h3>Continents</h3>
+                                <ul class="population-group">
+                                    <a class="link_pdf" href="data/factsheets/populations/900-world-fact-sheets.pdf" target="_blank">World</a>
+                                    <li ng-repeat="group in groups_pops[0].data">
+                                        <a class="link_pdf" href="data/factsheets/populations/{{ group.pdf }}" target="_blank">
+                                            {{ group.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <img class="continent" src="img/icons/who.png" title="World Health Organization" />
+                            </div>
+                        
+                            <div class="col-md-9 cont_zone">
+                                <h3>WHO Regions</h3>
+                                <ul class="population-group">
+                                    <li ng-repeat="group in groups_pops[3].data">
+                                        <a class="link_pdf" href="data/factsheets/populations/{{ group.pdf }}" target="_blank">
+                                            {{ group.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <img class="continent" src="img/icons/un.png" title="United Nations" />
+                            </div>
+                        
+                            <div class="col-md-9 cont_zone">
+                                <h3>UN Regions</h3>
+                                <ul class="population-group">
+                                    <li ng-repeat="group in groups_pops[1].data">
+                                        <a class="link_pdf" href="data/factsheets/populations/{{ group.pdf }}" target="_blank">
+                                            {{ group.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                    </div>
+
+                    <!--<div class="col-md-6">
+                        <h3>Other regions</h3>
+                        <ul class="population-group">
+                            <li>
+                                <a class="link_pdf" href="data/factsheets/populations/960-sub-saharan-africa-fact-sheets.pdf" target="_blank">
+                                    Sub-Saharan Africa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="link_pdf" href="data/factsheets/populations/973-northern-africa-central-asia-and-western-asia-fact-sheets.pdf" target="_blank">
+                                     Northern Africa, Central Asia, and Western Asia
+                                </a>
+                            </li>
+                            <li>
+                                <a class="link_pdf" href="data/factsheets/populations/975-south-eastern-and-south-eastern-asia-fact-sheets.pdf" target="_blank">
+                                    Southern, Eastern, and Southeastern Asia
+                                </a>
+                            </li>
+                        </ul>
+                    </div>-->
+
+                </div>
+            
+             </md-content>
+          </md-tab>
+
+          <md-tab label="Groups">
+            <md-content>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <a href="/today/data-sources-methods#population-dictionnary" target="_self">
+                                    <img class="continent" src="img/icons/undp.png" title="United Nations Development Programme" />
+                                </a>
+                            </div>
+                        
+                            <div class="col-md-9 cont_zone">
+                                <h3>Human Development Index</h3>
+                                <ul class="population-group">
+                                    <li ng-repeat="group in groups_pops[2].data">
+                                        <a class="link_pdf" href="data/factsheets/populations/{{ group.pdf }}" target="_blank">
+                                            {{ group.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+
+                        <div class="row sub_cont">
+
+                            <div class="col-md-3 cont_zone">
+                                <a href="/today/data-sources-methods#population-dictionnary" target="_self">
+                                    <img class="continent" src="img/icons/world_bank.png" title="World Bank" />
+                                </a>
+                            </div>
+                        
+                            <div class="col-md-9 cont_zone">
+                                <h3>Income Levels</h3>
+                                <ul class="population-group">
+                                    <li ng-repeat="group in groups_pops[4].data">
+                                        <a class="link_pdf" href="data/factsheets/populations/{{ group.pdf }}" target="_blank">
+                                            {{ group.label }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </md-content>
+          </md-tab>
+
+        
+
+        </md-tabs>
+
+      </md-content>
+
+    </div>

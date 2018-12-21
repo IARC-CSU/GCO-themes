@@ -1,0 +1,304 @@
+	
+	<div ng-controller="FilterController" class="filters {{ dataviz_conf.type }}" id="filters">
+
+
+		<div ng-if="filters['filter-mode']">
+			<div class="filters filter-form1" id="filter-mode">
+				<h3>Mode</h3>
+				<md-radio-group ng-model="mMode" ng-change="filterMode(mMode)">
+			     	<md-radio-button value="population" class="md-primary"> By population </md-radio-button>
+			      	<md-radio-button value="cancer"> By cancer </md-radio-button>
+			    </md-radio-group>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-type']">
+			<div class="filter filter-form1" id="filter-type">
+				<h3>Data type :</h3>
+				<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="0" checked="checked" id="filter-incidence" name="filter-type">
+				<label for="filter-incidence"> <i class="fa fa-check"></i> Incidence </label>
+				<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="1" id="filter-mortality" name="filter-type"> 
+				<label for="filter-mortality"> <i class="fa fa-check"></i> Mortality </label>
+				<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="2" id="filter-prevalence" name="filter-type"> 
+				<label for="filter-prevalence"> <i class="fa fa-check"></i> Prevalence </label>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-statistic']">
+			<div class="filter filter-form1" id="filter-statistic">
+				<h3>Statistic :</h3>
+				<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="1" checked="checked" id="filter-one-year" name="filter-statistic">
+				<label for="filter-one-year"> <i class="fa fa-check"></i> 1-year </label>
+				<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="3" id="filter-three-years" name="filter-statistic"> 
+				<label for="filter-three-years"> <i class="fa fa-check"></i> 3-year </label>
+				<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="5" id="filter-five-years" name="filter-statistic"> 
+				<label for="filter-five-years"> <i class="fa fa-check"></i> 5-year </label>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-sex']">
+			<div class="filter filter-form1" id="filter-sex">
+				<h3>Sex : </h3>
+				<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="0" checked="checked" id="filter-both" name="filter-sex">
+				<label for="filter-both"> <i class="fa fa-check"></i> Both </label>
+				<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="1" id="filter-males" name="filter-sex">
+				<label for="filter-males"> <i class="fa fa-check"></i> Male </label>
+				<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="2" id="filter-females" name="filter-sex">
+				<label for="filter-females"> <i class="fa fa-check"></i> Female </label>
+			</div>
+		</div>
+
+		<!-- shared filters -->
+		<div ng-if="filters['filter-mode-populations']">
+			<div class="filter" id="filter-mode-populations">
+				<h3>Populations : </h3>
+				<md-select  ng-model="mModePopulations" ng-change="filterDataModePop(mModePopulations)" aria-label="Populations">
+		          	<md-option value="world">World</md-option>
+					<md-option value="who">WHO regions</md-option>
+					<md-option value="more_less_dev_regions">More/less developped regions</md-option>
+					<md-option value="continents">Continents</md-option>
+					<md-option value="hdi">HDI Regions</md-option>
+		        </md-select>
+			</div>
+		</div>
+
+		<!-- shared filters -->
+		<div ng-if="filters['filter-compare']">
+			<div class="filter filter-form1" id="filter-compare">
+				<h3>Compare :</h3>
+				<md-switch ng-model="mCompare" ng-change="filterCompare(mCompare)" class="switch" aria-label="Compare"></md-switch>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-cancers']">
+			<div class="filter" id="filter-cancers">
+				<h3>Cancer sites : </h3>
+      			<md-select ng-model="mCancer" ng-change="filterDataCancer(mCancer)" aria-label="Cancers">
+		          <md-option ng-repeat="cancer in cancers" value="{{ cancer.CANCER }}"> {{ cancer.LABEL }} </md-option>
+		        </md-select>
+
+			</div>
+		</div>
+				
+		<div ng-if="filters['filter-cancers-compare']">
+			<div class="filter" id="filter-cancers-compare">
+				<h3> Choose another cancer site : </h3>
+      			<md-select id="cancers-compare" ng-model="mCancerCompare" ng-change="filterDataCancerCompare(mCancerCompare)" aria-label="Cancers">
+		          <md-option ng-repeat="cancer in cancers" value="{{ cancer.CANCER }}"> {{ cancer.LABEL }} </md-option>
+		        </md-select>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-populations']">
+			<div class="filter" id="filter-populations">
+				<h3>Population : </h3>
+				<md-select ng-model="mPopulation" ng-change="filterDataPopulation(mPopulation)" aria-label="Populations">
+					<md-option ng-repeat="country in countries_list" value="{{ country.country }}"> {{ country.label }} </md-option>
+		        </md-select>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-populations-2']">
+			<div class="filter" id="filter-populations-2">
+				<h3>Population 2 : </h3>
+				<md-select ng-model="mPopulation2" ng-change="filterDataPopulation2(mPopulation2)" aria-label="Populations">
+					<md-option ng-repeat="country in countries_list" value="{{ country.country }}"> {{ country.label }} </md-option>
+		        </md-select>
+			</div>
+		</div>
+
+
+		<div ng-if="filters['filter-populations-compare']">
+			<div class="filter" id="filter-populations-compare">
+				<h3>Choose another population : </h3>
+				<md-select ng-model="mPopulationCompare" ng-change="filterDataPopulationCompare(mPopulationCompare)" aria-label="Populations">
+					<md-option ng-repeat="country in countries_list" value="{{ country.country }}"> {{ country.label }} </md-option>
+		        </md-select>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-cancers-multiple']">
+			<div class="filter" id="filter-cancers-multiple">
+				<h3>Cancer sites : </h3>
+      			<select class="js-example-basic-multiple" name="select-list-of-cancers" id="select-list-of-cancers" ng-model="mCancerMultiple" ng-change="filterDataCancerMultiple(mCancerMultiple)" multiple="" size="10">
+      				<option value="22" selected="selected">Bladder</option>
+      				<option value="15"  selected="selected">Breast</option>
+					<option value="23" selected="selected" >Brain, nervous system</option>
+					<option value="16"  selected="selected">Cervix uteri</option>
+					<option value="6"  selected="selected">Colorectum</option>
+					<option value="17" >Corpus uteri</option>
+					<option value="8" >Gallbladder</option>
+					<option value="25" >Hodgkin lymphoma</option>
+					<option value="14" >Kaposi sarcoma</option>
+					<option value="21" >Kidney</option>
+					<option value="10" >Larynx</option>
+					<option value="28" >Leukaemia</option>
+					<option value="1" >Lip, oral cavity</option>
+					<option value="7" >Liver</option>
+					<option value="11" >Lung</option>
+					<option value="12" >Melanoma of skin</option>
+					<option value="13" >Mesothelioma</option>
+					<option value="27" >Multiple myeloma</option>
+					<option value="2" >Nasopharynx</option>
+					<option value="26" >Non-Hodgkin lymphoma</option>
+					<option value="3" >Other pharynx</option>
+					<option value="4" >Oesophagus</option>
+					<option value="18" >Ovary</option>
+					<option value="9" >Pancreas</option>
+					<option value="19" >Prostate</option>
+					<option value="5" >Stomach</option>
+					<option value="20" >Testis</option>
+					<option value="24" >Thyroid</option>					
+			     </select>
+
+
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-nb-items']">
+			<div class="filter" id="filter-nb-items">
+				<h3>Number of results : </h3>
+				<select name="select-nb-items" id="select-nb-items">
+					<option value="6" selected="selected">6</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="-1">All</option>
+				</select>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-size-padding']">
+			<div class="filter" id="filter-size-padding">
+				<h3>Padding between circles : </h3>
+				<button ng-model="mPadding" ng-click="filterSettings('padding',mPadding)" value="2">Rand. padding</button>
+			</div>
+		</div>
+
+		<!-- specific to parralels sets -->
+		<div ng-if="filters['filter-parset-category']">
+			<div class="filter filter-form1" id="filter-parset-category">
+				<h3>Categories :</h3>
+				<!--<input type="checkbox" ng-model="mParsetCatSex" ng-change="filterParsetCat('sex',mParsetCatSex)" value="sex" checked="checked" disabled="disabled" id="parset-category-sex" name="parset-category-sex">
+				<label for="parset-category-sex"> <i class="fa fa-check"></i> Sex </label>-->
+				<input type="checkbox" ng-model="mParsetCatCancer" ng-change="filterParsetCat('cancer',mParsetCatCancer)" value="cancer" checked="checked" id="parset-category-cancer" name="parset-category-cancer"> 
+				<label for="parset-category-cancer"> <i class="fa fa-check"></i> Cancers </label>
+				<input type="checkbox" ng-model="mParsetCatPop" ng-change="filterParsetCat('population',mParsetCatPop)" value="population" checked="checked" id="parset-category-population" name="parset-category-population"> 
+				<label for="parset-category-population"> <i class="fa fa-check"></i> Populations </label>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-parset-type-data']">
+			<div class="filter filter-form1" id="filter-parset-type-data">
+				<h3>Type of data :</h3>
+				<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="numbers" checked="checked" id="parset-type-data-numbers" name="parset-type-data"> 
+				<label for="parset-type-data-numbers"> <i class="fa fa-check"></i> Numbers (x1000) </label>
+				<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="crude-rate" id="parset-type-data-crude-rate" name="parset-type-data"> 
+				<label for="parset-type-data-crude-rate"> <i class="fa fa-check"></i> Crude rate </label>
+				<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="asr" id="parset-type-data-asr" name="parset-type-data"> 
+				<label for="parset-type-data-asr"> <i class="fa fa-check"></i> ASR (W) </label>
+				<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="cum-risk" id="parset-type-data-cum-risk" name="parset-type-data"> 
+				<label for="parset-type-data-cum-risk"> <i class="fa fa-check"></i> Cumulative risk </label>
+			</div>
+		</div>
+
+		<!-- specific to multiple radar -->
+		<div ng-if="filters['filter-multiple-radar']">
+			<div class="filter filter-form2" id="input-multiple-radar">
+				<h3> Options </h3>
+				<p>
+					<input type="checkbox" id="filter-multiple-radar" value="1" checked="checked" ng-model="mMultipleRadar" ng-change="filterMultipleRadar(mMultipleRadar)"  />
+					<label for="filter-multiple-radar"><span class="ui"></span>Multiple radars (1 radar per population)</label>
+				</p>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-sorting-radars-compare']">
+			<div class="filter filter-form1" id="filter-sorting-radars-compare">
+				<h3>Sorting :</h3>
+				<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" checked="checked" value="label" id="filter-sorting-1" name="filter-sorting-radars"> 
+				<label for="filter-sorting-1"> <i class="fa fa-check"></i> Label </label>
+				<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" value="icd" id="filter-sorting-2" name="filter-sorting-radars"> 
+				<label for="filter-sorting-2"> <i class="fa fa-check"></i> ICD</label>
+			</div>
+		</div>
+		
+		<!-- Specific to tree -->
+		<div ng-if="filters['filter-show-regions']">
+			<div class="filter filter-form1" id="filter-show-regions">
+				<h3>Show regions : </h3>
+				<input type="radio" ng-model="mShowRegion" ng-change="filterShowRegions(mShowRegion)" value="1" checked="checked" id="filter-show-region" name="filter-show-region">
+				<label for="filter-show-region"> <i class="fa fa-check"></i> Yes </label>
+				<input type="radio" ng-model="mShowRegion" ng-change="filterShowRegions(mShowRegion)" value="0" id="filter-hide-region" name="filter-show-region">
+				<label for="filter-hide-region"> <i class="fa fa-check"></i> No </label>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-color-picker']">
+			<div class="filter filter-form1" id="filter-color-picker">
+				<h3>Customize colors : </h3>
+				<a id="openPaletteColor" href="#" ng-model="mColor" ng-click="filterColorPicker()" data-toggle="Choose a new color palette"><i class="fa fa-pencil-square-o"></i></a>
+				<div class="color-picker-container">
+					<a class="close-color-picker btn btn-primary" ng-click="filterColorPicker()"><i class="fa fa-times"></i></a>
+					<h4> Choose a color range </h4>
+					<ul id="list-colors" ng-click="">
+						<li> <a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor('default')"> Default colors </a> </li>
+						<li ng-repeat="color in colors" style="background-color:{{ color.name }};">
+							<a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor(color.name)">
+								<ul class="color-palette">
+									<li ng-repeat="bg in color.colors"  style="background-color:{{ bg }};">&nbsp;</li>
+								</ul>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-age-specific']">
+			<div class="filter filter-form1" id="filter-age-specific">
+				<h3>Age specific :</h3>
+				<md-switch ng-model="mAgeSpecific" ng-change="filterAgeSpecific(mAgeSpecific)" class="switch" aria-label="AgeSpecific"></md-switch>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-dividor-unit']">
+			<div class="filter" id="filter-dividor-unit">
+				<h3>Dividor unit : </h3>
+				<select name="select-nb-items" id="select-nb-items" ng-model="mDividor" ng-change="filterDividorUnit(mDividor)">
+					<option value="10000">10 000</option>
+					<option value="50000" >50 000</option>
+					<option value="100000">100 000</option>
+					<option value="250000">250 000</option>
+					<option value="500000" selected="selected">500 000</option>
+					<option value="1000000">1 000 000</option>
+				</select>
+			</div>
+		</div>
+
+		<div ng-if="filters['filter-sorting']">
+			<div class="filter filter-form1" id="filter-sorting">
+				<h3>Sorting :</h3>
+				<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" checked="checked" value="numeric" id="filter-sorting-1" name="filter-sorting"> 
+				<label for="filter-sorting-1"> <i class="fa fa-check"></i> Number </label>
+				<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" value="alpha" id="filter-sorting-2" name="filter-sorting"> 
+				<label for="filter-sorting-2"> <i class="fa fa-check"></i> Alphabetical</label>
+			</div>
+		</div>
+
+		
+		
+		<div ng-if="filters['filter-dot-matrix-size']">
+			<div class="filter filter-form1" id="filter-dot-matrix-size">
+				<h3>Size of bubble :</h3>
+				<ul class="sub_items">
+					<li><div class="thousand white selectable" ng-class="{ selected : isSizeBubble('thousand') }" ng-click="setClassBubble('thousand')"></div></li>
+					<li><div class="hundred white selectable" ng-class="{ selected : isSizeBubble('hundred') }" ng-click="setClassBubble('thousand')"></div></li>
+					<li><div class="ten white selectable" ng-class="{ selected : isSizeBubble('ten') }" ng-click="setClassBubble('thousand')"></div></li>
+				</ul>
+			</div>
+		</div>
+
+		
+	</div><!-- end controller filters -->
+

@@ -1,0 +1,248 @@
+	
+	<div class="container-particule">
+
+		<!--<img src="img/globocan-db.png" title="Globocan 2018" class="flag_glbc" />-->
+
+		<!--<select ng-model="bg" ng-change="changeBg(bg)" style="position: absolute;right: 0; bottom: 50px; color: #000; ">
+			<option value="1"> Background 1 </option>
+			<option value="2"> Background 2 </option>
+			<option value="3"> Background 3 </option>
+			<option value="4"> Background 4 </option>
+			<option value="5"> Background 5 </option>
+			<option value="6"> Background 6 </option>
+			<option value="7"> Background 7 </option>
+			<option value="8"> Background 8 </option>
+			<option value="9"> Background 9 </option>
+			<option value="10"> Background 10 </option>
+		</select>
+
+		<select ng-model="fontC" ng-change="changeFont(fontC)" style="position: absolute;right: 0; bottom: 20px; color: #000; ">
+			<option value="1"> White </option>
+			<option value="2"> Black </option>
+			<option value="2"> Grey </option>
+		</select>-->
+		
+		<div class="h-container h-padding">
+
+			<h1>Cancer Today</h1>
+			<p class="baseline">
+				Data visualization tools for exploring the global cancer burden in 2018
+			</p>
+
+			<div class="row mobile_hide">
+
+				<div class="col-md-2 {{ dataviz.offset }}{{ dataviz.class }}" ng-repeat="dataviz in icons_dataviz">
+					<div class="graphic reveal">
+						<a href="{{ dataviz.link }}" class="icon">
+							<img src="{{ dataviz.icon }}" title="{{ dataviz.title }}">
+						</a>
+						<h3> <a href="{{ dataviz.link }}">{{ dataviz.title }}</a> </h3>
+					</div>
+				</div>
+
+			</div>
+			
+			<hr class="sep" style="visibility: hidden;">
+
+			<div class="row">
+
+				<div class="col-md-2 col-md-offset-1">
+					<div class="graphic reveal">
+					</div>
+				</div>
+
+				<!--<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="fact-sheets-cancers" class="fs">
+							<img src="img/icons/cancer-fact-sheet.png" title="Cancer fact sheets">
+						</a>
+						<h3 class="tcf"><a href="fact-sheets-cancers">Cancer fact sheets</a></h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="fact-sheets-populations" class="fs">
+							<img src="img/icons/population-fact-sheet.png" title="Countries fact sheets">
+						</a>
+						<h3 class="tpf"><a href="fact-sheets-populations">Country fact sheets</a></h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="fact-sheets-regions" class="fs">
+							<img src="img/icons/population-fact-sheet.png" title="Regions fact sheets">
+						</a>
+						<h3 class="tpf"><a href="fact-sheets-regions">Region fact sheets</a></h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+					</div>
+				</div>-->
+
+				<div class="col-md-12">
+					
+					<ul class="fs cf">
+						<li>
+							<a href="fact-sheets-cancers" class="fs">
+								<img src="img/icons/cancer-fact-sheet.png" title="Cancer fact sheets">
+							</a>
+							<h3 class="tcf"><a href="fact-sheets-cancers">Cancer fact sheets</a></h3>
+						</li>
+						<li>
+							<a href="fact-sheets-populations" class="fs">
+								<img src="img/icons/population-fact-sheet.png" title="Population fact sheets">
+							</a>
+							<h3 class="tpf"><a href="fact-sheets-populations">Population fact sheets</a></h3>
+						</li>
+					</ul>
+					
+				</div>
+
+			</div>
+
+			<hr class="sep">
+
+			<div class="row partners">
+
+				<h2>Powered by population-based cancer registries</h2>
+				<p align="center">
+                    <a href="#modal-registries" class="IACR reveal" target="_blank" data-toggle="modal" title="IACR">
+                        <img height="80" src="img/logo-iacr-CMJN.png" title="IACR" />
+                    </a>
+                    <a href="#modal-registries" class="GICR reveal" target="_blank" data-toggle="modal" title="GICR">
+                        <img height="80" src="img/logo-gicr.png" title="GICR" />
+                    </a>
+                </p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!--<div class="davaviz-home-2">
+
+		<div class="h-container">
+
+			<div class="viz-data">
+
+				<div class="row">
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-multi-bars"><img src="img/home/{{ set_folder }}/bars.png"></a>
+							<h3> Bar chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-pie"><img src="img/home/{{ set_folder }}/pie.png"></a>
+							<h3> Pie chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-dual-bars"><img src="img/home/{{ set_folder }}/dual-bars.png"></a>
+							<h3> Dual bar chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map"><img src="img/home/{{ set_folder }}/map.png"></a>
+							<h3> Simple map </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-map?project=globe"><img src="img/home/{{ set_folder }}/globe.png"></a>
+							<h3> Globe </h3>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-2 col-md-offset-1">
+						<div class="graphic reveal">
+							<a href="online-analysis-treemap"><img src="img/home/{{ set_folder }}/treemap.png"></a>
+							<h3> Treemap </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-circle-packing"><img src="img/home/{{ set_folder }}/circle-pack.png"></a>
+							<h3> Circle packing </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-parset"><img src="img/home/{{ set_folder }}/parsets.png"></a>
+							<h3> Parallel sets </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-sunburst"><img src="img/home/{{ set_folder }}/sunburst.png"></a>
+							<h3> Sunburst chart </h3>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="graphic reveal">
+							<a href="online-analysis-force-bubbles"><img src="img/home/{{ set_folder }}/force-layout.png"></a>
+							<h3> Force layout </h3>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="h-container">
+
+		<div class="registries">
+
+			<h2> Powered by cancer registries </h2>
+			<div class="row">
+				<p align="center">
+                    <a href="#modal-registries" class="IACR reveal" target="_blank" data-toggle="modal" title="IACR">
+                        <img src="img/iacr-square.png" title="IACR" />
+                    </a>
+                    <a href="#modal-registries" class="GICR reveal" target="_blank" data-toggle="modal" title="GICR">
+                        <img src="img/gicr-square.png" title="GICR" />
+                    </a>
+                </p>
+			</div>
+
+		</div>
+
+	</div>-->
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			setTimeout(function(){
+				$('.graphic img').addClass('greyscale');
+
+				window.sr = ScrollReveal({ duration: 750 });
+				sr.reveal('.reveal', 50 );
+
+			},50) ; 
+		});
+	</script>

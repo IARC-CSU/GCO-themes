@@ -1,0 +1,190 @@
+	
+	<nav class="sub-nav navbar-inverse" role="navigation" ng-hide="hideSubMenu" ng-controller="SubMenuController">
+      <div class="navbar-header">
+      </div>
+
+      <div id="sub-nav" class="navbar-collapse collapse">
+        <ul class="nav">
+          <li>
+            <a href="#" title="Comparisons"><img src="img/icons/comparison.png">
+            </a>
+            <ul class="sub-maps">
+              <li><h2>Comparison</h2></li>
+              <li>
+                <a href="online-analysis-multi-bars{{ string_parameters_sub_menu }}">
+                  <span class="icon"><i class="fa fa-bar-chart"></i></span>
+                  <span class="sub_label">Multi bars</span>
+                </a>
+              </li>
+              <li>
+                <a href="online-analysis-table{{ string_parameters_sub_menu }}">
+                  <span class="icon"><i class="fa fa-table"></i></span>
+                  <span class="sub_label">Table</span> </a>
+              </li>
+
+               <li>
+                <a href="online-analysis-scatter-plot{{ string_parameters_sub_menu }}">
+                  <span class="icon"><img src="img/graph/scatter-plot.png"></span>
+                  <span class="sub_label">Scatter plot</span> </a>
+              </li>
+              <li>
+                <a href="online-analysis-dual-bars-2{{ string_parameters_sub_menu }}">
+                  <span class="icon"><img src="img/graph/pyramid.png"></span>
+                  <span class="sub_label">Dual bars</span>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#" title="Proportion"><img src="img/icons/proportion.png"></a>
+            <ul class="sub-maps">
+            <li><h2>Proportions</h2></li>
+              <li>
+                <a href="online-analysis-pie{{ string_parameters_sub_menu }}">
+                  <span class="icon"><i class="fa fa-pie-chart"></i></span>
+                  <span class="sub_label">Pie chart</span>
+                </a>
+              </li>
+              <li>
+                <a href="online-analysis-circle-packing{{ string_parameters_sub_menu }}">
+                  <span class="icon"><img src="img/graph/circle-packing.png"></span>
+                  <span class="sub_label">Circle packing</span>
+                </a>
+              </li>
+              <!--<li>
+                <a href="online-analysis-multiple-stacked-bars{{ string_parameters }}">
+                  <span class="icon"><i class="fa fa-align-left"></i></span>
+                  <span class="sub_label">Stacked bars</span> </a>
+              </li>
+              <li>
+                <a href="online-analysis-parset{{ string_parameters }}">
+                  <span class="icon"><i class="fa fa-barcode"></i></span>
+                  <span class="sub_label">Parralel sets</span> </a>
+              </li>-->
+            </ul>
+          </li>
+          <li>
+            <a href="#" title="Geography"><img src="img/icons/geography.png">
+            </a>
+            <ul class="sub-maps">
+            <li><h2>Geography</h2></li>
+              <li>
+                <a href="#" ng-click="forceReloadMap('natural-earth')">
+                  <span class="icon"><img src="img/graph/earth.png"></span>
+                  <span class="sub_label">Maps</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" ng-click="forceReloadMap('globe');">
+                  <span class="icon"><i class="fa fa-globe"></i></span>
+                  <span class="sub_label">Globe</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" title="Proportions"><img src="img/icons/hierarchy.png">
+            </a>
+            <ul class="sub-maps">
+            <li><h2>Hierarchy</h2></li>
+              <li>
+                <a href="online-analysis-treemap">
+                  <span class="icon"><i class="fa fa-th"></i></span>
+                  <span class="sub_label">Tree map</span>
+                </a>
+              </li>
+              <li>
+                <a href="online-analysis-force-bubbles">
+                  <span class="icon"><img src="img/graph/force-layout.png"></span>
+                  <span class="sub_label">Bubble chart</span>
+                </a>
+              </li>
+              <li>
+                <a href="online-analysis-sunburst">
+                  <span class="icon"><i class="fa fa-circle-o-notch"></i></span>
+                  <span class="sub_label">Sunburst</span> </a>
+              </li>
+            </ul>
+          </li>
+          
+          
+          <!--<li><a href="/online-analysis-globe" class="hvr-fade" title="Maps"><img src="svg/Maps.svg"></i></a>
+            <ul class="sub-maps">
+              <li><a href="/online-analysis-globe"><i class="fa fa-chevron-right"></i> View with globe </a></li>
+              <li><a href="/online-analysis-map"> <i class="fa fa-chevron-right"></i> View the flat map</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/online-analysis-cancer-by-populations-sexes" class="hvr-fade" title="Dual bars"><img src="svg/dualbar.svg"></a>
+            <ul class="sub-maps">
+              <li><a href="/online-analysis-cancer-by-populations-cancers"><i class="fa fa-chevron-right"></i> View by cancers </a></li>
+              <li><a href="/online-analysis-cancer-by-populations-populations"> <i class="fa fa-chevron-right"></i> View by populations</a></li>
+              <li><a href="/online-analysis-cancer-by-populations-sexes"> <i class="fa fa-chevron-right"></i> View by sexes</a></li>
+            </ul>
+          </li>
+          <li><a href="/online-analysis-populations-by-cancer-i-m" class="hvr-fade" title="Simple bars"><img src="svg/multibar.svg"></i></a>
+            <ul class="sub-maps">
+              <li><a href="/online-analysis-populations-by-cancer-i-m"><i class="fa fa-chevron-right"></i> View by cancers </a></li>
+              <li><a href="/online-analysis-cancer-by-populations-i-m"> <i class="fa fa-chevron-right"></i> View by populations</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="hvr-fade" title="Misc bars"><img src="svg/table.svg"></i></a>
+            <ul class="sub-maps">
+              <li><a href="/online-analysis-bubbles"><i class="fa fa-chevron-right"></i> Bubbles </a></li>
+              <li><a href="/online-analysis-force-bubbles"><i class="fa fa-chevron-right"></i> Force bubbles </a></li>
+              <li><a href="/online-analysis-sunburst"> <i class="fa fa-chevron-right"></i> Sunburst</a></li>
+              <li><a href="/online-analysis-treemap-by-populations"> <i class="fa fa-chevron-right"></i> Treemap</a></li>
+              <li><a href="/online-analysis-pyramid"> <i class="fa fa-chevron-right"></i> Pyramid</a></li>
+            </ul>
+          </li>-->
+         
+        </ul>
+
+        <!--<a href="#" ng-click="openSettings()" class="gear" data-toggle="tooltip" data-placement="right" title="My settings" data-toggle="modal" data-target="#modalSettings">
+          <i class="fa fa-cog"></i>
+        </a>-->
+          
+        <!--<md-fab-speed-dial class="md_fab_speed_dial" md-open="isOpen" md-direction="right" ng-class="md-fling" id="buttonTheming">
+
+          <md-fab-trigger>
+            <md-button aria-label="menu" class="opener md-fab">
+              <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            </md-button>
+          </md-fab-trigger>
+
+          <md-fab-actions>
+
+            <md-button aria-label="Theme 1" class="md-fab md-raised md-mini" ng-click="changeTheme(1)">
+              <i class="fa fa-cogs" aria-hidden="true" style="color:#1e4273;"></i>
+            </md-button>
+
+            <md-button aria-label="Theme 2" class="md-fab md-raised md-mini" ng-click="changeTheme(2)">
+              <i class="fa fa-cogs" aria-hidden="true" style="color:#ffa147;"></i>
+            </md-button>
+
+            <md-button aria-label="Theme 3" class="md-fab md-raised md-mini" ng-click="changeTheme(3)">
+              <i class="fa fa-cogs" aria-hidden="true" style="color:#cccccc;"></i>
+            </md-button>
+
+            <md-button aria-label="Theme 4" class="md-fab md-raised md-mini" ng-click="changeTheme(4)">
+              <i class="fa fa-cogs" aria-hidden="true" style="color:#ffffff;"></i>
+            </md-button>
+
+            <md-button aria-label="Theme 5" class="md-fab md-raised md-mini" ng-click="changeTheme(5)">
+              <i class="fa fa-cogs" aria-hidden="true" style="color:#0b80b7;"></i>
+            </md-button>
+
+
+          </md-fab-actions>
+
+        </md-fab-speed-dial>-->
+
+
+        <!--<md-button ng-click="openModal" id="buttonSettings"  data-toggle="tooltip" data-placement="right" title="Change your settings" class="md-button main-menu md-ink-ripple" type="button" aria-label="Settings" md-menu-origin="" md-menu-align-target="">
+          <span class="iso ng-binding" ng-click="openModal"><i class="fa fa-cog" aria-hidden="true"></i></span>
+        </md-button>-->
+
+      </div>
+    </nav>
+    <!--/.navbar-collapse -->

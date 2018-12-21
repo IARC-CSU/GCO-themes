@@ -1,0 +1,50 @@
+
+
+	<section layout="row" flex layout-fill style="height: 100%">
+
+		<ng-include src="'templates/sub-menu.html'"></ng-include>
+
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2 filters" md-component-id="left" md-is-locked-open="sideNavOpen">
+			<ng-include src="'templates/online-analysis/filters-flex.html'"></ng-include>
+	    </md-sidenav>
+
+	    <md-button id="toggle-left-bar" ng-click="toggleLeftSideNav()" class="md-primary toggle-left-{{ sidebar_theme_number }}" aria-label="Hide menu" >
+      		<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    	</md-button>
+
+	    <md-content flex layout-padding ng-controller="DataVizController" id="tab-md-content">
+	      		      
+	      	<ul class="breadcrumb">
+		      	<li><a href="/today/home">Home</a></li>
+		        <li><a href="/today/explore">Explore</a></li>
+	  			<li>Bar chart</li>
+	      	</ul>
+
+	      	<ng-include src="'templates/online-analysis/downloads.html'"></ng-include>
+	      	
+	      	<md-tabs md-dynamic-height md-border-bottom style="width:{{ width }}px">
+		      <md-tab label="Graphic">
+		        <md-content class="md-padding" id="graphic-content">
+		        	<div id="color-picker-container">
+		        		<button class="" id="reset-all-color-picker">Reset all</button>
+		        		<button class="" id="reset-color-picker">Reset</button>
+		        		<button class="" id="close-color-picker"><i class="fa fa-times-circle"></i></button>
+		        	</div>
+		          	<div id="svg" style="height: {{ container_height }}px;" class="bars-container multiple-bars-container" layout="column" layout-fill layout-align="top center">
+			      		<svg></svg>
+			      	</div>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Table">
+		        <md-content class="md-padding">
+		          <div id="table-data" flex></div>
+		        </md-content>
+		      </md-tab>
+		     
+		    </md-tabs>
+
+	      
+
+	    </md-content>
+
+	  </section>

@@ -1,0 +1,68 @@
+	
+	<div class="full-content h-container" id="populations-fact-sheets" ng-controller="FactSheetsController">
+
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li>Fact sheets</li>
+          <li>Country fact sheets</li>
+        </ul>
+
+        <h1>Country fact sheets</h1>
+        
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <!--<select id="Region" name="population" style="background: white;">
+                    <option value="900-world-fact-sheets.pdf">Selection a country</option>
+                    <option value="900-world-fact-sheets.pdf">World</option>
+                    <option ng-repeat="file in pdfs" value="{{ file.pdf }}">{{ file.label }}</option>
+                </select>-->
+
+                <p>The Fact sheets provide a snapshot of the burden of cancer in a selected country or region, or a global overview for a given cancer type. </p>
+                
+                <ul class="population-group">
+                    <li>
+                        <div class="col-md-6" ng-repeat="population in populations">
+                            
+                            <div class="row sub_cont">
+
+
+                                <div class="col-md-3 cont_zone">
+                                    <img class="continent" src="img/continents/{{ population.id }}.png" title="{{ population.title }}" />
+                                </div>
+
+                                <div class="col-md-9 cont_zone">
+                                    <h3>{{ population.title }}</h3>
+                                    <a class="link_pdf" ng-repeat="pop in population.items" href="data/factsheets/populations/{{ pop.pdf }}" target="_blank">{{ pop.title }}</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            
+                            <div class="row sub_cont">
+
+                                <div class="col-md-3 cont_zone">
+                                    <img class="continent" src="img/continents/world-{{ random }}.png" title="World" />
+                                </div>
+
+                                <div class="col-md-9 cont_zone">
+                                    <h3>Worldwide</h3>
+                                    <a class="link_pdf" href="data/factsheets/populations/900-world-fact-sheets.pdf" target="_blank">World fact sheet</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+    </div>

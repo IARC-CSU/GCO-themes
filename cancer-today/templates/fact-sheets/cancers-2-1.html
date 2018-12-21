@@ -1,0 +1,62 @@
+	
+	<div class="full-content h-container" id="cancers-fact-sheets" ng-controller="FactSheetsController">
+
+        <ul class="breadcrumb">
+              <li><a href="/today/">Home</a></li>
+              <li>Fact sheets</li>
+              <li>Cancer fact sheets</li>
+            </ul>
+
+            <h1>Cancer fact sheets</h1>
+        
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <!--<select id="Region" name="population" style="background: white;">
+                    <option value="900-world-fact-sheets.pdf">Selection a country</option>
+                    <option value="900-world-fact-sheets.pdf">World</option>
+                    <option ng-repeat="file in pdfs" value="{{ file.pdf }}">{{ file.label }}</option>
+                </select>-->
+
+                <p>The Fact sheets provide a snapshot of the burden of cancer in a selected country or region, or a global overview for a given cancer type. </p>
+                
+                <ul class="population-group">
+                    <li>
+                        <div class="col-md-6">
+                            
+                            <div class="row sub_cont">
+                                <div class="col-md-3 cont_zone">
+                                    <img src="img/organs/mini/all.png" class="cancer_mini" title="All cancers">
+                                </div>
+
+                                <div class="col-md-9 cont_zone">
+                                    <h3>All cancers</h3>
+                                    <a class="link_pdf" href="data/factsheets/cancers/39-All-cancers-fact-sheet.pd" target="_blank">All cancers</a>
+                                    <a class="link_pdf" href="data/factsheets/cancers/40-All-cancers-excluding-non-melanoma-skin-cancer-fact-sheet.pdf" target="_blank">All cancers excluding non-melanoma skin cancer</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6" ng-repeat="group in group_cancers">
+                            
+                            <div class="row sub_cont">
+                                <div class="col-md-3 cont_zone">
+                                    <img src="img/organs/mini/{{ group.icon }}" class="cancer_mini" title="{{ cancer.label }}">
+                                </div>
+
+                                <div class="col-md-9 cont_zone">
+                                    <h3>{{ group.label }}</h3>
+                                    <a class="link_pdf" ng-repeat="cancer in group.items" href="data/factsheets/cancers/{{ cancer.pdf }}" title="{{ cancer.label }}" target="_blank">{{ cancer.label }}</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+    </div>

@@ -1,0 +1,24 @@
+
+<div>
+    <div class="hierarchy-wrap" id="target-hierarchy">
+        <div class="hierarchy-header">
+            <div class="input-group search-wrap">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" name="search_country" class="form-control keep-opened" ng-model="searchValue" placeholder=" Find a country ... " />
+            </div>
+        </div>
+        <div class="no-results" ng-show="emptyData"><strong>No Results Found</strong></div>
+        <div ng-show="!emptyData" ui-tree="options" data-drag-enabled="false">
+            <ul id="demoTree" ui-tree-nodes="" ng-model="list">
+              <li ng-repeat="item in list" ui-tree-node collapsed="true" ng-include="'templates/hierarchy/item_render.html'"></li>
+            </ul>
+        </div>
+    </div>
+    <!--<hr>
+    <h2>Selected Ids</h2>
+    <pre class="code">{{ selected }}</pre>
+    <h2>Search Results</h2>
+    <pre class="code">{{ list | json }}</pre>-->
+</div>
+
+                

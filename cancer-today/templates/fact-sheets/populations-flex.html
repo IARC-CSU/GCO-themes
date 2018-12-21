@@ -1,0 +1,181 @@
+	
+		
+	<div class="full-content fact-sheets" id="populations-fact-sheets" ng-controller="FactSheetsController">
+
+        <md-content flex ng-controller="DataVizController" class="populations-fact-sheets-container">
+
+            <ul class="breadcrumb">
+              <li><a href="/today/">Home</a></li>
+              <li>Fact sheets</li>
+              <li>Population fact sheets</li>
+            </ul>
+
+            <h1>POPULATION FACT SHEETS: <span id="population_title">World</span></h1>
+
+            <md-toolbar class="toolbar">
+              <div class="md-toolbar-tools">
+                
+                <!--<a class="btn_permalink btn_link" data-toggle="tooltip" ng-click="runScript()" data-original-title="Copy the permalink">
+                    Script
+                </a>-->
+
+                <label>Populations: </label>
+                
+                <!--<md-select id="changePop" ng-model="population" ng-change="filterFactSheet('population',population)" aria-label="Population">
+                    <md-option ng-repeat="country in countries_list" value="{{ country.country }}"> {{ country.label }} </md-option>
+                </md-select>-->
+
+                <md-button md-no-ink class="md-primary" ng-click="openModalPopulation()">Choose a population</md-button>
+
+                <label>Sex: </label>
+                <md-select ng-model="mSex" ng-change="filterFactSheet('sex', mSex )" aria-label="Sexes">
+                    <md-option ng-repeat="sex in sexes" value="{{ sex.id }}" ng-disabled="{{ sex.state }}">{{ sex.label }}</md-option>
+                </md-select>
+
+                <label>Cancer sites: </label>
+                <md-select ng-model="nbItems" ng-change="filterFactSheet('nb_item', nbItems )" aria-label="NbItem">
+                    <md-option value="5">5</md-option>
+                    <md-option value="6">6</md-option>
+                    <md-option value="7">7</md-option>
+                    <md-option value="8">8</md-option>
+                    <md-option value="9">9</md-option>
+                    <md-option value="10">10</md-option>
+                </md-select>
+
+                <md-checkbox ng-model="mShowLabel" aria-label="Show labels" ng-change="filterFactSheet('show_label', mShowLabel )" >
+                   Labels
+                </md-checkbox>
+                
+
+                <a class="btn_download btn_link" data-toggle="tooltip" title="Download as a PDF" ng-click="printFactSheet()" data-original-title="Download as a PDF">
+                    <i class="fa fa-floppy-o"></i> PDF
+                </a>
+
+                <a class="btn_permalink btn_link" data-toggle="tooltip" title="Copy the permalink" data-original-title="Copy the permalink">
+                    <i class="fa fa-link"></i> Permalink
+                </a>
+
+              </div>
+            </md-toolbar>
+
+            <md-tabs md-dynamic-height md-border-bottom>
+                
+                <md-tab label="Pie charts">
+                    <md-content class="content" id="pie-populations-sheets-container">
+                        <div id="fact-1">
+                            
+                            <h2 id="title-pies"> {{ title_pie }} </h2>
+                            
+                            <div class="row row-pie">
+                                <div class="col-md-4 sub-cell"><div id="svg_1" class="pie"><svg></svg></div></div>
+                                <div class="col-md-4 sub-cell"><div id="svg_2" class="pie"><svg></svg></div></div>
+                                <div class="col-md-4 sub-cell"><div id="svg_3" class="pie"><svg></svg></div></div>
+                                <div class="row row-pie" id="container-legend">    
+                                    <div id="legend">
+                                        <ul>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+                    </md-content>
+                </md-tab>
+
+                <!--<md-tab label="Dual bars">
+                    <md-content class="content content-center" id="dual-bars-populations-sheets-container">
+                        <h2>{{ title_bars }}</h2>
+                        <div id="svg-dual" layout="column" layout-fill layout-align="top center">
+                            <svg></svg>
+                        </div>
+                    </md-content>
+                </md-tab>-->
+
+                <md-tab label="Table">
+                    <md-content class="content" id="table-fact-sheets-container">
+                        <h2 id="title-table">{{ title_table }}</h2>
+                        <div id="table-fact-sheets">
+                        </div>
+                        <p>
+                            <br/>
+                            <i>Incidence and mortality data for all ages. 5-year prevalence for adult population only.
+                            <br/> ASR (W) and proportions per 100,000.</i>
+                        </p>
+                    </md-content>
+                </md-tab>
+                
+                <md-tab label="Summary">
+
+                    <md-content class="content content-center" id="table-summary-fact-sheets-container"> 
+                        
+                        <h2 id="title-summary">Summary statistic (2012)</h2>
+                        <div id="summary">
+                            
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <h3>{{ title_bars }}</h3>
+                                    <div id="svg-dual" layout="column" layout-fill layout-align="top center">
+                                        <svg></svg>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <h3> Table summary </h3>
+                                    <div id="table-summary-data">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" style="padding-left: 50px;">
+                                    <h3> Data sources and methods {{ index_quality }} </h3>
+                                    <ul>
+                                        <li>
+                                            <h4>Incidence</h4>
+
+                                            <ul class="incidence">
+                                                <li class="source"><u>Data source</u>: {{ inc_source }}</li>
+                                                <li><u>Method</u>: {{ inc_method }}</li>
+                                            </ul>
+
+                                        </li>
+                                        <li>
+                                            <h4>Mortality</h4>
+
+                                            <ul class="incidence">
+                                                <li class="source"><u>Data source</u>: {{ mort_source  }}</li>
+                                                <li><u>Method</u>: {{ mort_method }}.</a></li>
+                                            </ul>
+
+                                        </li>
+                                        <li>
+                                            <h4>Prevalence</h4>
+                                            {{ strMethodP }}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3> Glossary </h3>
+                                    <ul>
+                                        <li><strong> Age-standardised rate (W)</strong>: Whereas a crude rate is simply the number of new cases or deaths in a given population over a given period of time (typically expressed per 100 000 individuals per year), an age-standardized rate (ASR) is the rate that would have been observed if the population had a standard age structure. Standardization is necessary when comparing several populations that differ with respect to age because age has a strong influence on the risk of cancer. Throughout this website, age-standardized rate is denoted with a “(W)” to indicate that rates have been age-standardized using the World (W) Standard Population.</li>
+                                        <li><strong> Risk of getting or dying from cancer before the age of 75 years (%):</strong> The probability or risk of an individual getting or dying from cancer is expressed as the number of newborn babies (out of 100) who would be expected to develop / die from cancer before reaching the age of 75 years (in the absence of other causes of death), given the observed rated of cancer. This is also referred to as “cumulative incidence” and “cumulative mortality” (see the <a href="help">Glossary  page</a>).</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </md-content>
+
+                </md-tab>
+
+            </md-tabs>
+
+        </md-content>
+
+    </div>
+
+    

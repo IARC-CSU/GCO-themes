@@ -1,0 +1,106 @@
+
+        
+        <div ng-controller="HomeCtrl" class="gridListdemoBasicUsage" ng-cloak>
+
+            <md-grid-list md-cols="4" md-row="3" md-row-height="{{ height_item }}px" md-gutter="10px" md-gutter-gt-sm="10px">
+            <!--<md-grid-list md-row-height="100px" md-gutter="10px" md-gutter-gt-sm="10px">-->
+
+                <md-grid-tile md-colspan="1">
+                    <p class="justify" style="margin-top : {{ margin_top_tile}}px ;">
+                        [TEXT TO BE WRITTEN]
+                        <br/>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident . 
+                    </p>
+                    <md-grid-tile-footer>
+                        <h3>Our reseach</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile md-colspan="2" md-rowspan="2">
+                    <div class="carousel slide" data-ride="carousel" data-interval="{{ slides3.interval }}" id="carousel3">
+                        <div class="carousel-inner" role="listbox" style="height:{{ margin_top_tile3 }}px;">
+                            <div ng-repeat="slide in slides3.data" class="item {{ slide.active }}" style="height:{{ margin_top_tile3 }}px;">
+                                <a href="{{ slide.link }}">
+                                    <img ng-src="{{ slide.url }}" title="{{ slide.title }}" style="max-height:{{ height_item_image }}px;">
+                                    <h4 class="left">{{ slide.title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <ol class="carousel-indicators">
+                            <li ng-repeat="(key,slide) in slides3.data" data-target="#carousel3" data-slide-to="{{ key }}" class=""></li>
+                        </ol>
+
+                    </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light">
+                    <div class="half" style="margin-top : {{ margin_top_tile}}px ;"><a href="fact-sheets-populations"> <i class="fa fa-file-text-o"></i> Population <br> fact sheets</a></div>
+                    <div class="half" style="margin-top : {{ margin_top_tile}}px ;"><a href="fact-sheets-cancers"> <i class="fa fa-file-text"></i> Cancer fact <br> sheets</a></div>
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light" style="margin-top : {{ margin_top_tile}}px ;">
+                    <div class="half" style="margin-top : {{ margin_top_tile}}px ;"><a href="explore"><i class="fa fa-folder"></i> Explore</a></div>
+                    <div class="half" style="margin-top : {{ margin_top_tile}}px ;"><a class="tat" data-toggle="Globe chart"> <i class="fa fa-play-circle fa-4"></i> Take a tour</a></div>
+                </md-grid-tile>
+
+
+                 <md-grid-tile class="gray" md-rowspan="2">
+                    <div class="lign">
+                        <div class="half" style="margin-top : {{ margin_top_tile}}px ;">
+                            <a href="http://www.iacr.com.fr/" class="center"><img src="img/IACR.png" title="IACR"></a>
+                        </div>
+                        <div class="half" style="margin-top : {{ margin_top_tile}}px ;">
+                            <p class="justify">
+                                The International Association of Cancer Registries is a professional society. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lign">
+                        <div class="half" style="margin-top : {{ margin_top_tile}}px ;">
+                            <p class="justify">
+                                Cancer incidence and mortality are rising rapidly worldwide, particularly in low- and middle-income countries.
+                            </p>
+                        </div>
+                        <div class="half" style="margin-top : {{ margin_top_tile}}px ;">
+                            <a href="http://gicr.iarc.fr/" class="center"><img src="img/GICR.gif" title="GICR"></a> 
+                        </div>
+                    </div>
+                    <md-grid-tile-footer>
+                        <h3>Powered by cancer registries</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light">
+                    <a href="online-analysis-force-layout"><img src="img/home/force-layout.png" title="Force layout"></a>
+                    <md-grid-tile-footer>
+                        <h3>Force layout</h3>
+                    </md-grid-tile-footer>
+                </md-grid-tile>
+
+
+                <md-grid-tile class="fact-sheets light">
+                    
+                    <div class="half padd-top"><a href="/today/online-analysis-pie" data-toggle="tooltip" title="Pie"><i class="fa fa-pie-chart"></i> Pie charts</a></div>
+                    <div class="half padd-top"><a href="/today/online-analysis-multi-bars" data-toggle="tooltip" title="Simple bars"> <i class="fa fa-bar-chart"></i>Simple bars</a></div>
+                    <div class="half"><a href="/today/online-analysis-map" data-toggle="tooltip" title="Map"><i class="fa fa-globe"></i> Map</a></div>
+                    <div class="half"><a href="/today/online-analysis-tables"  data-toggle="tooltip" title="Tables"> <i class="fa fa-table"></i> Tables</a></div>
+                
+                </md-grid-tile>
+
+                <md-grid-tile class="fact-sheets light padd-top">
+                    <a href="online-analysis-sunburst">
+                        <img src="img/home/sunburst-2.png" title="Sunburst" style="margin-top : {{ margin_top_tile2 }}px ;">
+                    </a>
+                    <md-grid-tile-footer>
+                        <h3>Sunburst</h3>
+                    </md-grid-tile-footer>
+                    
+                </md-grid-tile>
+
+                
+            
+
+            </md-grid-list>
+
+        </div>
+

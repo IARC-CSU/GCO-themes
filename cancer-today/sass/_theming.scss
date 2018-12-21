@@ -1,0 +1,152 @@
+
+.filter-theme{
+	height: 5px !important ; 
+}
+
+// theme 1
+md-sidenav md-content#sidebar_theme1, md-sidenav.filters #sidebar_theme1{
+	background: #1e4273;
+	.zone-filters h3,md-radio-button .md-label,.md-select-value span:first-child{
+		color: #fff ; 
+	}
+	.md-radio-button.md-default-theme .md-off, md-radio-button .md-off{
+		border-color: #fff ; 
+	}
+}
+#toggle-left-bar.toggle-left-1{
+	background-color: #1e4273 !important;
+}
+ul.group-1 ul{
+    background: #1e4273 ;
+    li{
+    	i{
+    		color: #fff ; 
+    	}
+    	a:hover{
+    		li{
+    			color: $orange ; 
+    		}
+    	}
+    }
+}
+
+// theme 2
+md-sidenav md-content#sidebar_theme2, md-sidenav.filters #sidebar_theme2{
+	background: #f5f5f5;
+	.zone-filters h3,md-radio-button .md-label,.md-select-value span:first-child{
+		color: #333 ; 
+	}
+	.md-radio-button.md-default-theme .md-off, md-radio-button .md-off{
+		border-color: #333 ; 
+	}
+}
+
+#toggle-left-bar.toggle-left-2{
+	background-color: #f5f5f5 !important;
+}
+
+ul.group-2 ul{
+    background: #f5f5f5 ;
+    li{
+    	i{
+    		color: #333 ; 
+    	}
+    	a:hover{
+    		li{
+    			color: $orange ; 
+    		}
+    	}
+    }
+}
+
+// theme 3
+md-sidenav md-content#sidebar_theme3, md-sidenav.filters #sidebar_theme3{
+	background: #f5f5f5;
+	.zone-filters h3,md-radio-button .md-label,.md-select-value span:first-child{
+		color: #333 ; 
+	}
+	.md-radio-button.md-default-theme .md-off, md-radio-button .md-off{
+		border-color: #333 ; 
+	}
+
+	.zone-filters .filter-form1 input[type="radio"]:checked + label,
+	.zone-filters .filter-form1 input[type="checkbox"]:checked + label,
+	.zone-filters #filter-nb-items-buttons ul li button:hover,
+	.zone-filters #filter-nb-items-buttons ul li button.selected{
+		background: $blue3 !important ; 
+	}
+	md-radio-button.md-default-theme .md-on, md-radio-button .md-on,md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon{
+		background-color: $blue3 !important ; 
+	}
+}
+
+md-radio-button[ng-disabled="true"] .md-off{
+	border-color: #cccccc !important; 
+	cursor: not-allowed; 
+}
+
+md-radio-button[ng-disabled="true"] .md-label span{
+	color: #cccccc !important ; 
+}
+
+#toggle-left-bar.toggle-left-3{
+	/*background-color: #f5f5f5 !important;*/
+}
+
+ul.group-3 ul{
+    background: #f5f5f5 ;
+    li{
+    	i{
+    		color: #1e4273 ; 
+    	}
+    }
+}
+
+
+
+// theme 4
+md-sidenav md-content#sidebar_theme4, md-sidenav.filters #sidebar_theme4{
+	background: #ffffff;
+	.zone-filters h3,md-radio-button .md-label,.md-select-value span:first-child{
+		color: #333 ; 
+	}
+	.md-radio-button.md-default-theme .md-off, md-radio-button .md-off{
+		border-color: #333 ; 
+	}
+}
+#toggle-left-bar.toggle-left-4{
+	background-color: #ffffff !important;
+}
+ul.group-4 ul{
+    background: #ffffff ;
+    li{
+    	i{
+    		color: #333 ; 
+    	}
+    }
+}
+
+
+// theme 5
+md-sidenav md-content#sidebar_theme5, md-sidenav.filters #sidebar_theme5{
+	background: $blue2 ;
+	.zone-filters h3,md-radio-button .md-label,.md-select-value span:first-child{
+		color: #fff ; 
+	}
+	.md-radio-button.md-default-theme .md-off, md-radio-button .md-off{
+		border-color: #fff ; 
+	}
+}
+
+#toggle-left-bar.toggle-left-5{
+	background-color: $blue2 ;
+}
+
+ul.group-5 ul{
+    background: $blue2 ;
+    li{
+    	i{
+    		color: #fff ; 
+    	}
+    }
+}

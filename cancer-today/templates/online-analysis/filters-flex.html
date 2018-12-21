@@ -1,0 +1,1172 @@
+
+	
+	
+		<!--<md-toolbar class="md-theme-indigo">
+	    <h1 class="md-toolbar-tools">Sidenav Left</h1>
+	  </md-toolbar>-->
+  	<md-content layout-padding class="container-filter" id="sidebar_theme{{ sidebar_theme_number }}" >
+	    
+	    <md-button id="toggle-left-bar" ng-click="toggleLeftFilter()" class="md-primary" aria-label="Hide menu" >
+      		<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    	</md-button>
+
+    	<!-- Downloads button -->
+
+	    <div hide-gt-sm show-gt-sm ng-controller="FilterController" id="FilterController" class="zone-filters {{ dataviz_conf.type }}">
+	      	
+	      	<!-- <div class="filters filter-form1 filter-theme">
+
+				<md-radio-group ng-model="sidebar_theme_number" ng-change="changeTheme(sidebar_theme_number)">
+			     	<md-radio-button value="1"> T1 </md-radio-button>
+			      	<md-radio-button value="2"> T2 </md-radio-button>
+			      	<md-radio-button value="3"> T3 </md-radio-button>
+			      	<md-radio-button value="4"> T4 </md-radio-button>
+			      	<md-radio-button value="5"> T5 </md-radio-button>
+			    </md-radio-group>
+
+	      	</div> -->
+
+	      	<div ng-if="filters['filter-map-mode']">
+				<div class="filters filter-form1" id="filter-mode">
+					<h3>Map mode</h3>
+					<md-radio-group ng-model="mMode" ng-change="filterMode(mMode)">
+				     	<md-radio-button value="population" class="md-primary"> Heatmap </md-radio-button>
+				      	<md-radio-button value="cancer" id="map-mode-most-common"> Most common site </md-radio-button>
+				    </md-radio-group>
+				</div>
+			</div>
+			
+	      	<div ng-if="filters['filter-mode']">
+				<div class="filter filters filter-form1" id="filter-mode">
+					<h3 class="border_hidden">{{ label_mode }}</h3>
+					<md-radio-group ng-model="mMode" ng-change="filterMode(mMode)">
+				     	<md-radio-button value="population" class="md-primary"> Populations </md-radio-button>
+				      	<md-radio-button value="cancer"> Cancer sites </md-radio-button>
+				    </md-radio-group>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-dual-distribution']">
+				<div class="filters filter-form1" id="filter-dual-distribution">
+					<h3>Compare</h3>
+					<md-radio-group ng-model="mDualDistribution" ng-change="filterDualDistribution(mDualDistribution)">
+				     	<md-radio-button value="1" class="md-primary"> Population </md-radio-button>
+				      	<md-radio-button value="2"> Sex </md-radio-button>
+				    </md-radio-group>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-stacked-divide-per']">
+				<div class="filters filter-form1" id="filter-stacked-divide-per">
+					<h3>Divide per</h3>
+					<md-radio-group ng-model="mStackedDividePer" ng-change="filterStackedDividePer(mStackedDividePer)">
+				     	<md-radio-button value="1" class="md-primary"> Cancers </md-radio-button>
+				      	<md-radio-button value="2"> Age groups </md-radio-button>
+				    </md-radio-group>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-dual-mode']">
+				<div class="filters filter-form1" id="filter-dual-mode">
+					<h3>Compare</h3>
+					<md-radio-group ng-model="mDualMode" ng-change="filterDualMode(mDualMode)">
+				     	<md-radio-button value="1" class="md-primary"> Inc. / Morta. </md-radio-button>
+				      	<md-radio-button value="2"> Inc. / Prev. </md-radio-button>
+				    </md-radio-group>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-type']">
+				<div class="filter filter-form1" id="filter-type">
+					
+					<h3>Indicator</h3>
+					
+					<md-radio-group class="third" ng-model="mType" ng-change="filterDataType(mType)">
+						<md-radio-button value="0" class="md-primary" data-toggle="tooltip" data-title="Incidence"> Inc. </md-radio-button>
+					    <md-radio-button value="1" data-toggle="tooltip" data-title="Mortality"> Mort. </md-radio-button>
+					    <md-radio-button id="radio-button-prevalence" value="2" data-toggle="tooltip" data-title="Prevalence" style="display:{{ cssPrevalence}};"  ng-disabled="prevalenceDisabled"> Prev. </md-radio-button>
+					</md-radio-group>
+
+					<!--<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="0" checked="checked" id="filter-incidence" name="filter-type">
+					<label for="filter-incidence"> <i class="fa fa-check"></i> Incidence </label>
+					<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="1" id="filter-mortality" name="filter-type"> 
+					<label for="filter-mortality"> <i class="fa fa-check"></i> Mortality </label>
+
+					<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="2" id="filter-prevalence" name="filter-type" style="display: {{ cssPrevalence}} ; "> 
+					<label for="filter-prevalence" style="display: {{ cssPrevalence}} ; "> <i class="fa fa-check"></i> Prevalence </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-type-multiple']">
+				<div class="filter filter-form1" id="filter-type-multiple">
+					<h3>Indicator</h3>
+
+					<md-checkbox class="md-primary" ng-model="mTypeMultiple.inc" aria-label="Incidence"  data-toggle="tooltip" data-title="Incidence" value="0" ng-change="filterDataTypeMultiple('inc',mTypeMultiple.inc)">
+			        	Inc.
+			        </md-checkbox>
+
+			        <md-checkbox class="md-primary" ng-model="mTypeMultiple.mort" aria-label="Mortality"  data-toggle="tooltip" data-title="Mortality" value="1" ng-change="filterDataTypeMultiple('mort',mTypeMultiple.mort)"  ng-disabled="mTypeMultipleStates.mort">
+			        	Mort.
+			        </md-checkbox>
+
+			        <md-checkbox class="md-primary" ng-model="mTypeMultiple.prev" aria-label="Prevalence"  data-toggle="tooltip" data-title="Prevalence" value="2" ng-change="filterDataTypeMultiple('prev',mTypeMultiple.prev)"   ng-disabled="mTypeMultipleStates.prev" style="display: {{ cssPrevalence}} ;">
+			        	Prev.
+			        </md-checkbox>
+
+					<!--<input type="checkbox" ng-model="mTypeMultiple.inc" ng-change="filterDataTypeMultiple('inc',mTypeMultiple.inc)" value="0" checked="checked" id="filter-incidence" name="filter-type">
+					<label for="filter-incidence"> <i class="fa fa-check"></i> Incidence </label>
+					<input type="checkbox" ng-model="mTypeMultiple.mort" ng-change="filterDataTypeMultiple('mort',mTypeMultiple.mort)" value="1" id="filter-mortality" name="filter-type"> 
+					<label for="filter-mortality"> <i class="fa fa-check"></i> Mortality </label>
+					<input type="checkbox" ng-model="mTypeMultiple.prev" ng-change="filterDataTypeMultiple('prev',mTypeMultiple.prev)" value="2" id="filter-prevalence" name="filter-type" style="display: {{ cssPrevalence}} ; "> 
+					<label for="filter-prevalence" style="display: {{ cssPrevalence}} ; "> <i class="fa fa-check"></i> Prevalence </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-type-simple']">
+				<div class="filter filter-form1" id="filter-type-simple">
+					<h3>Indicator</h3>
+					<input type="checkbox" ng-model="mTypeSimple.inc" ng-change="filterDataTypeDualBars('inc',mTypeSimple.inc)" value="0" checked="checked" id="filter-incidence" name="filter-type-simple">
+					<label for="filter-incidence"> <i class="fa fa-check"></i> Incidence </label>
+					<input type="checkbox" ng-model="mTypeSimple.mort" ng-change="filterDataTypeDualBars('mort',mTypeSimple.mort)" value="1" id="filter-mortality" name="filter-type-simple"> 
+					<label for="filter-mortality"> <i class="fa fa-check"></i> Mortality </label>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-type-bis']">
+				<div class="filter filter-form1" id="filter-type-bis">
+					<h3>Indicator</h3>
+					<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="0" checked="checked" id="filter-incidence" name="filter-type">
+					<label for="filter-incidence"> <i class="fa fa-check"></i> Incidence </label>
+					<input type="radio" ng-model="mType" ng-change="filterDataType(mType)" value="1" id="filter-mortality" name="filter-type"> 
+					<label for="filter-mortality"> <i class="fa fa-check"></i> Mortality </label>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-populations-group']">
+				<div class="filter" id="filter-populations-group" style="display: none;">
+					<h3>Population group</h3>
+
+			        <md-select ng-model="mPopulationGroup" ng-change="filterDataPopulationGroup(mPopulationGroup)" aria-label="Populations">
+			        	<md-option ng-value="{{ world_areas.key }}"> {{ world_areas.label }} </md-option>
+				        <md-optgroup label="{{ group.label }}" ng-repeat="group in groups">
+					        <md-option ng-value="{{ population.key }}" ng-repeat="population in group.items"> {{ population.label }} </md-option>
+					    </md-optgroup>
+					</md-select>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-statistic']">
+				<div class="filter filter-form1" id="filter-statistic">
+					<h3>Time period</h3>
+
+					<md-radio-group class="third" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)">
+						<md-radio-button value="1" class="md-primary" > 1 year </md-radio-button>
+					    <md-radio-button value="3" > 3 year </md-radio-button>
+					    <md-radio-button value="5" > 5 year </md-radio-button>
+					</md-radio-group>
+
+					<!--
+					<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="0" checked="checked" id="filter-one-year" name="filter-statistic">
+					<label for="filter-one-year"> <i class="fa fa-check"></i> 1 year </label>
+					<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="1" id="filter-three-years" name="filter-statistic"> 
+					<label for="filter-three-years"> <i class="fa fa-check"></i> 3 year </label>
+					<input type="radio" ng-model="mStatistic" ng-change="filterDataStatistic(mStatistic)" value="2" id="filter-five-years" name="filter-statistic"> 
+					<label for="filter-five-years"> <i class="fa fa-check"></i> 5 year </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-sex']">
+				<div class="filter filter-form1" id="filter-sex">
+					<h3>Sex </h3>
+
+					<md-radio-group class="third" ng-model="mSex" ng-change="filterDataSex(mSex)">
+						<md-radio-button value="0" class="md-primary" ng-disabled="{{ inputs.sex[0] }}" id="md-radio-both"> Both </md-radio-button>
+					    <md-radio-button value="1" ng-disabled="{{ inputs.sex[1] }}" id="md-radio-males"> Males </md-radio-button>
+					    <md-radio-button value="2" ng-disabled="{{ inputs.sex[2] }}" id="md-radio-females"> Females </md-radio-button>
+					</md-radio-group>
+
+					<!--<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="0" checked="checked" id="filter-both" ng-disabled="{{ inputs.sex[0] }}" name="filter-sex">
+					<label for="filter-both"> <i class="fa fa-check"></i> Both </label>
+					<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="1" ng-disabled="{{ inputs.sex[1] }}" id="filter-males" name="filter-sex">
+					<label for="filter-males"> <i class="fa fa-check"></i> Males </label>
+					<input type="radio" ng-model="mSex" ng-change="filterDataSex(mSex)" value="2" ng-disabled="{{ inputs.sex[2] }}" id="filter-females" name="filter-sex">
+					<label for="filter-females"> <i class="fa fa-check"></i> Females </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-age-group']">
+				<div class="filter filter-form1" id="filter-age-group">
+					<h3>Age groups</h3>
+
+					<div id="html5" class="noUi-target noUi-ltr noUi-horizontal">
+						<select name="age_start" id="age_start">
+							<option value="{{ age }}" ng-repeat="(key,age) in ages_start" >{{ age }}</option>
+						</select>
+
+						<select name="age_end" id="age_end">
+							<option value="{{ age }}" ng-repeat="(key,age) in ages_end" >{{ age }}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-multi-bars-mode']">
+				<div class="filters filter-form1" id="filter-multi-bars-mode">
+					<h3>Mode</h3>
+				    <input type="radio" ng-model="mMultiBarsMode" ng-change="filterMultiBarsMode(mMultiBarsMode)" value="0" checked="checked" id="filter-stacked" name="filter-multi-bars-mode">
+					<label for="filter-stacked"> <i class="fa fa-check"></i> Stacked </label>
+					<input type="radio" ng-model="mMultiBarsMode" ng-change="filterMultiBarsMode(mMultiBarsMode)" value="1" id="filter-expanded" name="filter-multi-bars-mode">
+					<label for="filter-expanded"> <i class="fa fa-check"></i> Expanded </label>
+					<input type="radio" ng-model="mMultiBarsMode" ng-change="filterMultiBarsMode(mMultiBarsMode)" value="2" id="filter-grouped" name="filter-multi-bars-mode">
+					<label for="filter-grouped"> <i class="fa fa-check"></i> Grouped </label>
+
+				</div>
+			</div>
+
+			<!-- shared filters -->
+			<div ng-if="filters['filter-mode-populations']">
+				<div class="filter" id="filter-mode-populations">	
+					<h3>{{ population_mode_label }} </h3>
+					
+					<!---<md-select  ng-model="mModePopulations" ng-change="filterDataModePop(mModePopulations)" aria-label="Populations">
+						<md-option ng-repeat="pop in mode_population_list" value="{{ pop.key }}" ng-hide="{{ pop.hide }}">{{ pop.label}}</md-option>
+			        </md-select>-->
+
+			        <select name="filter-mode-populations" ng-model="mModePopulations" ng-change="filterDataModePop(mModePopulations)" aria-label="Populations">
+						<option ng-repeat="pop in mode_population_list" value="{{ pop.key }}" ng-hide="{{ pop.hide }}">{{ pop.label}}</option>
+			        </select>
+
+			        <select name="filter-population-group" class="population-group" ng-model="mPopulationGroup" ng-change="filterDataPopulationGroup(mPopulationGroup)" label="Populations">
+			        	<option value="{{ group_all.key }}"> {{ group_all.label }} </option>
+				        <optgroup label="{{ group.label }}" ng-repeat="group in groups">
+					        <option value="{{ population.key }}" attr-ids="{{ population.ids.join(',') }}" attr-globocan-id="{{ population.globocan_id }}" ng-repeat="population in group.items"> {{ population.label }} </option>
+					    </optgroup>
+					</select>
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-continents']">
+				<div class="filter" id="filter-continents">	
+					<h3>Continents </h3>
+					<!--<md-select  ng-model="mContinent" ng-change="filterDataContinent(mContinent)" aria-label="Continents">
+			          	<md-option value="0">Global</md-option>
+						<md-option value="1">Africa</md-option>
+						<md-option value="4">Asia</md-option>
+						<md-option value="5">Europe</md-option>
+						<md-option value="3">North America</md-option>
+						<md-option value="6">Oceania</md-option>
+						<md-option value="2">South America</md-option>
+			        </md-select>-->
+
+			        <select name="mContinent" ng-model="mContinent" ng-change="filterDataContinent(mContinent)" aria-label="Continents">
+			          	<option value="0" selected="selected">Global</option>
+						<option value="1">Africa</option>
+						<option value="4">Asia</option>
+						<option value="5">Europe</option>
+						<option value="3">North America</option>
+						<option value="6">Oceania</option>
+						<option value="2">South America</option>
+			        </select>
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-cancers']">
+				<div class="filter" id="filter-cancers">
+					<h3>
+						Cancer sites
+						<!--<a class="sort" ng-click="sortCancer('LABEL')"> <i class="fa fa-sort" aria-hidden="true"></i> by label</a>
+						<a class="sort" ng-click="sortCancer('ICD')"> <i class="fa fa-sort" aria-hidden="true"></i> by ICD 10</a>-->
+					</h3>
+	      			<!--<md-select ng-model="mCancer" ng-change="filterDataCancer(mCancer)" aria-label="Cancers">
+			          <md-option ng-repeat="cancer in cancers" value="{{ cancer.CANCER }}" ng-disabled="{{ cancer.ACTIVE }}" ng-hide="(!cancer.LABEL) || (cancer.CANCER == 13)"> {{ cancer.LABEL }} </md-option>
+			        </md-select>-->
+
+			        <select ng-model="mCancer" ng-change="filterDataCancer(mCancer)" aria-label="Cancers" id="filter-cancers-site">
+			        	
+			        	<option ng-repeat="cancer in cancers" attr-label="{{ cancer.label }}" attr-icd="{{ cancer.ICD }}" value="{{ cancer.cancer }}" ng-disabled="{{ cancer.active }}" ng-hide="(!cancer.label) || (cancer.cancer == 13)">
+			          		{{ cancer.prefix }}{{ cancer.label }}
+			          	</option>
+
+			        </select>
+
+				</div>
+			</div>
+
+			<!-- shared filters -->
+			<div ng-if="filters['filter-compare']">
+				<div class="filter filter-form1" id="filter-compare">
+					<h3>Compare</h3>
+					<md-switch ng-model="mCompare" ng-change="filterCompare(mCompare)" class="switch" aria-label="Compare"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-key']">
+				<div class="filter filter-form1" id="filter-key">
+					<h3>Indicator</h3>
+					
+					<md-radio-group ng-model="mKey" ng-change="filterDataKey(mKey)">
+						<md-radio-button value="total" class="md-primary" id="md-radio-button-indicator-total"> Number </md-radio-button>
+					    <md-radio-button value="asr" class="md-primary"" > ASR (World) </md-radio-button>
+					    <md-radio-button value="crude_rate" class="md-primary" > Crude rate </md-radio-button>
+					    <md-radio-button value="{{ cumRiskKey }}" class="md-primary" > Cum. risk  </md-radio-button>
+					</md-radio-group>
+
+					<!--
+					<input type="radio" ng-model="mKey" ng-change="filterDataKey(mKey)" value="total" checked="checked" id="key-numbers" name="key"> 
+					<label for="key-numbers"> <i class="fa fa-check"></i> Number </label>
+					
+					<input type="radio" ng-model="mKey" ng-change="filterDataKey(mKey)" value="crude_rate" checked="checked" id="key-cr" name="key"> 
+					<label for="key-cr"> <i class="fa fa-check"></i> Crude rate</label>
+
+					<input type="radio" ng-model="mKey" ng-change="filterDataKey(mKey)" value="asr" checked="checked" id="key-asr" name="key"> 
+					<label for="key-asr"> <i class="fa fa-check"></i> ASR (World) </label>
+
+					<input type="radio" ng-model="mKey" ng-change="filterDataKey(mKey)" value="{{ cumRiskKey }}" checked="checked" id="key-cum-risk" name="key"> 
+					<label for="key-cum-risk"> <i class="fa fa-check"></i> Cum. risk </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-cancers-compare']">
+				<div class="filter" id="filter-cancers-compare">
+					<h3> Choose another cancer site </h3>
+	      			<md-select id="cancers-compare" ng-model="mCancerCompare" ng-change="filterDataCancerCompare(mCancerCompare)" aria-label="Cancers">
+			          <md-option ng-repeat="cancer in cancers" value="{{ cancer.CANCER }}" ng-hide="!cancer.LABEL"> {{ cancer.LABEL }} </md-option>
+			        </md-select>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-populations']">
+				<div class="filter" id="filter-populations">
+					<h3>{{ population_one }} </h3>
+					<select ng-model="mPopulation" name="population_one" ng-change="filterDataPopulation(mPopulation)" aria-label="Populations">
+						<option ng-repeat="country in countries_list" value="{{ country.country }}" ng-hide="{{ country.country == 732 }}"> {{ country.label }} </option>
+			        </select>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-populations-2']">
+				<div class="filter" id="filter-populations-2">
+					<h3>Population right </h3>
+					<select ng-model="mPopulation2"  name="population_two" ng-change="filterDataPopulation2(mPopulation2)" aria-label="Populations">
+						<option ng-repeat="country in countries_list" value="{{ country.country }}" ng-hide="{{ country.country == 732 }}"> {{ country.label }} </option>
+			        </select>
+
+			        <!--<md-autocomplete
+			          	ng-disabled="mPopulation2.isDisabled"
+			          	md-no-cache="mPopulation2.noCache"
+			          	md-selected-item="mPopulation2.selectedItem"
+			          	md-search-text-change="mPopulation2.searchTextChange(ctrl.searchText)"
+			          	md-search-text="mPopulation2.searchText"
+			          	md-selected-item-change="mPopulation2.selectedItemChange(item)"
+			          	md-items="item in mPopulation2.querySearch(mPopulation2.searchText)"
+			          	md-item-text="item.display"
+			          	md-min-length="0"
+			          	placeholder="Select a population">
+				        <md-item-template>
+				          <span md-highlight-text="mPopulation2.searchText" md-highlight-flags="^i">{{item.display}}</span>
+				        </md-item-template>
+				        <md-not-found>
+				          No states matching "{{ mPopulation2.searchText }}" were found.
+				        </md-not-found>
+			      	</md-autocomplete>-->
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-populations-3']">
+				<div class="filter" id="filter-populations-3">
+					<h3>Population 3 </h3>
+					<md-autocomplete
+			          	ng-disabled="mPopulation3.isDisabled"
+			          	md-no-cache="mPopulation3.noCache"
+			          	md-selected-item="mPopulation3.selectedItem"
+			          	md-search-text-change="mPopulation3.searchTextChange(ctrl.searchText)"
+			          	md-search-text="mPopulation3.searchText"
+			          	md-selected-item-change="mPopulation3.selectedItemChange(item)"
+			          	md-items="item in mPopulation3.querySearch(mPopulation3.searchText)"
+			          	md-item-text="item.display"
+			          	md-min-length="0"
+			          	placeholder="Select a population">
+				        <md-item-template>
+				          <span md-highlight-text="mPopulation3.searchText" md-highlight-flags="^i">{{item.display}}</span>
+				        </md-item-template>
+				        <md-not-found>
+				          No states matching "{{ mPopulation3.searchText }}" were found.
+				        </md-not-found>
+			      	</md-autocomplete>
+			    </div>
+			</div>
+
+			<div ng-if="filters['filter-populations-compare']">
+				<div class="filter" id="filter-populations-compare">
+					<h3>Choose another population </h3>
+					<md-select ng-model="mPopulationCompare" ng-change="filterDataPopulationCompare(mPopulationCompare)" aria-label="Populations">
+						<md-option ng-repeat="country in countries_list" value="{{ country.country }}"> {{ country.label }} </md-option>
+			        </md-select>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-populations-multiple']">
+				<div class="filter" id="filter-populations-multiple" style="display:none; ">
+					<h3>Choose specific populations</h3>
+
+	      			<select class="js-example-basic-multiple" name="select-list-of-populations" id="select-list-of-populations" ng-model="mPopulationsMultiple" ng-change="filterPopulationsMultiple(mPopulationsMultiple)" multiple="" size="10">
+	      				<option ng-repeat="population in countries_list" value="{{ population.country }}">{{ population.label }}</option>				
+				    </select>
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-cancers-multiple']">
+				<div class="filter" id="filter-cancers-multiple">
+					<h3>Cancer sites 
+						<a class="sort" ng-click="sortCancer('label')"> <i class="fa fa-sort" aria-hidden="true"></i> by label</a>
+						<a class="sort" ng-click="sortCancer('ICD')"> <i class="fa fa-sort" aria-hidden="true"></i> by ICD-10</a>
+					</h3>
+
+	      			<select class="js-example-basic-multiple" name="select-list-of-cancers" id="select-list-of-cancers" ng-model="mCancerMultiple" ng-change-tata="filterDataCancerMultiple(mCancerMultiple)" multiple="" size="10">
+	      				<option ng-repeat="cancer in cancers" attr-label="{{ cancer.label }}" attr-icd="{{ cancer.ICD }}" value="{{ cancer.cancer }}" ng-disabled="{{ cancer.ng_disabled }}">
+			          		{{ cancer.prefix }}{{ cancer.label }}
+			          	</option>
+				
+				    </select>
+
+				   	
+				    <!--<input ng-model="alternateCancerTitle" name="alternate_cancer_title" ng-keyup="updateAlternateCancerTitle(alternateCancerTitle)" placeholder="Name your cancer site(s)">
+
+				    <select name="tata">
+			        	<option ng-repeat="cancer in cancers" value="{{ cancer.ICD }}">{{ cancer.prefix }}{{ cancer.label }}</option>
+			        </select>-->
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-population-tree-button']">
+				<div class="filter" id="filter-population-tree-button">
+					<h3>Population {{ pop_left }}</h3>
+					<md-button md-no-ink class="md-primary choose" ng-click="togglePopulationTree()">Choose a population: <strong>{{ mPopulationName }}</strong></md-button>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-population-tree-button-right']">
+				<div class="filter" id="filter-population-tree-button-right">
+					<h3>Population right </h3>
+					<md-button md-no-ink class="md-primary choose" ng-click="togglePopulationTreeRight()">Choose a population: <strong>{{ mPopulationRightName }}</strong></md-button>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-x-axis']">
+				<div class="filter filter-axis" id="filter-x-axis">
+					<h3>X Axis value </h3>
+
+	      			<select name="filter-x-axis" id="filter-x-axis" ng-model="mXAxisIndicator" ng-change="filterAxisIndicator('x',mXAxisIndicator)" >		
+	      				<option ng-repeat="ax in axis" value="{{ ax.key }}">{{ ax.label }}</option>		
+				    </select>
+
+				    <select name="filter-x-axis-key" id="filter-x-axis-key" ng-model="mXAxisKey" ng-change="filterAxisKeys('x',mXAxisKey)" >		
+	      				<option value="asr">ASR(W)</option>
+	      				<option value="crude_rate">Crute rate</option>
+	      				<option value="cum_risk">Cumulative risk (0-74)</option>		
+				    </select>
+
+				    <!--<md-switch ng-model="mLogScaleX" ng-change="filterAxisKeys('log_scale_x',mLogScaleX)" class="switch" aria-label="Log scale X" data-toggle="tooltip" data-title="Logarithmic scale"></md-switch>-->
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-y-axis']">
+				<div class="filter filter-axis" id="filter-y-axis">
+					<h3>Y Axis value </h3>
+
+	      			<select name="filter-y-axis" id="filter-y-axis" ng-model="mYAxisIndicator" ng-change="filterAxisIndicator('y',mYAxisIndicator)" >	
+	      				<option ng-repeat="ax in axis" value="{{ ax.key }}">{{ ax.label }}</option>			
+				    </select>
+
+				    <select name="filter-y-axis-key" id="filter-y-axis-key" ng-model="mYAxisKey" ng-change="filterAxisKeys('y',mYAxisKey)" >		
+	      				<option value="asr">ASR(W)</option>
+	      				<option value="crude_rate">Crute rate</option>
+	      				<option value="cum_risk">Cumulative risk (0-74)</option>		
+				    </select>
+
+				    <!--<md-switch ng-model="mLogScaleY" ng-change="filterAxisKeys('log_scale_y',mLogScaleY)" class="switch" aria-label="Log scale X" data-toggle="tooltip" data-title="Logarithmic scale"></md-switch>-->
+
+				</div>
+			</div>
+
+			
+
+
+			<div class="population-tree-zone-container">
+				<a class="close btn-primary" ng-click="togglePopulationTree()"><i class="fa fa-times"></i></a>
+				
+				<div class="entry_pop" id="tree_zone_choice_one">
+
+					<!--<input ng-model="alternatePopulationTitle" name="alternate_population_title" ng-keyup="updateAlternatePopulationTitle(alternatePopulationTitle)" placeholder="Name your population">-->
+
+					
+					<h3 style="padding-top: 15px;">Search a population</h3>	
+
+					<!--<h3>Choose population by searching: --><input id="button_clear_multiple_population" type="button" value="Clear all" ng-click="clearPopulationMultipleSelect()"/> </h3>	
+
+					<select class="js-example-basic-multiple" name="select-list-of-populations" id="select-list-of-populations"  multiple="" size="10">
+	      				<option ng-repeat="population in countries_list" data-customvalue="{{ population.country }}" value="{{ population.country }}">{{ population.label }}</option>	
+					<!-- ng-model="mPopulationMultiple" ng-change="filterDataPopulationsMultiple(mPopulationMultiple)"-->
+				    </select>
+				</div>
+
+				<h5> or </h5>
+
+				<div class="entry_pop" id="tree_zone_choice_two">
+					
+					<h3 style="margin-top:0;">Browse the population selector </h3>	
+
+			        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-mousemove="higlightPopulationTree(true)" ng-mouseleave="higlightPopulationTree(false)">
+
+			       		<div class="panel panel-default" ng-repeat="(key,root) in custom_pop_tree">
+						    <div class="panel-heading root-heading" role="tab" id="heading-{{ root.accordion }}">
+						      <h4 class="panel-title panel-root">
+						        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ root.accordion }}" aria-expanded="false" aria-controls="collapse-{{ root.accordion }}"> {{ root.text }} </a>
+						      </h4>
+						    </div>
+						    <div id="collapse-{{ root.accordion }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ root.accordion }}">
+						      <div class="panel-body">
+						       	
+						       	<div class="panel-group" id="accordion-{{ root.accordion }}" role="tablist" aria-multiselectable="true">
+							      	
+							      	<div ng-repeat="(subkey,group) in root.nodes" class="panel panel-default">
+									    <div class="panel-heading group-heading" role="tab" id="heading-group-{{ key }}-{{ subkey }}">
+									        <h4 class="panel-title">
+									        	<a role="expand" class="icon group-{{ group.text }}" data-toggle="collapse" data-parent="#accordion-{{ root.accordion }}" href="#collapse-group-{{ key }}-{{ subkey }}" aria-expanded="false" aria-controls="collapse-{{ group.id }}"></a>
+										        <a role="button" ng-click="selectTreePopulation(group.id,group.id_continent,group)" data-toggle="collapse" data-parent="#accordion-{{ root.accordion }}" href="#collapse-group-{{ key }}-{{ subkey }}" aria-expanded="false" aria-controls="collapse-{{ group.id }}">
+										          {{ group.text }}
+										        </a>
+									        </h4>
+									    </div>
+									    <div id="collapse-group-{{ key }}-{{ subkey }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-group-{{ key }}-{{ subkey }}">
+									      
+									      <div class="panel-body panel-population">
+									       		
+									      		<div ng-if="group.id == -1">
+
+									      			<div ng-repeat="(sub_pop_key,sub_population) in group.nodes" class="panel panel-default">
+													    
+													    <div class="panel-heading group-heading sub-group-heading" role="tab" id="heading-{{ sub_population.id }}">
+													     	<h4 class="panel-title">
+
+													     		<!--<a role="expand" class="icon" data-toggle="collapse" data-parent="#accordion-{{ key }}-{{ sub_pop_key }}-{{ subkey }}" href="#collapse-group-{{ key }}-{{ sub_pop_key }}-{{ subkey }}" aria-expanded="false" aria-controls="collapse-{{ sub_population.id }}"></a>-->
+
+														        <a role="button" ng-click="selectTreePopulation(sub_population.id)" data-toggle="collapse" data-parent="#accordion-{{ key }}-{{ sub_pop_key }}-{{ subkey }}" href="#collapse-group-{{ key }}-{{ sub_pop_key }}-{{ subkey }}" aria-expanded="false" aria-controls="collapse-{{ sub_population.id }}">
+														          {{ sub_population.text }}
+														        </a>
+
+													      	</h4>
+													    </div>
+
+													    <div id="collapse-group-{{ key }}-{{ sub_pop_key }}-{{ subkey }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ root.accordion }}">
+								     						<div class="panel-body">
+								     							<div ng-repeat="population in sub_population.nodes" class="panel panel-default">
+																    <div class="panel-heading population-heading sub-population-heading" role="tab" id="heading-{{ population.id }}">
+																     	
+																        <a ng-click="selectTreePopulation(population.id)" role="button" aria-controls="collapse-{{ population.id }}">
+																        	{{ population.text }}
+																        </a>
+																      
+																    </div>
+																</div>
+								     						</div>
+								     					</div>
+
+													</div>
+
+									      		</div>
+
+									      		<div ng-if="group.id != '-1'" class="panel-group" id="accordion-group-{{ key }}-{{ subkey }}" role="tablist" aria-multiselectable="true">
+											      	<div ng-repeat="population in group.nodes" class="panel panel-default">
+													    <div class="panel-heading population-heading" role="tab" id="heading-{{ population.id }}">
+													     	
+													        <a ng-click="selectTreePopulation(population.id)" role="button" aria-controls="collapse-{{ population.id }}">
+													          {{ population.text }}
+													        </a>
+													      
+													    </div>
+													</div>
+												</div>
+										       		
+									      </div>
+
+									    </div>
+									</div>
+
+								</div>
+
+						      </div>
+						    </div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div><!-- End population-tree-zone-container -->
+
+			<div ng-if="filters['filter-grouping-cancer']">
+				<div class="filter filter-form1" id="filter-grouping-cancer">
+					<h3>Group Colon, Rectum, Anus <!--<i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top"  title="Colorectum = Colon + Rectum + Anus" aria-hidden="true"></i>--> </h3>
+					<md-switch ng-model="mGroupCancer" ng-change="filterGroupCancer(mGroupCancer)" class="switch" aria-label="Group Colorectum"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-include-nmsc']">
+				<div class="filter filter-form1" id="filter-include-nmsc">
+					<h3>Include NMSC <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top"  title="Non-melanoma skin cancer" aria-hidden="true"></i> </h3>
+					<md-switch ng-model="mIncludeNMSC" ng-change="filterIncludeNMSC(mIncludeNMSC)" class="switch" aria-label="Non-melanoma skin cancer"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-include-nmsc-other']">
+				<div class="filter filter-form1 {{ nmsc_other_css_disabled }}" id="filter-include-nmsc-other">
+					<h3>Include NMSC <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Non-melanoma skin cancer" aria-hidden="true"></i> in other cancers </h3>
+					<md-switch ng-model="mIncludeNMSCOther" ng-change="filterIncludeNMSCOther(mIncludeNMSCOther)" class="switch" aria-label="Non-melanoma skin cancer" ng-disabled="!mIncludeNMSC"></md-switch>
+				</div>
+			</div>
+			
+			<!-- Above this line, put the hidden/shown feature for "more options" button -->
+			<div ng-if="filters['filter-options']">
+				<div class="filter filter-form1" id="filter-options">
+					<h3>More options</h3>
+					<md-switch ng-model="mOptions" ng-change="filterOptions(mOptions)" class="switch" aria-label="Options"></md-switch>
+				</div>
+			</div>
+
+			
+
+			<div ng-if="filters['filter-nb-items']">
+				<div class="filter" id="filter-nb-items" style="display:none;">
+					<h3>Number of results  </h3>
+					<select name="select-nb-items" id="select-nb-items" ng-model="nbItems" ng-change="filterDataNbItems(nbItems)">
+						<option value="5">5</option>
+						<option value="10" selected="selected">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="-1" ng-hide="{{ hideAll }}">All</option>
+					</select>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-nb-items-pie']">
+				<div class="filter filter-nb-items-pie filters-nb-items" id="filter-nb-items" style="display:none;">
+					<h3>Number of slices</h3>
+
+					<ul>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(5)" value="5">5</button></li>
+						<li><button ng-model="nbItems" class="selected" ng-click="filterDataNbItemsPie(7)" value="7">7</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(10)" value="10">10</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(15)" value="15">15</button></li>
+					</ul>
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-nb-items-buttons']">
+				<div class="filter filter-nb-items-buttons filters-nb-items" id="filter-nb-items" style="display:none;">
+					<h3>Number of results  </h3>
+
+					<ul>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(5)" value="5">5</button></li>
+						<li><button ng-model="nbItems" class="selected" ng-click="filterDataNbItemsPie(10)" value="10">10</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(15)" value="15">15</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie(20)" value="20">20</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsPie('all')" value="all">All</button></li>
+					</ul>
+
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-nb-items-buttons']">
+				<div class="filter filter-form1" id="filter-nb-items-buttons" style="display:none;">
+					<h3>Number of results  </h3>
+
+
+					<md-checkbox style="width:50%;" class="md-primary" ng-model="mTypeNbItems.top" aria-label="Top" data-toggle="tooltip" data-title="Top" value="0" ng-change="filterTypeNbItems('bottom',mTypeNbItems.top)">
+			        	Top
+			        </md-checkbox>
+
+			        <md-checkbox style="width:50%;" class="md-primary" ng-model="mTypeNbItems.bottom" aria-label="Bottom"  data-toggle="tooltip" data-title="Bottom" value="1" ng-change="filterTypeNbItems('bottom',mTypeNbItems.bottom)">
+			        	Bottom
+			        </md-checkbox>
+
+					<!--<input type="checkbox" ng-model="mTypeNbItems.top" ng-change="filterTypeNbItems('top', mTypeNbItems.top )" value="0" checked="checked" id="topTypeNbItems" name="typeNbItems"> 
+					<label for="topTypeNbItems" style="width: 48%;"> <i class="fa fa-check"></i> Top </label>
+					
+					<input type="checkbox" ng-model="mTypeNbItems.bottom" ng-change="filterTypeNbItems('bottom', mTypeNbItems.bottom )" value="1" id="lowTypeNbItems" name="typeNbItems"> 
+					<label for="lowTypeNbItems" style="width: 48%;"> <i class="fa fa-check"></i> Bottom </label>-->
+
+					<ul>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsBtn(5,$event)" value="5" attr-odd="true" ng-disabled="{{ btn_disabled }}">5</button></li>
+						<li><button ng-model="nbItems" class="selected" ng-click="filterDataNbItemsBtn(10,$event)" attr-odd="false" value="10">10</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsBtn(15,$event)" attr-odd="true" value="5" ng-disabled="{{ btn_disabled }}">15</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsBtn(20,$event)" attr-odd="false" value="20">20</button></li>
+						<li><button ng-model="nbItems" ng-click="filterDataNbItemsBtn(40,$event)" attr-odd="true" value="-1">{{ all_nb_items_label }}</button></li>
+					</ul>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-size-padding']">
+				<div class="filter" id="filter-size-padding">
+					<h3>Padding between circles </h3>
+					<button ng-model="mPadding" ng-click="filterSettings('padding',mPadding)" value="2">Rand. padding</button>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-indicator-color']" >
+				<div class="filter filter-form1" id="filter-indicator-color" style="display:none; min-height: 45px ;">
+					<h3>Change to color <br/> indicator</h3>
+					<md-switch ng-model="mIndicatorColor" ng-change="filterIndicatorColor(mIndicatorColor)" class="switch" aria-label="Change to color indicator"></md-switch>
+				</div>
+			</div>
+
+			<!-- specific to parralels sets -->
+			<div ng-if="filters['filter-parset-category']">
+				<div class="filter filter-form1" id="filter-parset-category">
+					<h3>Categories</h3>
+					<!--<input type="checkbox" ng-model="mParsetCatSex" ng-change="filterParsetCat('sex',mParsetCatSex)" value="sex" checked="checked" disabled="disabled" id="parset-category-sex" name="parset-category-sex">
+					<label for="parset-category-sex"> <i class="fa fa-check"></i> Sex </label>-->
+					<input type="checkbox" ng-model="mParsetCatCancer" ng-change="filterParsetCat('cancer',mParsetCatCancer)" value="cancer" checked="checked" id="parset-category-cancer" name="parset-category-cancer"> 
+					<label for="parset-category-cancer"> <i class="fa fa-check"></i> Cancer site </label>
+					<input type="checkbox" ng-model="mParsetCatPop" ng-change="filterParsetCat('population',mParsetCatPop)" value="population" id="parset-category-population" name="parset-category-population"> 
+					<label for="parset-category-population"> <i class="fa fa-check"></i> Populations </label>
+				</div>
+			</div>
+
+			
+
+			<div ng-if="filters['filter-parset-type-data']">
+				<div class="filter filter-form1" id="filter-parset-type-data">
+					<h3>Type of data</h3>
+					<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="numbers" checked="checked" id="parset-type-data-numbers" name="parset-type-data"> 
+					<label for="parset-type-data-numbers"> <i class="fa fa-check"></i> Numbers </label>
+					<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="crude-rate" id="parset-type-data-crude-rate" name="parset-type-data"> 
+					<label for="parset-type-data-crude-rate"> <i class="fa fa-check"></i> Crude rate </label>
+					<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="asr" id="parset-type-data-asr" name="parset-type-data"> 
+					<label for="parset-type-data-asr"> <i class="fa fa-check"></i> ASR (W) </label>
+					<input type="radio" ng-model="mParsetTypeData" ng-change="filterParsetTypeData(mParsetTypeData)" value="cum-risk" id="parset-type-data-cum-risk" name="parset-type-data"> 
+					<label for="parset-type-data-cum-risk"> <i class="fa fa-check"></i> Cumulative risk </label>
+				</div>
+			</div>
+
+			<!-- specific to multiple radar -->
+			<div ng-if="filters['filter-multiple-radar']">
+				<div class="filter filter-form2" id="input-multiple-radar">
+					<h3> Options </h3>
+					<p>
+						<input type="checkbox" id="filter-multiple-radar" value="1" checked="checked" ng-model="mMultipleRadar" ng-change="filterMultipleRadar(mMultipleRadar)"  />
+						<label for="filter-multiple-radar"><span class="ui"></span>Multiple radars (1 radar per population)</label>
+					</p>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-sorting-radars']">
+				<div class="filter filter-form1" id="filter-sorting-radars">
+					<h3>Order</h3>
+					<input type="radio" ng-model="mSortingRadar" ng-change="filterDataSortingRadar(mSortingRadar)" checked="checked" value="total" id="filter-sorting-radar-0" name="filter-sorting-radars"> 
+					<label for="filter-sorting-radar-0" data-toggle="tooltip" title="Numerical"> <i class="fa fa-check"></i> Num. </label>
+					<input type="radio" ng-model="mSortingRadar" ng-change="filterDataSortingRadar(mSortingRadar)" checked="checked" value="label" id="filter-sorting-radar-1" name="filter-sorting-radars"> 
+					<label for="filter-sorting-radar-1" data-toggle="tooltip" title="Alphabetical"> <i class="fa fa-check"></i> Alph. </label>
+					<input type="radio" ng-model="mSortingRadar" ng-change="filterDataSortingRadar(mSortingRadar)" value="ICD" id="filter-sorting-radar-2" name="filter-sorting-radars"> 
+					<label for="filter-sorting-radar-2" data-toggle="tooltip"> <i class="fa fa-check"></i> ICD </label>
+				</div>
+			</div>
+
+			<!-- Specific to tree -->
+			<div ng-if="filters['filter-show-regions']">
+				<div class="filter filter-form1" id="filter-show-regions">
+					<h3>Show regions </h3>
+					<input type="radio" ng-model="mShowRegion" ng-change="filterShowRegions(mShowRegion)" value="1" checked="checked" id="filter-show-region" name="filter-show-region">
+					<label for="filter-show-region"> <i class="fa fa-check"></i> Yes </label>
+					<input type="radio" ng-model="mShowRegion" ng-change="filterShowRegions(mShowRegion)" value="0" id="filter-hide-region" name="filter-show-region">
+					<label for="filter-hide-region"> <i class="fa fa-check"></i> No </label>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-color-picker']">
+				<div class="filter filter-form1" id="filter-color-picker">
+					<h3>Customize colours </h3>
+					<a id="openPaletteColor" href="#" ng-model="mColor" ng-click="filterColorPicker()" data-toggle="Choose a new color palette"><i class="fa fa-pencil-square-o"></i></a>
+					
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-country-zone']">
+				<div class="filter filter-form1" id="filter-country-zone">
+					
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-fit-to-screen']">
+				<div class="filter filter-form1" id="filter-fit-to-screen">
+					<h3>Square</h3>
+					<md-switch ng-model="mFitToScreen" ng-change="filterFitToScreen(mFitToScreen)" class="switch" aria-label="Fit to screen"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-same-scale']">
+				<div class="filter filter-form1" id="filter-same-scale">
+					<h3>Same scale</h3>
+					<md-switch ng-model="mSameScale" ng-change="filterSameScale(mSameScale)" class="switch" aria-label="Same scale"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-grab-population-size']">
+				<div class="filter filter-form1" id="filter-grab-population-size">
+					<h3>Circle proportional to population</h3>
+					
+					<!--<md-checkbox class="md-primary" ng-model="mGrabPopulationSize" ng-checked="mGrabPopulationSize" aria-label="Grab population size"  data-toggle="tooltip" data-title="Grab population size" value="1" ng-change="filterGrapPopulationSize(mGrabPopulationSize)">
+			       	
+			        </md-checkbox>-->
+
+					<md-switch id="md-switch-graph-pop" ng-model="mGrabPopulationSize" ng-change="filterGrapPopulationSize(mGrabPopulationSize)" ng-true-value="true" ng-false-value="false" class="switch" aria-label="Grab population size"></md-switch>
+
+					<!--<a ng-click="selectSwitch()">select</a> |<a ng-click="selectSwitch()">unselect</a>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-nb-scatter-size']">
+				<div class="filter filter-form1" id="filter-nb-scatter-size" style="height:90px;">
+					<h3>Size of circle <!--<span id="nbOfColorsMap">{{ mSizeCircle }}px</span></h3>-->
+					<md-slider flex md-discrete ng-model="circleSize" ng-change="filterCircleSize(circleSize)" step="1" min="5" max="10" aria-label="Circle size">
+	  				</md-slider>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-age-specific']">
+				<div class="filter filter-form1" id="filter-age-specific">
+					<h3>Age specific</h3>
+					<md-switch ng-model="mAgeSpecific" ng-change="filterAgeSpecific(mAgeSpecific)" class="switch" aria-label="AgeSpecific"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-show-all']">
+				<div class="filter filter-form1" id="filter-show-all">
+					<h3>Show other cancer sites</h3>
+					<md-switch ng-model="mShowAll" ng-change="filterShowAll(mShowAll)" class="switch" aria-label="ShowAll"></md-switch>
+				</div>
+			</div>
+
+			
+
+			<div ng-if="filters['filter-dividor-unit']">
+				<div class="filter" id="filter-dividor-unit">
+					<h3>1 ball equal to </h3>
+					<select name="select-nb-items" id="select-nb-items" ng-model="mDividor" ng-change="filterDividorUnit(mDividor)">
+						<option value="5000">5 000</option>
+						<option value="10000">10 000</option>
+						<option value="50000" >50 000</option>
+						<option value="100000">100 000</option>
+						<option value="250000">250 000</option>
+						<option value="500000" selected="selected">500 000</option>
+						<option value="1000000">1 000 000</option>
+					</select>
+				</div>
+			</div>
+
+			<!--<div ng-if="filters['filter-sorting-cancers']">
+				<div class="filter filter-form1" id="filter-sorting-cancers">
+					<h3>Sorting</h3>
+					<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" checked="checked" value="numeric" id="filter-sorting-1" name="filter-sorting"> 
+					<label for="filter-sorting-1"> <i class="fa fa-check"></i> Number </label>
+					<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" value="alpha" id="filter-sorting-2" name="filter-sorting"> 
+					<label for="filter-sorting-2"> <i class="fa fa-check"></i> Alphabetical</label>
+				</div>
+			</div>-->
+
+			<div ng-if="filters['filter-sorting']">
+				<div class="filter filter-form1" id="filter-sorting">
+					<h3>Order</h3>
+					<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" value="total" id="filter-sorting-1" name="filter-sorting"> 
+					<label for="filter-sorting-1"> <i class="fa fa-check"></i> Numerical </label>
+					<input type="radio" ng-model="mSorting" ng-change="filterDataSorting(mSorting)" value="label" id="filter-sorting-2" name="filter-sorting"> 
+					<label for="filter-sorting-2"> <i class="fa fa-check"></i> Alphabetical</label>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-color']">
+				<div class="filter filter-form1" id="filter-color">
+					<h3>Pick a color (incidence)</h3>
+					<input type="color" class="color" ng-model="mColor" ng-change="filterDatColor(mColor,'color')" value="#6cbbe6" id="filter-color-input" name="filter-color">
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-color-2']">
+				<div class="filter filter-form1" id="filter-color-2">
+					<h3>Pick a color (mortality)</h3>
+					<input type="color" class="color" ng-model="mColor2" ng-change="filterDatColor(mColor2,'color2')" value="#e65a53" id="filter-color2-input" name="filter-color2">
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-dot-matrix-size']">
+				<div class="filter filter-form1" id="filter-dot-matrix-size">
+					<h3>Size of bubble</h3>
+					<ul class="sub_items">
+						<li><div class="thousand white selectable" ng-class="{ selected  isSizeBubble('thousand') }" ng-click="setClassBubble('thousand')"></div></li>
+						<li><div class="hundred white selectable" ng-class="{ selected  isSizeBubble('hundred') }" ng-click="setClassBubble('thousand')"></div></li>
+						<li><div class="ten white selectable" ng-class="{ selected  isSizeBubble('ten') }" ng-click="setClassBubble('thousand')"></div></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Specific to map -->
+			<div ng-if="filters['filter-map-scales']">
+				<div class="filter filter-form1" id="filter-map-scales">
+					<h3>Scale</h3>
+					<input type="radio" ng-model="mMapScale" ng-change="filterDataMapScale(mMapScale)" value="quantize" checked="checked" id="filter-map-scale-quantize" name="filter-map-scale">
+					<label for="filter-map-scale-quantize"> <i class="fa fa-check"></i>Absolute <!--<i class="fa fa-info-circle help" data-toggle="tooltip" title="Quantize scales are a variant of linear scales with a discrete rather than continuous range. The input domain is still continuous, and divided into uniform segments based on the number of values in (the cardinality of) the output range"></i>--> </label>
+					<input type="radio" ng-model="mMapScale" ng-change="filterDataMapScale(mMapScale)" value="quantile" id="filter-map-scale-quantile" name="filter-map-scale"> 
+					<label for="filter-map-scale-quantile"> <i class="fa fa-check help"></i>Ranked <!--<i class="fa fa-info-circle" data-toggle="tooltip" title="The number of values in (the cardinality of) the output range determines the number of quantiles that will be computed from the input domain."></i>--> </label>
+					<!--<input type="radio" ng-model="mMapScale" ng-change="filterDataMapScale(mMapScale)" value="threshold" id="filter-map-scale-threshold" name="filter-map-scale"> 
+					<label for="filter-map-scale-threshold"> <i class="fa fa-check"></i> Threshold </label>-->
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-map-nb-colors']">
+				<div class="filter filter-form1" id="filter-map-nb-colors">
+					<h3>Number of bins: <span id="nbOfColorsMap">{{ mMapNbColors }}</span></h3>
+					<md-slider flex md-discrete ng-model="mMapNbColors" ng-change="filterNbMapColors(mMapNbColors)" step="1" min="3" max="8" aria-label="Number of map colours">
+	  				</md-slider>
+				</div>
+			</div>
+
+			<!-- specific to pie-->
+			<div ng-if="filters['filter-half-pie']">
+				<div class="filter filter-form1" id="filter-half-pie">
+					<h3>Semicircle</h3>
+					<md-switch ng-model="mHalfPie" ng-change="filterHalfPie(mHalfPie)" class="switch" aria-label="Semicircle"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-donut']">
+				<div class="filter filter-form1" id="filter-donut">
+					<h3>Doughnut</h3>
+					<md-switch ng-model="mDonut" ng-change="filterDonut(mDonut)" class="switch" aria-label="Doughnut"></md-switch>
+				</div>
+			</div>
+
+			<!-- specific to pie-->
+			<div ng-if="filters['filter-show-ranking']">
+				<div class="filter filter-form1" id="filter-show-ranking" style="display: none ; ">
+					<h3>Show ranking</h3>
+					<md-switch ng-model="mShowRanking" ng-change="filterShowRanking(mShowRanking)" class="switch" aria-label="Show Ranking"></md-switch>
+				</div>
+			</div>
+
+			<!-- show value toggle (dual bars, multibars ... )-->
+			<div ng-if="filters['filter-show-values']">
+				<div class="filter filter-form1" id="filter-show-values">
+					<h3>Show values</h3>
+					<md-switch ng-model="mShowValues" ng-change="filterShowValues(mShowValues)" class="switch" aria-label="Show values"></md-switch>
+				</div>
+			</div>
+
+
+			<!-- specific to multibar-->
+			<div ng-if="filters['filter-orientation']">
+				<div class="filter filter-form1" id="filter-orientation" style="display:none;">
+					<h3>Orientation</h3>
+					
+					<!--<input type="radio" ng-model="mOrientation" ng-change="filterOrientation(mOrientation)" value="horizontal" checked="checked" id="filter-orientation-horizontal" name="filter-orientation-horizontal">
+					<label for="filter-orientation-horizontal"> <i class="fa fa-check"></i>Horizontal  </label>
+
+					<input type="radio" ng-model="mOrientation" ng-change="filterOrientation(mOrientation)" value="vertical" id="filter-orientation-vertical" name="filter-orientation-vertical"> 
+					<label for="filter-orientation-vertical"> <i class="fa fa-check help"></i>Vertical  </label>-->
+
+					<md-radio-group ng-model="mOrientation" ng-change="filterOrientation(mOrientation)">
+				     	<md-radio-button value="horizontal" class="md-primary"> Horizontal </md-radio-button>
+				      	<md-radio-button value="vertical"> Vertical </md-radio-button>
+				    </md-radio-group>
+
+				</div>
+			</div>
+
+			<!-- specific to bar-->
+			<div ng-if="filters['filter-lock-scale']">
+				<div class="filter filter-form1" id="filter-lock-scale" style="display:none;">
+					<h3>Lock scale <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right"  title="The lock scale feature blocks the graphic to current max value" aria-hidden="true"></i><span id="lock-scale-max-value"></span></h3>
+					<md-switch ng-model="mLockScale" ng-change="filterLockScale(mLockScale)" class="switch" aria-label="Lock scale"></md-switch>
+				</div>
+			</div>
+
+			<div ng-if="filters['filter-type-multiple-colors']">
+				<div class="filter filter-form1" id="filter-type-multiple-colors" style="display: none;">
+					<h3>Colors</h3>
+					<select class="multibars_color_mode" ng-model="multibars_color" ng-change="updateMultiBarsColor(multibars_color)">
+						<option value="0">Default color</option>
+						<option value="1">{{ grouping_color }}</option>
+					</select>
+					<!--<table id="board_color" cellspacing="5" cellpadding="5" border="1">
+						<thead>
+							<th width="10%"></th>
+							<th width="30%">Incidence</th>
+							<th width="30%">Mortality</th>
+							<th width="30%">Prevalence</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Default</td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.inc.color }};"></div></td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.mort.color }};"></div></td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.prev.color }};"></div></td>
+							</tr>
+							<tr>
+								<td>Highlight</td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.inc.highlight_color }};"></div></td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.mort.highlight_color }};"></div></td>
+								<td><div class="rect_color" style="background-color:{{ mIndicatorInfos.prev.highlight_color }};"></div></td>
+							</tr>
+						</tbody>
+					</table>-->
+				</div>
+			</div>
+
+			<!-- specific to map -->
+			<!--<div ng-if="filters['filter-colored-map-by']">
+				<div class="filter" id="filter-colored-map-by" style="display: none;">	
+					<h3>Map colored by </h3>
+
+			        <select name="mColoredMapBy" ng-model="mColoredMapBy" ng-change="filterColoredMapBy(mColoredMapBy)" aria-label="ColoredMapBy">
+			          	<option value="0" selected="selected">Countries</option>
+						<option value="1">Continents</option>
+						<option value="2">WHO Regions</option>
+						<option value="3">HDI</option>
+			        </select>
+
+				</div>
+			</div>-->
+
+			<div ng-if="filters['filter-type-sort']">
+				<div class="filter filter-form1" id="filter-type-sort" style="display:none;">
+					<h3>Sort by</h3>
+
+					<md-radio-group class="third" ng-model="mTypeSort" ng-change="filterDataTypeSort(mTypeSort)">
+				     	<md-radio-button value="0" id="md-radio-inc"> Inc. </md-radio-button>
+				      	<md-radio-button value="1" id="md-radio-mort" style="display: none;"> Mort. </md-radio-button>
+				      	<md-radio-button value="2" id="md-radio-prev" style="display: none;"> Prev. </md-radio-button>
+				    </md-radio-group>
+
+					<!--<input type="radio" ng-model="mTypeSort" ng-change="filterDataTypeSort(mTypeSort)" value="0" checked="checked" id="filter-incidence-sort" name="filter-type-sort">
+					<label for="filter-incidence-sort"> <i class="fa fa-check"></i> Incidence </label>
+					
+					<input type="radio" style="display: none;" ng-model="mTypeSort" ng-change="filterDataTypeSort(mTypeSort)" value="1" id="filter-mortality-sort" name="filter-type-sort"> 
+					<label for="filter-mortality-sort" style="display: none;"> <i class="fa fa-check"></i> Mortality </label>
+					
+					<input type="radio" style="display: none;" ng-model="mTypeSort" ng-change="filterDataTypeSort(mTypeSort)" value="2" id="filter-prevalence-sort" name="filter-type-sort"> 
+					<label for="filter-prevalence-sort" style="display: none;" style="display: none;"> <i class="fa fa-check"></i> Prevalence </label>-->
+				</div>
+			</div>
+
+
+			<!--<a href="#" ng-click="toggleSideNav()" class="toggle-sidenav" data-toggle="tooltip" data-placement="right" data-original-title="Hide filters">
+	          <i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+	        </a>-->
+			
+			<div class="color-picker-container">
+				<a class="close-color-picker btn btn-primary" ng-click="filterColorPicker()"><i class="fa fa-times"></i></a>
+				<h4> <i class="fa fa-pencil"></i> Choose a color range </h4>
+				<ul ng-click="" class="palette-colors">
+					<li> <a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor('default')"> <i class="fa fa-paint-brush"></i> Click to reset to default colors </a> </li>
+					<li class="type_color">
+						<h5>Sequential</h5>
+						<ul class="list-colors" >
+							<li ng-repeat="(key,color) in colors" style="background-color:{{ color.name }};" ng-if="key < 18">
+								<a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor(color.name)">
+									<ul class="color-palette">
+										<li ng-repeat="bg in color.colors"  style="background-color:{{ bg }};">&nbsp;</li>
+									</ul>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="type_color">
+						<h5>Diverging</h5>
+						<ul class="list-colors" >
+							<li ng-repeat="(key,color) in colors" style="background-color:{{ color.name }};" ng-if="key > 18 && key < 26">
+								<a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor(color.name)">
+									<ul class="color-palette">
+										<li ng-repeat="bg in color.colors"  style="background-color:{{ bg }};">&nbsp;</li>
+									</ul>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="type_color">
+						<h5>Qualitative</h5>
+						<ul class="list-colors" >
+							<li ng-repeat="(key,color) in colors" style="background-color:{{ color.name }};" ng-if="key > 26">
+								<a href="#" ng-model="mColorPalette" ng-click="filterPaletteColor(color.name)">
+									<ul class="color-palette">
+										<li ng-repeat="bg in color.colors" style="background-color:{{ bg }};">&nbsp;</li>
+									</ul>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<div class="country-zone-container">
+				<a class="close btn-primary" ng-click="closeCountryZone()"><i class="fa fa-times"></i></a>
+				<h4></h4>
+
+				<div id="sub-data-bars-no-data" style="display none;">
+					<p alig="center"> Not applicable </p>
+				</div>
+
+				<div id="sub-data-bars">
+					
+					<h5 id="sub-title1"></h5>
+
+					<table class="table table-striped table-bordered tablesorter table_globocan" width="100%" border="1" id="table_globocan_">
+						
+						<tr class="row_not_prev"><td class="field" width="70%"><a href="javascript:void(0);" onclick="clickKeyFromLeftPanel('total')" id="a_row_cases">Number of incident cases</a></td><td width="30%"><span id="total-value"></span></td></tr>
+
+						<tr class="row_not_prev"><td class="field"><a href="javascript:void(0);" onclick="clickKeyFromLeftPanel('crude_rate')">Crude rate</a></td><td><span id="crude-rate-value"></span></td></tr>
+						
+						<tr class="row_not_prev"><td class="field"><a href="javascript:void(0);" onclick="clickKeyFromLeftPanel('asr')">ASR (World) per 100 000</a></td><td><span id="asr-value"></span></td></tr>
+
+						<tr class="row_not_prev"><td class="field"><a href="javascript:void(0);" onclick="clickKeyFromLeftPanel('cum_risk')" id="row_cum_risk">Cumulative risk (0-74)</a></td><td><span id="cum-risk-0-74-value"></span></td></tr>
+
+						<tr class="row_prev"><td class="field" width="70%"><a href="javascript:void(0);" onclick="clickKeyFromLeftPanel('total')">Number of prevalent cases</a></td><td width="30%"><span id="total-value"></span></td></tr>
+
+
+						<tr class="row_prev">
+							<td class="field">
+								Proportion
+							</td>
+							<td>
+								<span id="prop-value"></span>
+							</td>
+						</tr>
+
+						<!--<tr><td class="field">Cumulative risk</td><td><span id="cum-risk-value"></span></td></tr>-->
+						
+					</table>
+
+					<!--<input type="button" class="buttons" onclick="showSubGraph('bar-nvd3')" value="Ranking"/>
+					<input type="button" class="buttons" onclick="showSubGraph('ranking_bars')" value="Relief" />-->
+
+					<h5 id="sub-title2"></h4>
+
+					<div id="sub-graph">
+						<svg></svg>
+					</div>
+
+					<div id="sub-graph-ranking">
+					</div>
+				</div>
+			</div>
+
+			
+
+	    </div>
+
+  	</md-content>

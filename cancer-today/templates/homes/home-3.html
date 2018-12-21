@@ -1,0 +1,148 @@
+
+	
+
+
+	<div class="h-container">
+
+		<div id="color_palette">
+
+			<label> <i class="fa fa-cog" aria-hidden="true"></i> Change icon color: </label>
+			<select ng-model="set_folder" ng-change="changeColorset(set_folder)">
+				<option ng-repeat="color in colorsets">{{ color }}</option>
+			</select>
+
+		</div>
+
+		<p class="baseline">
+			Data visualization tools that present current national estimates of the incidence, mortality, and prevalence
+		</p>
+
+		<div class="grid">
+		
+			<div class="grid-item">
+				<div class="grid-item-content reveal video">
+					<h2> Take a tour </h2>
+					<a href="#modalTakeATourVideo" class="btn_play" data-toggle="modal" title="Take a tour">
+						<i class="fa fa-play-circle" aria-hidden="true"></i>
+						<img align="center" src="img/home/video.png" width="150">
+					</a>
+				</div>
+		  	</div>
+
+		  	<div class="grid-item">
+		  		<div class="grid-item-content reveal">
+					<h2> Explore </h2>
+					<a href="explore" data-toggle="modal" title="Explore">
+						<img align="center" src="img/home/explore.png" id="pic_explore" >
+					</a>
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--height2 reveal">
+		  		<div class="grid-item-content">
+					<h2> Hierarchy  </h2>
+					<div class="sub-item large">
+						<a href="online-analysis-treemap"><img src="img/home/{{ set_folder }}/treemap.png"></a>
+						<h3> Treemap </h3>
+					</div>
+					<div class="sub-item large">
+						<a href="online-analysis-sunburst"><img src="img/home/{{ set_folder }}/sunburst.png"></a>
+						<h3> Sunburst chart </h3>
+					</div>
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--width2 reveal">
+		  		<div class="grid-item-content">
+					<h2> Comparisons </h2>
+					<div class="sub-item">
+						<a href="online-analysis-multi-bars"><img src="img/home/{{ set_folder }}/bars.png"></a>
+						<h3> Bar chart </h3>
+					</div>
+					<div class="sub-item" style="margin-top:23px;">
+						<a href="online-analysis-dual-bars"><img src="img/home/{{ set_folder }}/dual-bars.png"></a>
+						<h3> Dual bar chart </h3>
+					</div>
+				</div>
+			</div>
+
+		  	<div class="grid-item grid-item--width2 grid-item--height2 reveal">
+		  		<div class="grid-item-content">
+					<h2> Force layout (slider) </h2>
+					
+					<div class="quarter-item">
+						<a href="online-analysis-force-bubbles"><img src="img/home/{{ set_folder }}/force-layout.png"></a>
+					</div>
+
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--width2 reveal">
+		  		<div class="grid-item-content">
+					<h2> Geography </h2>
+					<div class="sub-item">
+						<a href="online-analysis-map"><img src="img/home/{{ set_folder }}/map-1.png"></a>
+						<h3> Simple map</h3>
+					</div>
+					<div class="sub-item">
+						<a href="online-analysis-map?projection=globe"><img src="img/home/{{ set_folder }}/globe.png"></a>
+						<h3> Globe </h3>
+					</div>
+
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--width2 reveal">
+		  		<div class="grid-item-content">
+					<h2>Fact sheets</h2>
+					<div class="sub-item">
+						<a href="#" data-toggle="tooltip" title="Fact sheets" ng-click="showFactSheetsModal()"><img src="img/home/pop-fact-sheets.png"></a>
+						<h3> Population fact sheets </h3>
+					</div>
+					<div class="sub-item ">
+						<a href="#" data-toggle="tooltip" title="Fact sheets" ng-click="showFactSheetsModal()"><img src="img/home/cancer-fact-sheets.png"></a>
+						<h3> Cancer fact sheets </h3>
+					</div>
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--height2 reveal">
+		  		<div class="grid-item-content">
+					<h2> Proportions </h2>
+					<div class="sub-item large">
+						<a href="online-analysis-pie"><img src="img/home/{{ set_folder }}/pie.png"></a>
+						<h3> Pie chart </h3>
+					</div>
+					<div class="sub-item large">
+						<a href="online-analysis-circle-packing"><img src="img/home/{{ set_folder }}/circle-pack.png"></a>
+						<h3> Circle packing </h3>
+					</div>
+				</div>
+		  	</div>
+
+		  	<div class="grid-item grid-item--width2 reveal">
+		  		<div class="grid-item-content registries">
+					<h2> Powered by cancer registries </h2>
+					<p>
+                        <a href="#modal-registries" class="IACR" target="_blank" data-toggle="modal" title="IACR">
+                            <img src="img/iacr-square.png" title="IACR" />
+                        </a>
+                        <a href="#modal-registries" class="GICR" target="_blank" data-toggle="modal" title="GICR">
+                            <img src="img/gicr-square.png" title="GICR" />
+                        </a>
+                    </p>
+				</div>
+		  	</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('.grid .grid-item-content').each(function(i){
+			$( this ).fadeOut().delay( 250 ) ;
+		})
+	});
+	</script>

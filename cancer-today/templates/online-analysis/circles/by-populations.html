@@ -1,0 +1,23 @@
+
+	<ng-include src="'templates/sub-menu.html'"></ng-include>	
+
+	  <div class="row">
+
+      <div id="filters" class="col-md-3 content zone-filters" style="padding-top: 100px;">  
+        <p> The circles packing show data grouped by regions. </p>    
+        <div id="filter-content">
+          <ng-include src="'templates/online-analysis/filters.html'"></ng-include>
+        </div>
+      </div>
+
+      <div class="col-md-9 content data-graph-table" id="circle-packing-container">
+
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li><a href="/today/online-analysis">Online analysis</a></li>
+          <li> Circle packing </li>
+        </ul>
+
+        <div id="svg"></div>
+      </div>
+    </div>

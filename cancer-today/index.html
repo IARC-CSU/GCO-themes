@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="GlobocanApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="GlobocanApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="GlobocanApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="GlobocanApp" class="no-js"> <!--<![endif]-->
+<head ng-controller="HeadCtrl">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <title> Cancer Today </title>
+  <base href="/">
+
+  <meta http-equiv="cache-control" content="no-cache" />
+
+  <meta name="robots" content="index, follow" />
+  
+  <meta name="description" content="CANCER TODAY provides data visualization tools that present current national estimates of the incidence, mortality, and prevalence of 36 cancer types in 185 countries, by sex and age group.">
+
+  <meta name="image_src" content="http://gco.iarc.fr/img/screen.png" /> 
+  <meta name="image_url" content="http://gco.iarc.fr/img/screen.png" /> 
+
+  <meta property="submitted-url" content="http://gco.iarc.fr/img/screen.png" /> 
+  <meta property="submitted-image-url" content="http://gco.iarc.fr/img/screen.png" /> 
+
+  <meta property="og:title" content="Cancer today" /> 
+  <meta property="og:url" content="http://gco.iarc.fr/home" /> 
+  <meta property="og:description" content="CANCER TODAY provides data visualization tools that present current national estimates of the incidence, mortality, and prevalence of 36 cancer types in 185 countries, by sex and age group." /> 
+  <meta property="og:image" content="http://gco.iarc.fr/img/screen.png" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+  /**
+   * detect IE
+   * returns version of IE or false, if browser is not Internet Explorer
+   */
+  function detectIE() {
+    var ua = window.navigator.userAgent;
+
+    // Test values; Uncomment to check result …
+
+    // IE 10
+    // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+    
+    // IE 11
+    // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+    
+    // Edge 12 (Spartan)
+    // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+    
+    // Edge 13
+    // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+      // IE 10 or older => return version number
+      return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+      // IE 11 => return version number
+      var rv = ua.indexOf('rv:');
+      return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+      // Edge (IE 12+) => return version number
+      return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // other browser
+    return false;
+  }
+
+  var isIE = detectIE();
+  if (isIE != false ){
+    if( Math.abs(isIE) < 12 )
+    {
+      window.location.href = "index_ie.php" ; 
+    }
+  }
+
+  </script>
+
+  <link href='https://fonts.googleapis.com/css?family=Noto Sans:400,600,700,800,300,400italic,600italic,700italic,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Special Elite' rel='stylesheet' type='text/css' media='screen'>
+
+
+  <link rel="Shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css?v=2.0" media='screen'>
+  <link rel="stylesheet" href="css/bootstrap.min.css?v=2.0" media='screen'>
+  <link rel="stylesheet" href="css/nv.d3.min.css?v=2.0" media='all'>
+  <link rel="stylesheet" href="css/font-awesome.min.css?v=2.0" media='screen'>
+  <link rel="stylesheet" href="css/main.css?v=2.0" media='all'>
+
+  <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js?v=2.0"></script>-->
+  
+</head>
+<body ng-controller="MainCtrl" id="MainController">
+  
+  <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+
+  
+  
+  <div class="overlay">
+      <div id="spinLoading">
+          <span></span>
+          <i class="fa fa-refresh fa-spin-custom"></i>
+      </div>
+  </div>
+  
+  <div id="main" class="animate-slide-up ng-scope layout-column home-2-1" ui-view="main" layout="column">
+    
+    <md-content class="toolbar">
+      <md-toolbar class="md-whiteframe-1dp md-whiteframe-z1">
+        <div class="md-toolbar-tools" id="toolbar">
+          
+          <div layout="row" layout-align="start center" flex="" class="layout-align-start-center layout-row flex">
+            <a class="navbar-brand" href="http://www.iarc.fr"><img id="logo1" src="img/IARC_Logo.png"></a>
+            <a href="/" id="new-icon" data-toggle="tooltip" data-placement="bottom" title="Global Cancer Observatory"> <img id="logo-gco" src="img/GCO-White-60.png"> </a> 
+            <a href="/home" id="new-logo"> <img id="logo" src="img/CancerToday-White-60.png"> </a>
+          </div>
+
+          <md-button class="md-button main-menu md-ink-ripple" ng-click="toggleRight()" hide-gt-md id="btnMobileNav" aria-label="Mobile menu" >
+              <span class="iso ng-binding mobile_menu"><i class="fa fa-bars"></i></span>
+          </md-button>
+
+          <div layout="row" layout-align="start center" class="layout-align-start-center layout-row main-menu">
+            
+            <md-button class="md-button main-menu md-ink-ripple" href="/home" ng-class="{ active: isActive('/home') }" type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding">Home</span>
+            </md-button>
+            
+            <md-button ng-click="openModal" id="buttonAbout" class="md-button main-menu md-ink-ripple" type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding" ng-click="openModal">About</span>
+            </md-button>
+
+            <!--<md-button class="md-button main-menu md-ink-ripple" ng-href="/registration-status"  ng-class="{ active: isActive('/registration-status') }"  type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding">Registration status</span>
+            </md-button>-->
+            
+            <md-button class="md-button main-menu md-ink-ripple" href="/data-sources-methods"  ng-class="{ active: isActive('/data-sources-methods') }"  type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding">Data & methods</span>
+            </md-button>
+            
+            <md-button class="md-button main-menu md-ink-ripple" id="btnFactSheets" type="button" aria-label="Language" md-menu-origin="" ng-class="{ active: isActive(['/fact-sheets-populations','/fact-sheets-cancers']) }" md-menu-align-target="">
+              <span class="iso ng-binding">Fact sheets</span>
+            </md-button>
+
+            <md-menu-content class="sub-menu-fact-sheets">
+              
+              <a href="fact-sheets-cancers"> <i class="fa fa-file-text"></i> Cancer fact sheets </a>              
+              <a href="fact-sheets-populations"> <i class="fa fa-file-text-o"></i> Population fact sheets </a>
+
+            </md-menu-content>
+
+            
+            <md-button class="md-button main-menu md-ink-ripple" href="/explore"  ng-class="{ active: isActive('/explore') }" type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding">Explore</span>
+            </md-button>
+            
+            <md-button class="md-button main-menu md-ink-ripple" href="/help"  ng-class="{ active: isActive('/help') }" type="button" aria-label="Language" md-menu-origin="" md-menu-align-target="">
+              <span class="iso ng-binding">Help</span>
+            </md-button>
+          
+          </div>
+
+        </div>
+      </md-toolbar>
+    </md-content>
+
+
+
+    <md-content id="main-content" class="animate-slide-up md-background md-hue-1 ms-scroll ng-scope flex md-teal-theme" ms-scroll="" ui-view="content" flex="" ng-view>
+    </md-content>
+
+    <md-sidenav class="md-sidenav-right hidden" md-component-id="mobileNav" id="mobileNav">
+      <md-content ng-controller="MobileMenuCtrl">
+        <ul class="mobile-nav">
+          <li><a href="/today" ng-click="closeMenu()"> <i class="fa fa-home"></i> Home</a></li>
+          <li><a href="#modalAbout" id="mobileButtonAbout" ng-click="closeMenu()"><i class="fa fa-file-text-o"></i> About</a></li>
+          <li><a href="data-sources-methods" ng-click="closeMenu()"><i class="fa fa-database"></i> Data & methods</a></li>
+          <li><a href="fact-sheets-populations" ng-click="closeMenu()"><i class="fa fa-file"></i>Population fact sheets</a></li>
+          <li><a href="fact-sheets-cancers" ng-click="closeMenu()"><i class="fa fa-file"></i>Cancer fact sheets</a></li>
+          <li><a href="help" ng-click="closeMenu()"><i class="fa fa-question-circle"></i>Help</a></li>
+        </ul>
+        <md-button ng-click="close()" class="md-primary close-mobile-nav" aria-label="Mobile menu close">
+          <i class="fa fa-times"></i>
+        </md-button>
+      </md-content>
+    </md-sidenav>
+
+    <!--<div id="fonts_palette">
+      <label> <i class="fa fa-cog" aria-hidden="true"></i> Fonts: </label>
+      <select ng-model="set_fonts" ng-change="changeFont(set_fonts)">
+        <option ng-repeat="font in fonts">{{ font }}</option>
+      </select>
+    </div>-->
+
+    <footer class="home">
+      <div class="container">
+          <p class="smaller ng-binding"> Cancer Today - IARC, 150 Cours Albert Thomas, 69372 Lyon CEDEX 08, France - Tel: +33 (0)4 72 73 84 85  - powered by <a href="http://globocan.iarc.fr/" target="_blank" class="white ng-binding">GLOBOCAN 2018</a> </p>
+      </div>
+    </footer>
+
+  </div>
+
+  
+
+
+
+  <div class="modal fade" id="modalTakeATour" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <p align="center" class="center">
+            <img src="img/logo-cancer-today-blue.png" alt="Cancer Today" class="heading-logo" title="Cancer Today" />
+          </p>
+
+          <p class="center">A subsection of the Global Cancer Observatory (<a href="http://gco.iarc.fr" target="_blank">http://gco.iarc.fr)</a></p>
+          
+          <p class="center"> CANCER TODAY provides data visualization tools to explore the current scale and profile of cancer using estimates of the incidence, mortality, and prevalence of 36 specific cancer types and of all cancer sites combined in 185 countries or territories of the world in 2018, by sex and age group, as part of the GLOBOCAN project.</p>
+          <!--<p>
+            <a href="#" class="tat"> <i class="fa fa-play-circle fa-4"></i> Take a of 36 specific cancer types and  tour </a> 
+          </p>-->        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalAbout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          <p align="center" class="center">
+            <img src="img/logo-cancer-today-blue.png" class="heading-logo" alt="Cancer Today" title="IARC" />
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>About CANCER TODAY</h2> 
+
+              <p> CANCER TODAY provides a suite of data visualization tools to explore estimates of the incidence, mortality, and prevalence of 36 specific cancer types and of all cancer sites combined in 185 countries or territories of the world in 2018, by sex and age group, as part of the GLOBOCAN project. Please note that: <br/>
+              </p>
+              <ul> 
+                <li> <i class="fa fa-arrow-circle-o-right"></i>These estimates are based on the most recent data available to IARC through collaborations with population-based cancer registries (the International Association of Cancer Registries) and with the World Health Organization, or are based on information publicly available online. </li>
+
+                <li> <i class="fa fa-arrow-circle-o-right"></i>Because the data sources are continually improving in terms of the quality and availability of data, changes in methodology are sometimes desirable, and as a result the estimates may not be comparable over time. Therefore, considerable caution should be exercised when interpreting the current estimates in comparison with those published in previous versions of GLOBOCAN.
+                </li>
+                <li> <i class="fa fa-arrow-circle-o-right"></i>CANCER TODAY is under continual development, as we seek new and better ways to present global cancer burden data. To cite this website or the underlying data sources, <a href="/help?tab=6" target="_blank">click here</a>.</li>
+              </ul>
+
+              <p> Design and development of the main website by Frederic Lam and Morten Ervik; development of estimates and further input from Jacques Ferlay, Isabelle Soerjomataram, Les Mery, and Freddie Bray. </p>
+
+            </div>
+
+          <div class="col-md-6">
+            <h2>About CSU</h2> 
+            <p>
+            The main focus of IARC’s <a href="http://www.iarc.fr/en/research-groups/sec1/index.php" target="_blank">Section of Cancer Surveillance (CSU)</a> is the ongoing analysis of global cancer data and the development of statistics for cancer control action, in keeping with one of the primary aims of IARC: to describe and elucidate cancer occurrence worldwide. The Section coordinates the collection, analysis, interpretation, and dissemination of indicators that capture the changing magnitude and profile of cancer by means of three essential and complementary areas of activity:
+            </p>
+            <ul> 
+                <li> <i class="fa fa-arrow-circle-o-right"></i>cancer registry support and development </li>
+                <li> <i class="fa fa-arrow-circle-o-right"></i>estimation and provision of global cancer indicators</li>
+                <li> <i class="fa fa-arrow-circle-o-right"></i>descriptive epidemiological cancer research.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal left fade" id="modalSettings" tabindex="2" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h1> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;My settings </h1>
+          <p>
+            The settings panel lets you configure your own preferences to improve your navigation. They will be kept accross all the different visualizations through the Global Cancer Observatory. Choose your parameters, then click on Save. 
+          </p>
+          <div class="row">
+                        
+            <div class="col-md-12">
+              <ul>    
+               <li>
+                  <span class="label_set">Sort cancer sites </span>
+                  <input type="radio" ng-model="sort_cancer_label" id="settings_sort_alpha" value="label" ng-click="saveSettings()"><label for="settings_sort_alpha"> by label </label> 
+                  <input type="radio" ng-model="sort_cancer_label" id="settings_sort_icd" value="ICD" ng-click="saveSettings()"><label for="settings_sort_icd"> by ICD 10 </label> 
+
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+
+          <md-button class="md-button md-ink-ripple save_settings" ng-click="saveSettings()" aria-label="Save settings" >
+            <span class="iso ng-binding"><i class="fa fa-floppy-o"></i> &nbsp; Save </span>
+          </md-button>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal left fade" id="modalSlides" tabindex="2" role="dialog" ng-controller="ModalCtrl">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h1> <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Create slides </h1>
+          <!--<p style="text-align:center ;margin: 15px 0;">
+            This panel lets you choose, re-order, edit your custom graphics selection accross the website. When you are ready, just click on download as a power point or a zip file. 
+          </p>-->
+          <div class="row">
+            <h2> 1 - Here is the list of selected graphics </h2>       
+            <div class="col-md-12" id="slide_selections">
+             
+            </div>
+            
+          </div>
+
+          <div class="row" class="button_dl">
+            <h2> 2 - Choose options </h2>    
+            
+            <div class="col-md-3 btn">
+
+              <div class="sub-btn">
+                <h3> Output </h3>
+                <md-radio-group ng-model="ext">
+                  <md-radio-button value="pptx" class="md-primary"> Power point </md-radio-button>
+                  <md-radio-button value="zip"> Zip (PNG files) </md-radio-button>
+                </md-radio-group>
+              </div>
+
+            </div>
+
+            <!--<div class="col-md-3 btn">
+
+              <div class="sub-btn">
+                <h3> Quality </h3>
+                <md-radio-group ng-model="quality">
+                  <md-radio-button value="hd" class="md-primary"> High definition </md-radio-button>
+                  <md-radio-button value="ld"> Low definition  </md-radio-button>
+                </md-radio-group>
+              </div>
+
+            </div>
+
+            <div class="col-md-3 btn">
+
+              <div class="sub-btn">
+                <h3> Format </h3>
+                <md-radio-group ng-model="format">
+                  <md-radio-button value="16_9" class="md-primary"> 16/9 </md-radio-button>
+                  <md-radio-button value="4_3"> 4/3 </md-radio-button>
+                </md-radio-group>
+              </div>
+
+            </div>
+
+            <div class="col-md-3 btn">
+
+              <div class="sub-btn">
+                <h3> Layout </h3>
+                <md-radio-group ng-model="layout">
+                  <md-radio-button value="landscape" class="md-primary"> Landscape</md-radio-button>
+                  <md-radio-button value="portrait"> Portrait </md-radio-button>
+                </md-radio-group>
+              </div>
+
+            </div>-->
+
+            <!--<div class="col-md-4 btn">
+              <md-button id="pptx_save_all_btn" class="md-button md-ink-ripple" ng-click="saveSlides('pptx')" aria-label="Download files in a power point" >
+              <span class="iso ng-binding"><i class="fa fa-power-point" style="color:#d24726;"></i> &nbsp; Download a power point </span>
+              </md-button>
+            </div>
+
+            <div class="col-md-4 btn">
+              <md-button id="zip_save_all_btn" class="md-button md-ink-ripple" ng-click="saveSlides('pdf')" aria-label="Download files in a pdf">
+                <span class="iso ng-binding"><i class="fa fa-file-pdf" style="color:#F00 ;"></i> &nbsp; Download a pdf </span>
+              </md-button>
+            </div>
+            <div class="col-md-4 btn">
+              <md-button id="zip_save_all_btn" class="md-button md-ink-ripple" ng-click="saveSlides('zip')" aria-label="Download files in a .zip">
+                <span class="iso ng-binding"><i class="fa fa-file-archive" style="color:#ff950a;"></i> &nbsp; Download a .zip </span>
+              </md-button>
+            </div>-->
+
+          </div>
+
+          <div class="row">
+
+              <button id="zip_save_all_btn" class="md-primary choose md-button" type="button" md-no-ink="" ng-click="download()" aria-label="Download">
+                <span class="ng-scope">Download</span>
+              </button>
+
+          </div>
+            
+      </div>
+    </div>
+  </div>
+
+  <div class="modal left fade" id="modalPrinting" tabindex="2" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h1> <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print Options </h1>
+
+          <div class="row">
+                        
+            <div class="col-md-12">
+              <ul>    
+               <li>
+                  <span class="label_set">Extension </span>
+                  <ul>
+                    <li class="icon"><a href="#"><span class="fiv-viv fiv-icon-png"></span></a></li>
+                    <li class="icon"><a href="#"><span class="fiv-viv fiv-icon-pdf"></span></a></li>
+                    <li class="icon"><a href="#"><span class="fiv-viv fiv-icon-ppt"></span></a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="label_set">Format </span>
+                  <input type="radio" ng-model="format" id="settings_sort_icd" value="a4" ng-click="saveSettings()"><label for="settings_sort_icd"> A4 </label> 
+
+                  <input type="radio" ng-model="format" id="settings_sort_icd" value="16_9" ng-click="saveSettings()"><label for="settings_sort_icd"> 16/9 </label> 
+
+                  <input type="radio" ng-model="format" id="settings_sort_icd" value="4_3" ng-click="saveSettings()"><label for="settings_sort_icd"> 4/3 </label> 
+                </li>
+                <li>
+                  <span class="label_set">Quality (zoom) </span>
+                  <input type="number" name="quality" value="2">
+                </li>
+                <li>
+                  <input type="checkbox" id="settings_sort_icd" value="1" ng-click="saveSettings()" checked="checked"><label for="settings_sort_icd"> Show title </label> 
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+
+          <md-button class="md-button md-ink-ripple save_settings" ng-click="saveSettings()" aria-label="Save settings" >
+            <span class="iso ng-binding"><i class="fa fa-floppy-o"></i> &nbsp; Print </span>
+          </md-button>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-populations" tabindex="1" role="dialog">
+    <div class="modal-dialog" role="document">    
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+
+      <div class="modal-content">
+              
+        <h1> Choose a population : <span id="label-pop-modal"></span></h1>
+        
+        <form ng-cloak>
+
+          <md-radio-group ng-model="population_modal">
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+              <div class="panel" ng-repeat="(index,population) in populations_modal"><!-- start loop -->
+
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ index }}" aria-expanded="true" aria-controls="collapse{{ index }}">
+                      {{ population.title }}
+                    </a>
+                  </h4>
+                </div>
+
+                <div id="collapse{{ index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ index }}">
+                  <div class="panel-body">
+                      
+                    <ul class="population{{ index }}">
+                      <li ng-repeat="sub_pop in population.items">
+                        <md-radio-button class="parent"  ng-if="index != 1" value="{{ sub_pop.id }}"> {{ sub_pop.title }}</md-radio-button>
+                        
+                        <md-button class="parent unselectable"  ng-if="index == 1" ng-click="showCountry( index , sub_pop.id , sub_pop.title , sub_pop.items )"> <i class="fa fa-caret-right" aria-hidden="true"></i> {{ sub_pop.title }} </md-button>
+                      </li>
+                    </ul>
+
+                    <ul class="country" ng-if="index == 1">
+                      <li ng-repeat="country in sub_countries">
+                        <md-radio-button ng-click="chooseCountry( country.id , country.title )" value="{{ country.id }}"> {{ country.title }} </md-radio-button>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div> <!-- start loop -->
+
+            </div> <!-- end panel-group -->
+
+            <br/><br/><br/>
+            <md-button md-no-ink class="md-primary choose closemodal" ng-click="clickChoose()">Choose</md-button>
+
+          </md-radio-group>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-our-research" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h2> Our research </h2>
+          
+          <p>IARC’s Section of Cancer Surveillance (CSU) compiles, analyses, interprets, and disseminates data on global cancer indicators to document the changing scale, epidemiological profile, and impact of the disease. The Section publishes a wide range of international research papers examining the descriptive epidemiology of cancer. CSU also works alongside national staff to improve the local data quality, registry coverage, and analytical capacity of population-based cancer registries. You can read more about the work of CSU at the IARC website (<a href="http://www.iarc.fr/en/research-groups/sec1/index.php" target="_blank">http://www.iarc.fr/en/research-groups/sec1/index.php</a>). </p> 
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-fact-sheets" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h2> Fact sheets </h2>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <p >For a quick access to a summary of the burden of cancer in a country or for a cancer, use the fact sheets pages. Fact Sheets are a collection of statistical summaries for the eight most common cancer types or for each country or region of the world. They were developed to provide a quick overview of frequently-requested cancer incidence, mortality and prevalence statistics.</p> 
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <a href="/fact-sheets-populations" ng-click="closeFactSheetsModal()">
+                <h3> Population Fact sheets </h3>
+                <img src="img/facts/population-fact-sheets.PNG" title="Population Fact sheets">
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="/fact-sheets-cancers" ng-click="closeFactSheetsModal()">
+                <h3> Cancer Fact sheets </h3>
+                <img src="img/facts/cancer-fact-sheets.PNG" title="Cancer Fact sheets">
+              </a>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-registries" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+      <div class="modal-content">
+          
+          <h1> Powered by Cancer Registries </h1>
+          
+          <p>
+            Cancer registry data are essential for global and national cancer control planning. Close cooperation with population-based cancer registries (PBCRs) around the world is an essential aspect of our work, and IARC’s Section of Cancer Surveillance (CSU) serves as the Secretariat for the International Association of Cancer Registries (IACR), working closely with this umbrella organization as well as with individual registries on collaborative projects, including Cancer Incidence in Five Continents (CI5).</p> 
+          
+          <p>
+            <strong>The International Association of Cancer Registries (IACR) </strong> is a professional society of population-based cancer registries. IACR’s 500 member registries are at the forefront of the development and application of cancer registration to inform local cancer control approaches and to build cancer research opportunities. You can read more about the IACR at the association’s website <a href="http://www.iacr.com.fr/" target="_blank">(http://www.iacr.com.fr/)</a>.</p>
+          
+          <p>
+            <strong>The Global Initiative for Cancer Registry Development (GICR)</strong> is a partnership based on a commitment from key international organizations to address inequities by helping underserved countries prevent cancer and improve outcomes. Coordinated by IARC, the GICR is the first global strategy for strengthening the ability to collect, analyse, and disseminate cancer data. You can read more about the GICR at the initiative’s website <a href="http://gicr.iarc.fr" target="_blank">(http://gicr.iarc.fr)</a>.
+          </p> 
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalDataAvailability" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+        <div class="modal-content">
+          <h2>Availability</h2>
+          
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="controls">
+              <p>An alphanumeric scoring system, shown below, is used to independently describe the availability of incidence and mortality data at the country level. The combined score is presented together with the estimates for each country, to provide a broad indication of the robustness of the estimation.</p>
+              <h3> Incidence data </h3>
+                <ul class="dotted">
+                  <li>A.  High-quality* national data or high-quality regional data (coverage: > 50%)</li>
+                  <li>B.  High-quality* regional data (coverage: 10–50%)</li>
+                  <li>B.  High-quality* regional data (coverage: 10–50%)</li>
+                  <li>D.  National data (rates).</li>
+                  <li>E.  Regional data (rates).</li>
+                  <li>F.  Frequency data.</li>
+                  <li>G.  No data.</li>
+                </ul>
+                <p class="small">*Data included in Cancer Incidence in Five Continents (CI5), Volume IX<sup>a</sup> and/or X<sup>b</sup>.</p>
+                <p class="small"><sup>a</sup>Curado MP, Edwards B, Shin HR, Storm H, Ferlay J, Heanue M, et al., editors (2007). Cancer incidence in five continents, Vol. IX. IARC Scientific Publication No. 160. Lyon: International Agency for Research on Cancer.</p>
+                <p class="small"><sup>b</sup>Forman D, Bray F, Brewster DH, Gombe Mbalawa C, Kohler B, Piñeros M, et al., editors (2013). Cancer incidence in five continents, Vol. X. IARC Scientific Publication No. 164. Lyon: International Agency for Research on Cancer.</p>
+
+              <h3> Mortality data </h3>
+              <p>
+                National statistics are collated and made available by the World Health Organization for countries with vital registration systems.
+                <ul class="dotted">
+                  <li> A. High-quality* complete vital registration data </li> 
+                  <li> B. Medium-quality* complete vital registration data</li>
+                  <li> C. Low-quality* complete vital registration data</li>
+                  <li> D. Incomplete or sample vital registration data</li>
+                  <li> E. Data from other sources (cancer registries, verbal autopsy surveys, etc.)</li>
+                  <li> F.  No data</li>
+                </ul>
+
+                <p class="small">*Criteria defined in: Mathers CD, Ma Fat D, Inoue M, Rao C, Lopez AD (2005). Counting the dead and what they died from: an assessment of the global status of cause of death data. Bulletin of the World Health Organization. 83(3):161–240.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="modalDataMethods" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <a class="closemodal btn btn-primary"><i class="fa fa-times"></i></a>
+        <div class="modal-content">
+
+          <h2>METHODS</h2>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="controls">
+              <p>
+                The methods of estimation are country-specific, and the quality of each estimation depends on the quality and amount of the information available that each country. </p>
+               <p> In theory, there are as many methods as countries, and because of the variety and complexity of these methods, an overall quality score for the incidence and mortality estimates combined is almost impossible to determine.</p>
+
+              <h3> Incidence</h3>
+              <p>The methods used to estimate the sex- and age-specific incidence rates of cancer in a specific country fall into the following broad categories, in order of priority:<p>
+              <ul class="dotted">
+                  <li> Rates projected to 2012 (38 countries) </li>
+                  <li> Most recent rates available applied to the 2012 population (20 countries) </li>
+                  <li> Estimated from national mortality data by modelling, using incidence mortality ratios derived from data recorded by country-specific cancer registries (13 countries)</li>
+                  <li> Estimated from national mortality estimates by modelling, using incidence mortality ratios derived from data recorded by local cancer registries in neighbouring countries (9 European countries)</li>
+                  <li> Estimated from national mortality estimates using modelled survival (32 countries)</li>
+                  <li> Estimated as a weighted average of local rates (16 countries)</li>
+                  <li> Estimated using the data from one cancer registry covering part of the country, which are treated as representative of the countrywide profile (11 countries)</li>
+                  <li> Age/sex specific rates for all cancers combined were partitioned using data on the relative frequency of individual cancers, by age and sex (12 countries) </li>
+                  <li> The rates are those of neighbouring countries or registries in the same area (33 countries)</li>
+              </ul>
+
+              <h3> Mortality </h3>
+              <p>Depending of the degree of detail and the accuracy of the national mortality data, one of the following six methods was used, in order of priority: <p>
+              <ul class="dotted">
+                  <li>Rates projected to 2012 (69 countries)</li>
+                  <li>Most recent rates available applied to the 2012 population (26 countries)</li>
+                  <li>Estimated as a weighted average of regional rates (1 country)</li>
+                  <li>Estimated from national incidence estimates by modelling, using country-specific survival (2 countries)</li>
+                  <li>Estimated from national incidence estimates by modelling, using country-specific survival (2 countries)</li>
+                  <li>The rates are those of neighbouring countries or registries in the same area (3 countries)</li>
+              </ul>
+              <p>The sources and methods used to estimate the global incidence and mortality in 2012, in addition to a brief description of the key results by cancer site and in 20 large areas of the world, can be found in Ferlay et al. (2015)<sup>a</sup>. A further assessment of the methods has also been described by Antoni et al. (2016)<sup>b</sup>.</p>
+
+              <h3> Prevalence </h3>
+              <p>The sex- and cancer-specific 1-, 3-, and 5-year prevalence estimates for 2012 were computed by multiplying the corresponding estimates for 2008<sup>c</sup> by the ratios of the estimated number of incident cases in 2012 in the adult population to the corresponding estimated number of cases for 2008.</p>
+
+              <h3> References </h3>
+              <p class="small"><sup>a</sup>Ferlay J, Soerjomataram I, Dikshit R, Eser S, Mathers C, Rebelo M, et al. (2015). Cancer incidence and mortality worldwide: sources, methods and major patterns in GLOBOCAN 2012. Int J Cancer. 136(5):E359–86. <a href="http://www.ncbi.nlm.nih.gov/pubmed/25220842" target="_blank">PMID:25220842</a></p>
+              <p class="small"><sup>b</sup>Antoni S, Soerjomataram I, Møller B, Bray F, Ferlay J (2016). An assessment of GLOBOCAN methods for deriving national estimates of cancer incidence. Bulletin of the World Health Organization. 94:174–84. doi: <a href="http://dx.doi.org/10.2471/BLT.15.164384" target="_blank">http://dx.doi.org/10.2471/BLT.15.164384</a> </p>
+              <p class="small"><sup>c</sup>Bray F, Ren JS, Masuyer E, Ferlay J. Estimates of global cancer prevalence for 27 sites in the adult population in 2008. Int J Cancer. 2013 Mar 1;132(5):1133-45. doi: 10.1002/ijc.27711. Epub 2012 Jul 26.</p>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <script src="bower_components/jquery/dist/jquery.min.js?v=2.0"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.js?v=2.0"></script>
+
+    <script src="bower_components/angular/angular.js?v=2.0"></script>
+    <script src="bower_components/angular-route/angular-route.js?v=2.0"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js?v=2.0"></script>
+    <script src="bower_components/angular-material/angular-material.js?v=2.0"></script>
+    
+    <script src="js/controllers.js?v=1.0"></script>
+    <script src="js/app.js?v=1.0"></script>
+    
+</body>
+</html>

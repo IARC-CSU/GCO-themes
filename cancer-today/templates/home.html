@@ -1,0 +1,171 @@
+	
+	<div class="container-particule">
+
+		<div class="h-container h-padding">
+
+			<h1>Cancer Today</h1>
+			<p class="baseline">
+				Data visualization tools for exploring the global cancer burden in 2018
+			</p>
+
+			<div class="row">
+
+				<div class="col-md-2 col-md-offset-1">
+					<div class="graphic reveal">
+						<a href="online-analysis-multi-bars" class="icon">
+							<img src="img/icons/svg/orange/bar.svg" title="Multi bars" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-multi-bars" class="ng-binding">Multi bars</a> </h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-pie" class="icon">
+							<img src="img/icons/svg/orange/pie_chart.svg" title="Pie chart" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-pie" class="ng-binding">Pie chart</a> </h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-dual-bars-2" class="icon">
+							<img src="img/icons/svg/orange/dual.svg" title="Dual bars" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-dual-bars-2" class="ng-binding">Dual bars</a> </h3>
+					</div>
+				</div>
+
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-map" class="icon">
+							<img src="img/icons/svg/orange/connection_map.svg" title="Maps" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-map" class="ng-binding">Maps</a> </h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-map?projection=globe" class="icon">
+							<img src="img/icons/svg/orange/globe.svg" title="Globe" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-map?projection=globe" class="ng-binding">Globe</a> </h3>
+					</div>
+				</div>
+
+
+				<div class="col-md-2  col-md-offset-1"">
+					<div class="graphic reveal">
+						<a href="online-analysis-treemap" class="icon">
+							<img src="img/icons/svg/orange/treemap.svg" title="Tree map" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-treemap" class="ng-binding">Tree map</a> </h3>
+					</div>
+				</div>
+
+
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-scatter-plot" class="icon">
+							<img src="img/icons/svg/orange/scatterplot.svg" title="Scatter plot" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-scatter-plot" class="ng-binding">Scatter plot</a> </h3>
+					</div>
+				</div>
+
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-table" class="icon">
+							<img src="img/icons/svg/orange/time_table.svg" title="Table" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-table" class="ng-binding">Table</a> </h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-sunburst" class="icon">
+							<img src="img/icons/svg/orange/sunburst.svg" title="Sunburst" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-sunburst" class="ng-binding">Sunburst</a> </h3>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="graphic reveal">
+						<a href="online-analysis-circle-packing" class="icon">
+							<img src="img/icons/svg/orange/circle_packing.svg" title="Circle packing" class="greyscale">
+						</a>
+						<h3> <a href="online-analysis-circle-packing" class="ng-binding">Circle packing</a> </h3>
+					</div>
+				</div>
+
+			</div>
+			
+			<hr class="sep" style="visibility: hidden;">
+
+			<div class="row">
+
+				<div class="col-md-2 col-md-offset-1">
+					<div class="graphic reveal">
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					
+					<ul class="fs cf">
+						<li>
+							<a href="fact-sheets-cancers" class="fs">
+								<img src="img/icons/cancer-fact-sheet.png" title="Cancer fact sheets">
+							</a>
+							<h3 class="tcf"><a href="fact-sheets-cancers">Cancer fact sheets</a></h3>
+						</li>
+						<li>
+							<a href="fact-sheets-populations" class="fs">
+								<img src="img/icons/population-fact-sheet.png" title="Population fact sheets">
+							</a>
+							<h3 class="tpf"><a href="fact-sheets-populations">Population fact sheets</a></h3>
+						</li>
+					</ul>
+					
+				</div>
+
+			</div>
+
+			<hr class="sep">
+
+			<div class="row partners">
+
+				<h2>Powered by population-based cancer registries</h2>
+				<p align="center">
+                    <a href="#modal-registries" class="IACR reveal" target="_blank" data-toggle="modal" title="IACR">
+                        <img height="80" src="img/logo-iacr-CMJN.png" title="IACR" />
+                    </a>
+                    <a href="#modal-registries" class="GICR reveal" target="_blank" data-toggle="modal" title="GICR">
+                        <img height="80" src="img/logo-gicr.png" title="GICR" />
+                    </a>
+                </p>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			setTimeout(function(){
+				$('.graphic img').addClass('greyscale');
+
+				window.sr = ScrollReveal({ duration: 750 });
+				sr.reveal('.reveal', 50 );
+
+			},50) ; 
+		});
+	</script>

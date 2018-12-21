@@ -1,0 +1,7 @@
+.ie .mobile_hide{
+	display: none ; 
+}
+
+.home-2 .container-particule, .home-2-1 .container-particule{
+	min-height: 950px ;
+}

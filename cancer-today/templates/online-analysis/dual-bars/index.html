@@ -1,0 +1,75 @@
+
+
+	<section layout="row" flex layout-fill style="height: 100%">
+
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2 filters" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+			<ng-include src="'templates/sub-menu.html'"></ng-include>
+			<ng-include src="'templates/online-analysis/filters-flex.html'"></ng-include>
+	    </md-sidenav>
+
+	    <md-content flex layout-padding ng-controller="DataVizController">
+	      		      
+	      	<ul class="breadcrumb">
+		      	<li><a href="/today/home">Home</a></li>
+		        <li><a href="/today/explore">Explore</a></li>
+	  			<li> Dual bar chart </li>
+	      	</ul>
+
+	      	<ng-include src="'templates/online-analysis/downloads.html'"></ng-include>
+
+	      	<md-tabs md-dynamic-height md-border-bottom style="width:{{ width }}px">
+		      <md-tab label="Graphic" id="dualbars-container">
+		        <md-content class="md-padding" id="graphic-content">
+		          <div id="svg" class="dualbars-container" style="height:{{ height}}px; width:{{ width }}px;" layout="column" layout-fill layout-align="top center">
+			      	<svg></svg>
+			      </div>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Table">
+		        <md-content class="md-padding">
+		          <div id="table-data" class="table-dual" flex>
+		          	<h2 class="chart-title">{{ compiled_title }}</h2>
+
+		          	<table class="table table-striped table-bordered tablesorter table_globocan" width="100%" border="1" id="table_globocan_#table-data">
+		          		
+		          		<thead>
+		          			<tr>
+			          			<th></th>
+			          			<th colspan="{{ colspan }}">{{ d.left_title }}</th>
+			          			<th colspan="{{ colspan }}">{{ d.right_title }}</th>
+			          		</tr>
+			          		<tr>
+			          			<th></th>
+			          			<th ng-if="mTypeMultiple.inc==true">Incidence</th>
+			          			<th ng-if="mTypeMultiple.mort==true">Mortality</th>
+			          			<th ng-if="mTypeMultiple.inc==true">Incidence</th>
+			          			<th ng-if="mTypeMultiple.mort==true">Mortality</th>
+			          		</tr>
+		          		</thead>
+
+		          		<tbody>
+		          			
+		          			<tr ng-repeat="(key,item) in d.grouping">
+
+		          				<td>{{ item.label }}</td>
+
+		          				<td>{{ left_table[0].values[key].value }}</td>
+		          				<td ng-if="colspan==2">{{ left_table[1].values[key].value }}</td>
+		          				<td>{{ right_table[0].values[key].value }}</td>
+		          				<td ng-if="colspan==2">{{ right_table[1].values[key].value }}</td>
+
+		          			</tr>
+
+		          		</tbody>
+
+		          	</table>
+
+		          </div>
+		        </md-content>
+		      </md-tab>
+
+		    </md-tabs>
+
+	    </md-content>
+
+	  </section>

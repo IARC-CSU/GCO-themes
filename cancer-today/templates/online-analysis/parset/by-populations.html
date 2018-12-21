@@ -1,0 +1,19 @@
+
+	<ng-include src="'templates/sub-menu.html'"></ng-include>	
+
+  <div id="filters" class="col-md-3 content zone-filters" style="padding-top: 100px;">  
+    <p> The parallel sets helps to visualize multiple categorical data at the same time </p>    
+    <div id="filter-content">
+      <ng-include src="'templates/online-analysis/filters.html'"></ng-include>
+    </div>
+  </div>
+
+  <div class="col-md-9 content data-graph-table" id="parset-container">
+    <ul class="breadcrumb">
+      <li><a href="/today/home">Home</a></li>
+      <li><a href="/today/online-analysis">Online analysis</a></li>
+      <li> Parallel sets</li>
+    </ul>
+
+    <div id="svg"></div>
+  </div>

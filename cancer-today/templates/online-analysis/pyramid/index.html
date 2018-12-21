@@ -1,0 +1,36 @@
+
+
+	<section layout="row" flex layout-fill style="height: 100%">
+
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2 filters" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+			<ng-include src="'templates/sub-menu.html'"></ng-include>
+			<ng-include src="'templates/online-analysis/filters-flex.html'"></ng-include>
+	    </md-sidenav>
+
+	    <md-content flex layout-padding ng-controller="DataVizController">
+	      		      
+	      	<ul class="breadcrumb">
+		      	<li><a href="/today/home">Home</a></li>
+		        <li><a href="/today/explore">Explore</a></li>
+	  			<li> Triangle </li>
+	      	</ul>
+
+	      	<md-tabs md-dynamic-height md-border-bottom style="width:{{ width }}px">
+		      <md-tab label="Graphic">
+		        <md-content class="md-padding" id="graphic-content">
+		          <div id="svg" layout="column" layout-fill layout-align="top center">
+			      	<svg></svg>
+			      </div>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Table">
+		        <md-content class="md-padding">
+		          <div id="table-data" class="table-dual" flex></div>
+		        </md-content>
+		      </md-tab>
+
+		    </md-tabs>
+
+	    </md-content>
+
+	  </section>

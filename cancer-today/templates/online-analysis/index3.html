@@ -1,0 +1,151 @@
+		
+    <div class="full-content" id="online-analysis-type">
+        
+        <ul class="breadcrumb">
+          <li><a href="/today/home">Home</a></li>
+          <li>Explore</li>
+        </ul>
+
+        <h1>EXPLORE</h1>
+        
+        <div id="online-home">
+
+            <div class="row">
+            	
+            	<div class="col-md-6">
+
+                    <h2>Select a graphic</h2>
+
+            		<div class="block-types block-half block-left">
+
+            			<div class="item compare">
+            				<h3> Comparisons </h3>
+            				<ul>
+            					<li class="half"><a href="/today/online-analysis-dual-bars" data-toggle="tooltip" title="Dual bars"><img src="img/graph/pyramid.png"></a></li>
+            					<li class="half"><a href="/today/online-analysis-multi-bars" data-toggle="tooltip" title="Bars"><i class="fa fa-bar-chart"></i></a></li>
+            					<li class="half"><a href="/today/online-analysis-table" data-toggle="tooltip" title="Table"><i class="fa fa-table"></i></a></li>
+            					<!--<li class="half"><a href="/today/online-analysis-dot-matrix" data-toggle="tooltip" title="Dot matrix"><i class="fa fa-circle"></i></a></li>-->
+
+
+            				</ul>
+            			</div>
+
+            			<div class="item proportion">
+            				<h3> Proportions </h3>
+            				<ul>
+            					<li class="half"><a href="/today/online-analysis-pie" data-toggle="tooltip" title="Pie charts"><i class="fa fa-pie-chart"></i></a></li>
+            					<li class="half"><a href="/today/online-analysis-circle-packing" data-toggle="tooltip" title="Circle packing"><img src="img/graph/circle-packing.png"></a></li>  
+            					<li class="half"><a href="/today/online-analysis-triangle" data-toggle="tooltip" title="Triangle"><i class="fa fa-play"></i></a></li>
+            					<li class="half"><a href="/today/online-analysis-parset" data-toggle="tooltip" title="Parallel sets"><i class="fa fa-list"></i></a></li>	
+            				</ul>
+            			</div>
+
+            			<div class="item location">
+            				<h3> Geography </h3>
+            				<ul>
+            					<li class="half"><a href="/today/online-analysis-map" data-toggle="tooltip" title="Simple maps"><img src="img/graph/earth.png"></a></a></li>
+            					<li class="half"><a href="/today/online-analysis-map?projection=globe" data-toggle="tooltip" title="Globe"><i class="fa fa-globe"></i></a></li>
+            					<!--<li><a href="#" data-toggle="tooltip" title="Bubble maps"><img src="img/graph/bubble-map.png"></i></a></li>-->
+            				</ul>
+            				
+            			</div>
+
+            			<div class="item hierarchy">
+            				<h3> Hierarchy </h3>
+            				<ul>
+            					<li class="half"><a href="/today/online-analysis-treemap" data-toggle="tooltip" title="Treemap"><i class="fa fa-th"></i></a></li>
+            					<li class="half"><a href="/today/online-analysis-force-bubbles" data-toggle="tooltip" title="Force bubbles"><img src="img/graph/force-layout.png"></a></li>
+            					<li class="half"><a href="/today/online-analysis-sunburst" data-toggle="tooltip" title="Sunburst"><i class="fa fa-circle-o-notch"></i></a></li>
+            					<!--<li class="half"><a href="/today/online-analysis-triangle" data-toggle="tooltip" title="Triangle"><i class="fa fa-play"></i></a></li>-->
+            				</ul>
+            			</div>
+            		</div>
+    		    </div>
+
+            	<div class="col-md-6">    
+
+                    <h2>  Choose your data </h2>
+
+            		<div class="block-types criteria block-half block-right">
+
+                        <!--<div class="arrow">
+                            
+                        </div>
+                        <div class="arrow_left">
+                            <i class="fa fa-caret-down"></i>
+                        </div>
+                        <div class="arrow_right">
+                            <i class="fa fa-caret-down"></i>
+                        </div>-->
+
+                        <div class="row">
+                			<div class="item sub-item type">
+                				<h3> Indicator </h3>
+                				<md-select ng-model="type" ng-change="selectFilter('type',type)" aria-label="Populations">
+                                    <md-option value="0">Incidence</md-option>
+                                    <md-option value="1">Mortality</md-option>
+                                    <md-option value="2">Prevalence</md-option>
+                                </md-select>
+                			     <img src="img/arrow-grey.png" class="top-left">
+                                 <img src="img/arrow-grey.png" class="top-right">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            
+                            <div class="col-md-6" style="padding-left: 0px;">
+                                <div class="item sub-item sub-divider cancer">
+                                    <h3> Sorted by population </h3>
+                                    <md-select ng-model="cancer" ng-change="selectFilter('cancer',cancer)" aria-label="Cancer">
+                                        <md-option ng-repeat="cancer in cancers" value="{{ cancer.CANCER }}">{{ cancer.LABEL }}</option>
+                                    </md-select>
+                                    <i class="fa fa-angle-right direction"></i>
+                                </div>
+                                <!--<div class="item sub-item submit">
+                                    <h2> <a href="#" class="go_left" ng-click="goToChart('population')"> <i class="fa fa-check"></i></a> </h2>
+                                </div>-->
+
+                            </div>
+
+                            <div class="col-md-6" style="padding-right: 0px;">
+                                <div class="item sub-item sub-divider populations">
+                                    <h3> Sorted by cancer  </h3>
+                                    <md-select ng-model="population" ng-change="selectFilter('population',population)" aria-label="Population">
+                                        <md-option ng-repeat="population in populations" value="{{ population.country }}">{{ population.label }}</option>
+                                    </md-select>
+
+                                    <i class="fa fa-angle-right direction"></i>
+                                </div>
+                                <!--<div class="item sub-item submit">
+                                    <h2> <a href="#" class="go_right" ng-click="goToChart('cancer')"> <i class="fa fa-check"></i></a> </h2>
+                                </div>-->
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="item sub-item type_graph">
+                                <h3> Visualization type </h3>
+                                <md-select ng-model="chart" ng-change="selectFilter('chart',chart)" aria-label="Chart">
+                                    <md-option ng-repeat="type in type_charts" value="{{ type.key }}"><i class="fa fa-{{ type.icon }}"></i>{{ type.label }}</option>
+
+                                </md-select>
+
+                                <img src="img/arrow-grey.png" class="bottom-left">
+                                 <img src="img/arrow-grey.png" class="bottom-right">
+                                 <img src="img/arrow-grey-bottom.png" class="bottom-go">
+                            </div>
+                        </div>
+
+                        <div class="item sub-item submit">
+                            <h2> <a href="#" class="go_right" ng-click="goToChart()"> GO </a> </h2>
+                        </div>
+
+                        
+
+            		</div>
+            	</div>
+            </div>
+
+        </div>
+    
