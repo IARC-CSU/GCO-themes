@@ -13,7 +13,7 @@ To start developing with this starter project
 ```
 bower install
 ```
-* to start using css, open terminal
+* to start using css, install Compass and
 ```
 compass watch
 ```
