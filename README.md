@@ -31,7 +31,7 @@ Only /home is working as of now. All routes are listed in js/app.js.
 ```
 build your owns urls following this structure (ensure .html file exists). 
 
-Warning: refreshing an webpage is only working with an Apache env + ModRewrite enable (see .htaccess file)
+Warning: refreshing n webpage is only working with an Apache env + ModRewrite enable (see .htaccess file)
 
 ## Cancer Tomorrow theme
 @todo
